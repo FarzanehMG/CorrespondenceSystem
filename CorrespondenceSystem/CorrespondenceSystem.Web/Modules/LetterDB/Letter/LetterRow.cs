@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.LetterDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow
+public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILoggingRow
 {
     const string jTemplate = nameof(jTemplate);
     const string jSender = nameof(jSender);
@@ -105,6 +105,14 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow
 
     [DisplayName("Grand Subject Title"), Expression($"{jGrandSubject}.[Title]")]
     public string GrandSubjectTitle { get => fields.GrandSubjectTitle[this]; set => fields.GrandSubjectTitle[this] = value; }
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
 
     public class RowFields : RowFieldsBase
     {
