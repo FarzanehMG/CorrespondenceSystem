@@ -97,6 +97,7 @@ namespace CorrespondenceSystem.Texts {
                 export const ConfidentialLevel: string;
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
+                export const DetailList: string;
                 export const GrandSubjectId: string;
                 export const GrandSubjectTitle: string;
                 export const HasAttachment: string;

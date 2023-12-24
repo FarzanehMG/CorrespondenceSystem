@@ -14,5 +14,5 @@ public class LetterAttachmentForm
     //public string CreatorUserName { get; set; }
     //public DateTime ModifiedDate { get; set; }
     //public string ModifiedUserName { get; set; }
-    public byte[] TimeStamp { get; set; }
+    //public byte[] TimeStamp { get; set; }
 }

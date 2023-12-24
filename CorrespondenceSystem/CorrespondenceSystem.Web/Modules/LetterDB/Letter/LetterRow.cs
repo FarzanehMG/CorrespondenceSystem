@@ -1,3 +1,4 @@
+using CorrespondenceSystem.LetterAttachmentDB;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -106,6 +107,9 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     [DisplayName("Grand Subject Title"), Expression($"{jGrandSubject}.[Title]")]
     public string GrandSubjectTitle { get => fields.GrandSubjectTitle[this]; set => fields.GrandSubjectTitle[this] = value; }
 
+    [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(LetterAttachmentRow.LetterId)), NotMapped]
+    public List<LetterAttachmentRow> DetailList { get => fields.DetailList[this]; set => fields.DetailList[this] = value; }
+
     public Field UpdateUserIdField => fields.ModifiedUserName;
 
     public DateTimeField UpdateDateField => fields.ModifiedDate;
@@ -146,5 +150,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
         public StringField SenderName;
         public StringField ReceiverName;
         public StringField GrandSubjectTitle;
+
+        public RowListField<LetterAttachmentRow> DetailList;
     }
 }

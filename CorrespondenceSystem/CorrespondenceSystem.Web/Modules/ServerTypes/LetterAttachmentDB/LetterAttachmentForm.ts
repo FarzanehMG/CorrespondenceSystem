@@ -4,9 +4,6 @@ export interface LetterAttachmentForm {
     LetterId: ServiceLookupEditor;
     Title: StringEditor;
     AttachmentFile: StringEditor;
-    CreatorUserName: StringEditor;
-    ModifiedUserName: StringEditor;
-    TimeStamp: StringEditor;
 }
 
 export class LetterAttachmentForm extends PrefixedContext {
@@ -25,10 +22,7 @@ export class LetterAttachmentForm extends PrefixedContext {
             initFormType(LetterAttachmentForm, [
                 'LetterId', w0,
                 'Title', w1,
-                'AttachmentFile', w1,
-                'CreatorUserName', w1,
-                'ModifiedUserName', w1,
-                'TimeStamp', w1
+                'AttachmentFile', w1
             ]);
         }
     }

@@ -1,3 +1,4 @@
+using CorrespondenceSystem.LetterAttachmentDB;
 using Serenity.ComponentModel;
 using System;
 
@@ -18,17 +19,22 @@ public class LetterForm
     public string Title { get; set; }
     public string LetterContent { get; set; }
     public string Tag { get; set; }
-    public short LetterType { get; set; }
-    public short State { get; set; }
-    public short PriorityState { get; set; }
-    public short ConfidentialLevel { get; set; }
+    //public short LetterType { get; set; }
+    //public short State { get; set; }
+    //public short PriorityState { get; set; }
+    //public short ConfidentialLevel { get; set; }
     public bool HasAttachment { get; set; }
     //public DateTime CreatedDate { get; set; }
     //public string CreatorUserName { get; set; }
     //public DateTime ModifiedDate { get; set; }
     //public DateTime ModifiedUserName { get; set; }
-    public byte[] TimeStamp { get; set; }
+    //public byte[] TimeStamp { get; set; }
     public string LetterCarrier { get; set; }
     public bool NeedAnswer { get; set; }
     public string LetterFile { get; set; }
+
+    [Category("Letter Attachment Details")]
+    //[OrderDetailsEditor]
+    [LetterAttachmentRowEditor]
+    public List<LetterAttachmentRow> DetailList { get; set; }
 }
