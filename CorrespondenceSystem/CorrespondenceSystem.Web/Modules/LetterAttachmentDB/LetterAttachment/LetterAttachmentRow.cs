@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.LetterAttachmentDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, IIdRow, INameRow
+public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, IIdRow, INameRow,ILoggingRow
 {
     const string jLetter = nameof(jLetter);
 
@@ -45,6 +45,14 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
 
     [DisplayName("Letter Letter Identifier"), Origin(jLetter, nameof(LetterDB.LetterRow.LetterIdentifier))]
     public string LetterIdentifier { get => fields.LetterIdentifier[this]; set => fields.LetterIdentifier[this] = value; }
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
 
     public class RowFields : RowFieldsBase
     {
