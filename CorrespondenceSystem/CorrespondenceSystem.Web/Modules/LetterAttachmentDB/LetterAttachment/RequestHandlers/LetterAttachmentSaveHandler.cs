@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.LetterAttachmentDB.LetterAttachmentRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.LetterAttachmentDB.LetterAttachmentRow;
@@ -12,5 +12,10 @@ public class LetterAttachmentSaveHandler : SaveRequestHandler<MyRow, MyRequest, 
     public LetterAttachmentSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+
+    protected override void ValidateRequest()
+    {
+        base.ValidateRequest();
     }
 }

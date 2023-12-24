@@ -15,7 +15,7 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
 {
     const string jLetter = nameof(jLetter);
 
-    [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
+    [DisplayName("Letter Attachment Id"), PrimaryKey, NotNull, IdProperty]
     public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
 
     [DisplayName("Letter"), NotNull, ForeignKey(typeof(LetterDB.LetterRow)), LeftJoin(jLetter), TextualField(nameof(LetterIdentifier))]

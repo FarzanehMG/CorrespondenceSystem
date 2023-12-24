@@ -29,6 +29,8 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     public Guid? TemplateId { get => fields.TemplateId[this]; set => fields.TemplateId[this] = value; }
 
     [DisplayName("Sender"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jSender), TextualField(nameof(SenderName))]
+    //[ServiceLookupEditor(typeof(AccountDB.AccountRow))]
+
     public Guid? SenderId { get => fields.SenderId[this]; set => fields.SenderId[this] = value; }
 
     [DisplayName("Receiver"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jReceiver), TextualField(nameof(ReceiverName))]

@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.LetterDB.LetterRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.LetterDB.LetterRow;
@@ -12,5 +12,11 @@ public class LetterSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse
     public LetterSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+
+    protected override void ValidateRequest()
+    {
+        Row.Id = Guid.NewGuid();
+        base.ValidateRequest();
     }
 }
