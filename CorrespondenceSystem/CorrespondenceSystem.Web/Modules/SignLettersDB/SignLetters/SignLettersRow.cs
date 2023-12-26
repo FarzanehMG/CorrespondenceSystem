@@ -1,0 +1,65 @@
+﻿using Serenity.ComponentModel;
+using Serenity.Data;
+using Serenity.Data.Mapping;
+using System;
+using System.ComponentModel;
+
+namespace CorrespondenceSystem.SignLettersDB;
+
+[ConnectionKey("CorrespondenceSystem"), Module("SignLettersDB"), TableName("SignedLetters")]
+[DisplayName("Sign Letters"), InstanceName("Sign Letters")]
+[ReadPermission("Administration:General")]
+[ModifyPermission("Administration:General")]
+[ServiceLookupPermission("Administration:General")]
+public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INameRow
+{
+    const string jLetter = nameof(jLetter);
+    const string jSign = nameof(jSign);
+
+    [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
+    public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
+
+    [DisplayName("Letter"), NotNull, ForeignKey(typeof(LetterDB.LetterRow)), LeftJoin(jLetter), TextualField(nameof(LetterIdentifier))]
+    [ServiceLookupEditor(typeof(LetterDB.LetterRow), Service = "LetterDB/Letter/List")]
+    public Guid? LetterId { get => fields.LetterId[this]; set => fields.LetterId[this] = value; }
+
+    [DisplayName("Sign"), NotNull, ForeignKey(typeof(SignDB.SignRow)), LeftJoin(jSign), TextualField(nameof(SignTitle))]
+    [ServiceLookupEditor(typeof(SignDB.SignRow))]
+    public Guid? SignId { get => fields.SignId[this]; set => fields.SignId[this] = value; }
+
+    [DisplayName("Sign Type")]
+    public short? SignType { get => fields.SignType[this]; set => fields.SignType[this] = value; }
+
+    [DisplayName("Sign Date")]
+    public DateTime? SignDate { get => fields.SignDate[this]; set => fields.SignDate[this] = value; }
+
+    [DisplayName("Created Date")]
+    public DateTime? CreatedDate { get => fields.CreatedDate[this]; set => fields.CreatedDate[this] = value; }
+
+    [DisplayName("Creator User Name"), Size(200), QuickSearch, NameProperty]
+    public string CreatorUserName { get => fields.CreatorUserName[this]; set => fields.CreatorUserName[this] = value; }
+
+    [DisplayName("Modified User Name"), Size(200)]
+    public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
+
+    [DisplayName("Letter Letter Identifier"), Origin(jLetter, nameof(LetterDB.LetterRow.LetterIdentifier))]
+    public string LetterIdentifier { get => fields.LetterIdentifier[this]; set => fields.LetterIdentifier[this] = value; }
+
+    [DisplayName("Sign Title"), Origin(jSign, nameof(SignDB.SignRow.Title))]
+    public string SignTitle { get => fields.SignTitle[this]; set => fields.SignTitle[this] = value; }
+
+    public class RowFields : RowFieldsBase
+    {
+        public GuidField Id;
+        public GuidField LetterId;
+        public GuidField SignId;
+        public Int16Field SignType;
+        public DateTimeField SignDate;
+        public DateTimeField CreatedDate;
+        public StringField CreatorUserName;
+        public StringField ModifiedUserName;
+
+        public StringField LetterIdentifier;
+        public StringField SignTitle;
+    }
+}
