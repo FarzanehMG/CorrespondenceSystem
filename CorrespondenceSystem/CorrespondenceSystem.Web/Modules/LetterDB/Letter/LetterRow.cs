@@ -146,7 +146,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
-        public ByteArrayField TimeStamp;
+        //public ByteArrayField TimeStamp;
         public StringField LetterCarrier;
         public BooleanField NeedAnswer;
         public StringField LetterFile;

@@ -23,7 +23,6 @@ export interface LetterRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
-    TimeStamp?: number[];
     LetterCarrier?: string;
     NeedAnswer?: boolean;
     LetterFile?: string;

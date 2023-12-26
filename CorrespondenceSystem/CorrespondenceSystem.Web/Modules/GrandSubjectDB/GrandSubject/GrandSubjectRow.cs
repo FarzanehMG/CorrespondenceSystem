@@ -46,7 +46,7 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
-        public ByteArrayField TimeStamp;
+        //public ByteArrayField TimeStamp;
 
     }
 }

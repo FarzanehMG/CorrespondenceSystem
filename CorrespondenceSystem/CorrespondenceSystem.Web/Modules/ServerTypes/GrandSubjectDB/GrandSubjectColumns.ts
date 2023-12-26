@@ -10,7 +10,6 @@ export interface GrandSubjectColumns {
     CreatorUserName: Column<GrandSubjectRow>;
     ModifiedDate: Column<GrandSubjectRow>;
     ModifiedUserName: Column<GrandSubjectRow>;
-    TimeStamp: Column<GrandSubjectRow>;
 }
 
 export class GrandSubjectColumns extends ColumnsBase<GrandSubjectRow> {

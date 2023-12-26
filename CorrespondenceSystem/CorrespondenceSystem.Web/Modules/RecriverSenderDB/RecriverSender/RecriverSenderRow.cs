@@ -46,7 +46,7 @@ public sealed class RecriverSenderRow : Row<RecriverSenderRow.RowFields>, IIdRow
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
-        public ByteArrayField TimeStamp;
+        //public ByteArrayField TimeStamp;
 
     }
 }

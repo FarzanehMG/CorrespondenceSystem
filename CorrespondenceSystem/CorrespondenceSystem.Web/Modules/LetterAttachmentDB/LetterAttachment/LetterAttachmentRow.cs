@@ -65,7 +65,7 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
-        public ByteArrayField TimeStamp;
+        //public ByteArrayField TimeStamp;
 
         public StringField LetterIdentifier;
     }

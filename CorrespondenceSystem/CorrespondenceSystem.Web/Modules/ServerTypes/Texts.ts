@@ -100,7 +100,6 @@ namespace CorrespondenceSystem.Texts {
                 export const Id: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
-                export const TimeStamp: string;
                 export const Title: string;
             }
         }
@@ -116,7 +115,6 @@ namespace CorrespondenceSystem.Texts {
                 export const LetterIdentifier: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
-                export const TimeStamp: string;
                 export const Title: string;
             }
         }
@@ -151,7 +149,6 @@ namespace CorrespondenceSystem.Texts {
                 export const Tag: string;
                 export const TemplateId: string;
                 export const TemplateTitle: string;
-                export const TimeStamp: string;
                 export const Title: string;
                 export const UseDefaultTemplate: string;
             }
@@ -196,7 +193,6 @@ namespace CorrespondenceSystem.Texts {
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
                 export const Name: string;
-                export const TimeStamp: string;
             }
         }
 
