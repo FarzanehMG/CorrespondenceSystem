@@ -1,5 +1,5 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from '@serenity-is/corelib';
-import { TemplateRow } from './TemplateRow';
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+import { TemplateRow } from "./TemplateRow";
 
 export namespace TemplateService {
     export const baseUrl = 'TemplateDB/Template';
@@ -25,8 +25,8 @@ export namespace TemplateService {
         'Retrieve', 
         'List'
     ].forEach(x => {
-        (<any>TemplateService)[x] = function (r, s, o) { 
-            return serviceRequest(baseUrl + '/' + x, r, s, o); 
+        (<any>TemplateService)[x] = function (r, s, o) {
+            return serviceRequest(baseUrl + '/' + x, r, s, o);
         };
     });
 }

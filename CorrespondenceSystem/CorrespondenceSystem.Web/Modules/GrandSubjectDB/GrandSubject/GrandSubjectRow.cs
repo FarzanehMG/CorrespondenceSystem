@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -34,8 +34,8 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
     [DisplayName("Modified User Name"), Size(100)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
-    [DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
-    public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
+    //[DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
+    //public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
 
     public class RowFields : RowFieldsBase
     {

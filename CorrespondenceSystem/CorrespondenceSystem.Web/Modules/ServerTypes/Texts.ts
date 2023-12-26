@@ -75,6 +75,22 @@ namespace CorrespondenceSystem.Texts {
             }
         }
 
+        namespace CounterpartDB {
+
+            namespace Counterpart {
+                export const CopyType: string;
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const Id: string;
+                export const LetterId: string;
+                export const LetterIdentifier: string;
+                export const ModifiedDate: string;
+                export const ModifiedUserName: string;
+                export const ReciverId: string;
+                export const ReciverName: string;
+            }
+        }
+
         namespace GrandSubjectDB {
 
             namespace GrandSubject {
@@ -141,6 +157,35 @@ namespace CorrespondenceSystem.Texts {
             }
         }
 
+        namespace LetterHistoryDB {
+
+            namespace LetterHistory {
+                export const ActionType: string;
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const GrandSubjectId: string;
+                export const HasAttachment: string;
+                export const Id: string;
+                export const LetterCarrier: string;
+                export const LetterContent: string;
+                export const LetterId: string;
+                export const LetterIdentifier: string;
+                export const LetterIdentifierGen: string;
+                export const LetterLetterIdentifier: string;
+                export const LetterNo: string;
+                export const LetterType: string;
+                export const ModifiedDate: string;
+                export const ModifiedUserName: string;
+                export const PriorityState: string;
+                export const ReceiverId: string;
+                export const SenderId: string;
+                export const State: string;
+                export const Tag: string;
+                export const TemplateId: string;
+                export const Title: string;
+            }
+        }
+
         namespace RecriverSenderDB {
 
             namespace RecriverSender {
@@ -152,6 +197,66 @@ namespace CorrespondenceSystem.Texts {
                 export const ModifiedUserName: string;
                 export const Name: string;
                 export const TimeStamp: string;
+            }
+        }
+
+        namespace RelatedLettersDB {
+
+            namespace RelatedLetters {
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const Id: string;
+                export const LetterId: string;
+                export const LetterIdentifier: string;
+                export const ModifiedDate: string;
+                export const ModifiedUserName: string;
+                export const RelatedLetterId: string;
+                export const RelationType: string;
+            }
+        }
+
+        namespace SignDB {
+
+            namespace Sign {
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const Id: string;
+                export const IsLast: string;
+                export const ModifiedDate: string;
+                export const ModifiedUserName: string;
+                export const SignAttachment: string;
+                export const Title: string;
+                export const UserId: string;
+            }
+        }
+
+        namespace SignLettersDB {
+
+            namespace SignLetters {
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const Id: string;
+                export const LetterId: string;
+                export const LetterIdentifier: string;
+                export const ModifiedUserName: string;
+                export const SignDate: string;
+                export const SignId: string;
+                export const SignTitle: string;
+                export const SignType: string;
+            }
+        }
+
+        namespace TemplateDB {
+
+            namespace Template {
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const Id: string;
+                export const IsDefault: string;
+                export const ModifiedDate: string;
+                export const ModifiedUserName: string;
+                export const TemplateFile: string;
+                export const Title: string;
             }
         }
     }
@@ -261,6 +366,9 @@ namespace CorrespondenceSystem.Texts {
                 UserPermission: {},
                 UserRole: {}
             },
+            CounterpartDB: {
+                Counterpart: {}
+            },
             GrandSubjectDB: {
                 GrandSubject: {}
             },
@@ -270,8 +378,23 @@ namespace CorrespondenceSystem.Texts {
             LetterDB: {
                 Letter: {}
             },
+            LetterHistoryDB: {
+                LetterHistory: {}
+            },
             RecriverSenderDB: {
                 RecriverSender: {}
+            },
+            RelatedLettersDB: {
+                RelatedLetters: {}
+            },
+            SignDB: {
+                Sign: {}
+            },
+            SignLettersDB: {
+                SignLetters: {}
+            },
+            TemplateDB: {
+                Template: {}
             }
         },
         Forms: {

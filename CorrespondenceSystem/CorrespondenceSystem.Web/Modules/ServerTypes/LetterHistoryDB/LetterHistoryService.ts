@@ -1,5 +1,5 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from '@serenity-is/corelib';
-import { LetterHistoryRow } from './LetterHistoryRow';
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+import { LetterHistoryRow } from "./LetterHistoryRow";
 
 export namespace LetterHistoryService {
     export const baseUrl = 'LetterHistoryDB/LetterHistory';
@@ -25,8 +25,8 @@ export namespace LetterHistoryService {
         'Retrieve', 
         'List'
     ].forEach(x => {
-        (<any>LetterHistoryService)[x] = function (r, s, o) { 
-            return serviceRequest(baseUrl + '/' + x, r, s, o); 
+        (<any>LetterHistoryService)[x] = function (r, s, o) {
+            return serviceRequest(baseUrl + '/' + x, r, s, o);
         };
     });
 }

@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from '@serenity-is/corelib';
+﻿import { fieldsProxy } from "@serenity-is/corelib";
 
 export interface CounterpartRow {
     Id?: string;
@@ -17,7 +17,6 @@ export abstract class CounterpartRow {
     static readonly idProperty = 'Id';
     static readonly nameProperty = 'CreatorUserName';
     static readonly localTextPrefix = 'CounterpartDB.Counterpart';
-
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';
     static readonly readPermission = 'Administration:General';
