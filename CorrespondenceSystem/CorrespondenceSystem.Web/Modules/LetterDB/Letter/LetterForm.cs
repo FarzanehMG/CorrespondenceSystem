@@ -10,10 +10,10 @@ public class LetterForm
 {
     public bool UseDefaultTemplate { get; set; }
     //public Guid TemplateId { get; set; }
-    //public Guid SenderId { get; set; }
-    //public Guid ReceiverId { get; set; }
-    //public Guid GrandSubjectId { get; set; }
-    //public string LetterIdentifier { get; set; }
+    public Guid SenderId { get; set; }
+    public Guid ReceiverId { get; set; }
+    public Guid GrandSubjectId { get; set; }
+    public string LetterIdentifier { get; set; }
     //public string LetterIdentifierGen { get; set; }
     public string LetterNo { get; set; }
     public string Title { get; set; }

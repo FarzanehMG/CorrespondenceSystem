@@ -1,5 +1,5 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from '@serenity-is/corelib';
-import { GrandSubjectRow } from './GrandSubjectRow';
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+import { GrandSubjectRow } from "./GrandSubjectRow";
 
 export namespace GrandSubjectService {
     export const baseUrl = 'GrandSubjectDB/GrandSubject';
@@ -25,8 +25,8 @@ export namespace GrandSubjectService {
         'Retrieve', 
         'List'
     ].forEach(x => {
-        (<any>GrandSubjectService)[x] = function (r, s, o) { 
-            return serviceRequest(baseUrl + '/' + x, r, s, o); 
+        (<any>GrandSubjectService)[x] = function (r, s, o) {
+            return serviceRequest(baseUrl + '/' + x, r, s, o);
         };
     });
 }

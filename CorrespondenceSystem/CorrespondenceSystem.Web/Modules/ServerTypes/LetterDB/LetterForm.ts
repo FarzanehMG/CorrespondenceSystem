@@ -1,8 +1,12 @@
 ﻿import { LetterAttachmentEditor } from "@/LetterAttachmentDB/LetterAttachment/LetterAttachmentEditor";
-import { BooleanEditor, StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { BooleanEditor, ServiceLookupEditor, StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface LetterForm {
     UseDefaultTemplate: BooleanEditor;
+    SenderId: ServiceLookupEditor;
+    ReceiverId: ServiceLookupEditor;
+    GrandSubjectId: ServiceLookupEditor;
+    LetterIdentifier: StringEditor;
     LetterNo: StringEditor;
     Title: StringEditor;
     LetterContent: StringEditor;
@@ -25,20 +29,25 @@ export class LetterForm extends PrefixedContext {
             LetterForm.init = true;
 
             var w0 = BooleanEditor;
-            var w1 = StringEditor;
-            var w2 = LetterAttachmentEditor;
+            var w1 = ServiceLookupEditor;
+            var w2 = StringEditor;
+            var w3 = LetterAttachmentEditor;
 
             initFormType(LetterForm, [
                 'UseDefaultTemplate', w0,
-                'LetterNo', w1,
-                'Title', w1,
-                'LetterContent', w1,
-                'Tag', w1,
+                'SenderId', w1,
+                'ReceiverId', w1,
+                'GrandSubjectId', w1,
+                'LetterIdentifier', w2,
+                'LetterNo', w2,
+                'Title', w2,
+                'LetterContent', w2,
+                'Tag', w2,
                 'HasAttachment', w0,
-                'LetterCarrier', w1,
+                'LetterCarrier', w2,
                 'NeedAnswer', w0,
-                'LetterFile', w1,
-                'DetailList', w2
+                'LetterFile', w2,
+                'DetailList', w3
             ]);
         }
     }

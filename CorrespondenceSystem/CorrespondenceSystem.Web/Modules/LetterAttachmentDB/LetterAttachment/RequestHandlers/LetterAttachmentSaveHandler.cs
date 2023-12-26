@@ -16,6 +16,7 @@ public class LetterAttachmentSaveHandler : SaveRequestHandler<MyRow, MyRequest, 
 
     protected override void ValidateRequest()
     {
+        Row.Id = Guid.NewGuid();
         base.ValidateRequest();
     }
 }

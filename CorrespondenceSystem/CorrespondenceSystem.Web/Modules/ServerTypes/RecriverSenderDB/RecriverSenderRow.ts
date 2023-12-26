@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from '@serenity-is/corelib';
+﻿import { fieldsProxy } from "@serenity-is/corelib";
 
 export interface RecriverSenderRow {
     Id?: string;
@@ -15,7 +15,6 @@ export abstract class RecriverSenderRow {
     static readonly idProperty = 'Id';
     static readonly nameProperty = 'Name';
     static readonly localTextPrefix = 'RecriverSenderDB.RecriverSender';
-
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';
     static readonly readPermission = 'Administration:General';

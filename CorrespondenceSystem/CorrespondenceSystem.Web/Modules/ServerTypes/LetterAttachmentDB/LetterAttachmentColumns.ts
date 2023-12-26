@@ -11,7 +11,6 @@ export interface LetterAttachmentColumns {
     CreatorUserName: Column<LetterAttachmentRow>;
     ModifiedDate: Column<LetterAttachmentRow>;
     ModifiedUserName: Column<LetterAttachmentRow>;
-    TimeStamp: Column<LetterAttachmentRow>;
 }
 
 export class LetterAttachmentColumns extends ColumnsBase<LetterAttachmentRow> {

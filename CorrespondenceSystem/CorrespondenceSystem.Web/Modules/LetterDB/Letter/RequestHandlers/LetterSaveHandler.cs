@@ -16,6 +16,8 @@ public class LetterSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse
 
     protected override void ValidateRequest()
     {
+        //Row.CreatedDate = DateTime.Now;
+        //Row.CreatorUserName = "1";
         Row.Id = Guid.NewGuid();
         base.ValidateRequest();
     }

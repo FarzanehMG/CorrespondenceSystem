@@ -1,0 +1,38 @@
+//protected getToolbarButtons(): Serenity.ToolButton[] {
+        //    let buttons = super.getToolbarButtons();
+        //    buttons.push({
+        //        title: Q.text("حداکثر ارزش"),
+        //        cssClass: 'stampe',
+        //        onClick: () => {
+        //            Q.alert("مقادیر را بدرستی وارد نمایید");
+        //        },
+        //    })
+
+            //buttons.push({
+            //    title: Q.text("پاک کردن"),
+            //    hint: "پاک سازی فرم",
+            //    cssClass: "add-note-button",
+            //    icon: "fa-hand-lizard-o",
+            //    onClick: () => { Q.alert("پاک گردید") }
+            //})
+
+        //    buttons.push({
+        //        title: "Clear",
+        //        cssClass: "delete-button",
+        //        onClick: () => {
+        //            this.form.FirstName.value = null;
+        //            this.form.LastName.value = null;
+        //            this.form.MeliCode.value = null;
+        //            this.form.Address.value = null;
+        //            this.form.ParentName.value = null;
+        //            this.form.TermsPassed.value = null;
+        //            this.form.StudentCode.value = null;
+        //            this.form.Age.value = null;
+
+        //            alert("پاک گردید")
+        //            //Q.alert(this.form.FirstName.value);
+        //        }
+        //    })
+
+        //    return buttons;
+        //}

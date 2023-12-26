@@ -75,6 +75,20 @@ namespace CorrespondenceSystem.Texts {
             }
         }
 
+        namespace GrandSubjectDB {
+
+            namespace GrandSubject {
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const Description: string;
+                export const Id: string;
+                export const ModifiedDate: string;
+                export const ModifiedUserName: string;
+                export const TimeStamp: string;
+                export const Title: string;
+            }
+        }
+
         namespace LetterAttachmentDB {
 
             namespace LetterAttachment {
@@ -124,6 +138,20 @@ namespace CorrespondenceSystem.Texts {
                 export const TimeStamp: string;
                 export const Title: string;
                 export const UseDefaultTemplate: string;
+            }
+        }
+
+        namespace RecriverSenderDB {
+
+            namespace RecriverSender {
+                export const CreatedDate: string;
+                export const CreatorUserName: string;
+                export const Id: string;
+                export const IsDefault: string;
+                export const ModifiedDate: string;
+                export const ModifiedUserName: string;
+                export const Name: string;
+                export const TimeStamp: string;
             }
         }
     }
@@ -233,11 +261,17 @@ namespace CorrespondenceSystem.Texts {
                 UserPermission: {},
                 UserRole: {}
             },
+            GrandSubjectDB: {
+                GrandSubject: {}
+            },
             LetterAttachmentDB: {
                 LetterAttachment: {}
             },
             LetterDB: {
                 Letter: {}
+            },
+            RecriverSenderDB: {
+                RecriverSender: {}
             }
         },
         Forms: {

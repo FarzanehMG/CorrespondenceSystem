@@ -1,5 +1,5 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from '@serenity-is/corelib';
-import { RecriverSenderRow } from './RecriverSenderRow';
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+import { RecriverSenderRow } from "./RecriverSenderRow";
 
 export namespace RecriverSenderService {
     export const baseUrl = 'RecriverSenderDB/RecriverSender';
@@ -25,8 +25,8 @@ export namespace RecriverSenderService {
         'Retrieve', 
         'List'
     ].forEach(x => {
-        (<any>RecriverSenderService)[x] = function (r, s, o) { 
-            return serviceRequest(baseUrl + '/' + x, r, s, o); 
+        (<any>RecriverSenderService)[x] = function (r, s, o) {
+            return serviceRequest(baseUrl + '/' + x, r, s, o);
         };
     });
 }

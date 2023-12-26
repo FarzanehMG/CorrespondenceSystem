@@ -1,9 +1,8 @@
-﻿import { ServiceLookupEditor, StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { StringEditor, ImageUploadEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface LetterAttachmentForm {
-    LetterId: ServiceLookupEditor;
     Title: StringEditor;
-    AttachmentFile: StringEditor;
+    AttachmentFile: ImageUploadEditor;
 }
 
 export class LetterAttachmentForm extends PrefixedContext {
@@ -16,12 +15,11 @@ export class LetterAttachmentForm extends PrefixedContext {
         if (!LetterAttachmentForm.init)  {
             LetterAttachmentForm.init = true;
 
-            var w0 = ServiceLookupEditor;
-            var w1 = StringEditor;
+            var w0 = StringEditor;
+            var w1 = ImageUploadEditor;
 
             initFormType(LetterAttachmentForm, [
-                'LetterId', w0,
-                'Title', w1,
+                'Title', w0,
                 'AttachmentFile', w1
             ]);
         }

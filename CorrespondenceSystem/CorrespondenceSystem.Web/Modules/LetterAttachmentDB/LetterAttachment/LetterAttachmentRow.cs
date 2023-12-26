@@ -26,6 +26,7 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
     public string Title { get => fields.Title[this]; set => fields.Title[this] = value; }
 
     [DisplayName("Attachment File"), Size(200)]
+    [FileUploadEditor]
     public string AttachmentFile { get => fields.AttachmentFile[this]; set => fields.AttachmentFile[this] = value; }
 
     [DisplayName("Created Date")]
@@ -40,7 +41,7 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
     [DisplayName("Modified User Name"), Size(50)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
-    [DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
+    [DisplayName("Time Stamp 123"), Insertable(false), Updatable(false), NotNull]
     public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
 
     [DisplayName("Letter Letter Identifier"), Origin(jLetter, nameof(LetterDB.LetterRow.LetterIdentifier))]

@@ -1,6 +1,6 @@
-﻿import { ColumnsBase, fieldsProxy } from '@serenity-is/corelib';
-import { Column } from '@serenity-is/sleekgrid';
-import { RecriverSenderRow } from './RecriverSenderRow';
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
+import { Column } from "@serenity-is/sleekgrid";
+import { RecriverSenderRow } from "./RecriverSenderRow";
 
 export interface RecriverSenderColumns {
     Id: Column<RecriverSenderRow>;

@@ -7,7 +7,7 @@ namespace CorrespondenceSystem.LetterAttachmentDB.Forms;
 [BasedOnRow(typeof(LetterAttachmentRow), CheckNames = true)]
 public class LetterAttachmentForm
 {
-    public Guid LetterId { get; set; }
+    //public Guid LetterId { get; set; }
     public string Title { get; set; }
     public string AttachmentFile { get; set; }
     //public DateTime CreatedDate { get; set; }

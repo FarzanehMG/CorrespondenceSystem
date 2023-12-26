@@ -1,6 +1,6 @@
-﻿import { ColumnsBase, fieldsProxy } from '@serenity-is/corelib';
-import { Column } from '@serenity-is/sleekgrid';
-import { GrandSubjectRow } from './GrandSubjectRow';
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
+import { Column } from "@serenity-is/sleekgrid";
+import { GrandSubjectRow } from "./GrandSubjectRow";
 
 export interface GrandSubjectColumns {
     Id: Column<GrandSubjectRow>;

@@ -29,15 +29,17 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     public Guid? TemplateId { get => fields.TemplateId[this]; set => fields.TemplateId[this] = value; }
 
     [DisplayName("Sender"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jSender), TextualField(nameof(SenderName))]
-    //[ServiceLookupEditor(typeof(AccountDB.AccountRow))]
+    [ServiceLookupEditor(typeof(RecriverSenderDB.RecriverSenderRow))]
 
     public Guid? SenderId { get => fields.SenderId[this]; set => fields.SenderId[this] = value; }
 
     [DisplayName("Receiver"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jReceiver), TextualField(nameof(ReceiverName))]
+    [ServiceLookupEditor(typeof(RecriverSenderDB.RecriverSenderRow))]
     public Guid? ReceiverId { get => fields.ReceiverId[this]; set => fields.ReceiverId[this] = value; }
 
     [DisplayName("Grand Subject"), NotNull, ForeignKey("GrandSubject", "Id"), LeftJoin(jGrandSubject)]
     [TextualField(nameof(GrandSubjectTitle))]
+    [ServiceLookupEditor(typeof(GrandSubjectDB.GrandSubjectRow))]
     public Guid? GrandSubjectId { get => fields.GrandSubjectId[this]; set => fields.GrandSubjectId[this] = value; }
 
     [DisplayName("Letter Identifier"), Size(100), QuickSearch, NameProperty]
@@ -83,7 +85,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     public DateTime? ModifiedDate { get => fields.ModifiedDate[this]; set => fields.ModifiedDate[this] = value; }
 
     [DisplayName("Modified User Name")]
-    public DateTime? ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
+    public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
     [DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
     public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
@@ -110,6 +112,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     public string GrandSubjectTitle { get => fields.GrandSubjectTitle[this]; set => fields.GrandSubjectTitle[this] = value; }
 
     [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(LetterAttachmentRow.LetterId)), NotMapped]
+    [MinSelectLevel(SelectLevel.Details)]
     public List<LetterAttachmentRow> DetailList { get => fields.DetailList[this]; set => fields.DetailList[this] = value; }
 
     public Field UpdateUserIdField => fields.ModifiedUserName;
@@ -142,7 +145,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
         public DateTimeField CreatedDate;
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
-        public DateTimeField ModifiedUserName;
+        public StringField ModifiedUserName;
         public ByteArrayField TimeStamp;
         public StringField LetterCarrier;
         public BooleanField NeedAnswer;

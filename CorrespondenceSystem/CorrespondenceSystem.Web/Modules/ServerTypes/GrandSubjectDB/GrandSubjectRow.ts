@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from '@serenity-is/corelib';
+﻿import { fieldsProxy } from "@serenity-is/corelib";
 
 export interface GrandSubjectRow {
     Id?: string;
@@ -15,7 +15,6 @@ export abstract class GrandSubjectRow {
     static readonly idProperty = 'Id';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'GrandSubjectDB.GrandSubject';
-
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';
     static readonly readPermission = 'Administration:General';
