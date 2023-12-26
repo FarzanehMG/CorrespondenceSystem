@@ -1,8 +1,9 @@
 ﻿import { LetterAttachmentEditor } from "@/LetterAttachmentDB/LetterAttachment/LetterAttachmentEditor";
-import { RadioButtonEditor, StringEditor, IntegerEditor, ServiceLookupEditor, BooleanEditor, TextAreaEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { RadioButtonEditor, StringEditor, EnumEditor, ServiceLookupEditor, BooleanEditor, LookupEditor, TextAreaEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 import { ConfidentialLevels } from "../Modules/Enums.Letter.ConfidentialLevels";
 import { LetterTypes } from "../Modules/Enums.Letter.LetterTypes";
 import { PriorityStates } from "../Modules/Enums.Letter.PriorityStates";
+import { States } from "../Modules/Enums.Letter.States";
 
 export interface LetterForm {
     LetterType: RadioButtonEditor;
@@ -12,12 +13,12 @@ export interface LetterForm {
     LetterNo: StringEditor;
     PriorityState: RadioButtonEditor;
     ConfidentialLevel: RadioButtonEditor;
-    State: IntegerEditor;
+    State: EnumEditor;
     SenderId: ServiceLookupEditor;
     ReceiverId: ServiceLookupEditor;
     GrandSubjectId: ServiceLookupEditor;
     UseDefaultTemplate: BooleanEditor;
-    TemplateId: StringEditor;
+    TemplateId: LookupEditor;
     LetterContent: TextAreaEditor;
     Tag: StringEditor;
     LetterCarrier: StringEditor;
@@ -38,11 +39,12 @@ export class LetterForm extends PrefixedContext {
 
             var w0 = RadioButtonEditor;
             var w1 = StringEditor;
-            var w2 = IntegerEditor;
+            var w2 = EnumEditor;
             var w3 = ServiceLookupEditor;
             var w4 = BooleanEditor;
-            var w5 = TextAreaEditor;
-            var w6 = LetterAttachmentEditor;
+            var w5 = LookupEditor;
+            var w6 = TextAreaEditor;
+            var w7 = LetterAttachmentEditor;
 
             initFormType(LetterForm, [
                 'LetterType', w0,
@@ -57,16 +59,16 @@ export class LetterForm extends PrefixedContext {
                 'ReceiverId', w3,
                 'GrandSubjectId', w3,
                 'UseDefaultTemplate', w4,
-                'TemplateId', w1,
-                'LetterContent', w5,
+                'TemplateId', w5,
+                'LetterContent', w6,
                 'Tag', w1,
                 'LetterCarrier', w1,
                 'HasAttachment', w4,
                 'NeedAnswer', w4,
-                'DetailList', w6
+                'DetailList', w7
             ]);
         }
     }
 }
 
-[LetterTypes, PriorityStates, ConfidentialLevels]; // referenced types
+[LetterTypes, PriorityStates, ConfidentialLevels, States]; // referenced types

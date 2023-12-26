@@ -26,6 +26,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     public bool? UseDefaultTemplate { get => fields.UseDefaultTemplate[this]; set => fields.UseDefaultTemplate[this] = value; }
 
     [DisplayName("Template"), ForeignKey("Template", "Id"), LeftJoin(jTemplate), TextualField(nameof(TemplateTitle))]
+    [LookupEditor(typeof(TemplateDB.TemplateRow))]
     public Guid? TemplateId { get => fields.TemplateId[this]; set => fields.TemplateId[this] = value; }
 
     [DisplayName("Sender"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jSender), TextualField(nameof(SenderName))]

@@ -9,7 +9,7 @@ namespace CorrespondenceSystem.LetterDB.Forms;
 [BasedOnRow(typeof(LetterRow), CheckNames = true)]
 public class LetterForm
 {
-    [Visible(true), Width(85), RadioButtonEditor(), OneThirdWidth()]
+    [Width(85), RadioButtonEditor(), OneThirdWidth()]
     public LetterTypes? LetterType { get; set; }
     [TwoThirdWidth()]
     public string Title { get; set; }
@@ -24,7 +24,7 @@ public class LetterForm
     [OneThirdWidth(), RadioButtonEditor()]
     public ConfidentialLevels? ConfidentialLevel { get; set; }
     [OneThirdWidth()]
-    public short State { get; set; }
+    public States State { get; set; }
     [HalfWidth]
     public Guid SenderId { get; set; }
     [HalfWidth]

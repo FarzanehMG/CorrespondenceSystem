@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from "@serenity-is/corelib";
+﻿import { getLookup, getLookupAsync, fieldsProxy } from "@serenity-is/corelib";
 
 export interface TemplateRow {
     Id?: string;
@@ -15,6 +15,12 @@ export abstract class TemplateRow {
     static readonly idProperty = 'Id';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'TemplateDB.Template';
+    static readonly lookupKey = 'TemplateDB.Template';
+
+    /** @deprecated use getLookupAsync instead */
+    static getLookup() { return getLookup<TemplateRow>('TemplateDB.Template') }
+    static async getLookupAsync() { return getLookupAsync<TemplateRow>('TemplateDB.Template') }
+
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';
     static readonly readPermission = 'Administration:General';
