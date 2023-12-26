@@ -1,20 +1,28 @@
 ﻿import { LetterAttachmentEditor } from "@/LetterAttachmentDB/LetterAttachment/LetterAttachmentEditor";
-import { BooleanEditor, ServiceLookupEditor, StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { RadioButtonEditor, StringEditor, IntegerEditor, ServiceLookupEditor, BooleanEditor, TextAreaEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { ConfidentialLevels } from "../Modules/Enums.Letter.ConfidentialLevels";
+import { LetterTypes } from "../Modules/Enums.Letter.LetterTypes";
+import { PriorityStates } from "../Modules/Enums.Letter.PriorityStates";
 
 export interface LetterForm {
-    UseDefaultTemplate: BooleanEditor;
+    LetterType: RadioButtonEditor;
+    Title: StringEditor;
+    LetterIdentifier: StringEditor;
+    LetterIdentifierGen: StringEditor;
+    LetterNo: StringEditor;
+    PriorityState: RadioButtonEditor;
+    ConfidentialLevel: RadioButtonEditor;
+    State: IntegerEditor;
     SenderId: ServiceLookupEditor;
     ReceiverId: ServiceLookupEditor;
     GrandSubjectId: ServiceLookupEditor;
-    LetterIdentifier: StringEditor;
-    LetterNo: StringEditor;
-    Title: StringEditor;
-    LetterContent: StringEditor;
+    UseDefaultTemplate: BooleanEditor;
+    TemplateId: StringEditor;
+    LetterContent: TextAreaEditor;
     Tag: StringEditor;
-    HasAttachment: BooleanEditor;
     LetterCarrier: StringEditor;
+    HasAttachment: BooleanEditor;
     NeedAnswer: BooleanEditor;
-    LetterFile: StringEditor;
     DetailList: LetterAttachmentEditor;
 }
 
@@ -28,27 +36,37 @@ export class LetterForm extends PrefixedContext {
         if (!LetterForm.init)  {
             LetterForm.init = true;
 
-            var w0 = BooleanEditor;
-            var w1 = ServiceLookupEditor;
-            var w2 = StringEditor;
-            var w3 = LetterAttachmentEditor;
+            var w0 = RadioButtonEditor;
+            var w1 = StringEditor;
+            var w2 = IntegerEditor;
+            var w3 = ServiceLookupEditor;
+            var w4 = BooleanEditor;
+            var w5 = TextAreaEditor;
+            var w6 = LetterAttachmentEditor;
 
             initFormType(LetterForm, [
-                'UseDefaultTemplate', w0,
-                'SenderId', w1,
-                'ReceiverId', w1,
-                'GrandSubjectId', w1,
-                'LetterIdentifier', w2,
-                'LetterNo', w2,
-                'Title', w2,
-                'LetterContent', w2,
-                'Tag', w2,
-                'HasAttachment', w0,
-                'LetterCarrier', w2,
-                'NeedAnswer', w0,
-                'LetterFile', w2,
-                'DetailList', w3
+                'LetterType', w0,
+                'Title', w1,
+                'LetterIdentifier', w1,
+                'LetterIdentifierGen', w1,
+                'LetterNo', w1,
+                'PriorityState', w0,
+                'ConfidentialLevel', w0,
+                'State', w2,
+                'SenderId', w3,
+                'ReceiverId', w3,
+                'GrandSubjectId', w3,
+                'UseDefaultTemplate', w4,
+                'TemplateId', w1,
+                'LetterContent', w5,
+                'Tag', w1,
+                'LetterCarrier', w1,
+                'HasAttachment', w4,
+                'NeedAnswer', w4,
+                'DetailList', w6
             ]);
         }
     }
 }
+
+[LetterTypes, PriorityStates, ConfidentialLevels]; // referenced types
