@@ -1,4 +1,5 @@
 using CorrespondenceSystem.LetterAttachmentDB;
+using CorrespondenceSystem.SignLettersDB;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -116,6 +117,12 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     [MinSelectLevel(SelectLevel.Details)]
     public List<LetterAttachmentRow> DetailList { get => fields.DetailList[this]; set => fields.DetailList[this] = value; }
 
+
+    [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(SignLettersRow.LetterId)), NotMapped]
+    [MinSelectLevel(SelectLevel.Details)]
+    public List<SignLettersRow> SignLettersDetailList { get => fields.SignLettersDetailList[this]; set => fields.SignLettersDetailList[this] = value; }
+
+
     public Field UpdateUserIdField => fields.ModifiedUserName;
 
     public DateTimeField UpdateDateField => fields.ModifiedDate;
@@ -158,5 +165,6 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
         public StringField GrandSubjectTitle;
 
         public RowListField<LetterAttachmentRow> DetailList;
+        public RowListField<SignLettersRow> SignLettersDetailList;
     }
 }

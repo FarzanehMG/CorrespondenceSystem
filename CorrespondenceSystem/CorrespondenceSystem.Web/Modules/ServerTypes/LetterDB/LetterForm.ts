@@ -1,4 +1,5 @@
 ﻿import { LetterAttachmentEditor } from "@/LetterAttachmentDB/LetterAttachment/LetterAttachmentEditor";
+import { SignLettersEditor } from "@/SignLettersDB/SignLetters/SignLettersEditor";
 import { RadioButtonEditor, StringEditor, EnumEditor, ServiceLookupEditor, BooleanEditor, LookupEditor, TextAreaEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 import { ConfidentialLevels } from "../Modules/Enums.Letter.ConfidentialLevels";
 import { LetterTypes } from "../Modules/Enums.Letter.LetterTypes";
@@ -25,6 +26,7 @@ export interface LetterForm {
     HasAttachment: BooleanEditor;
     NeedAnswer: BooleanEditor;
     DetailList: LetterAttachmentEditor;
+    SignLettersDetailList: SignLettersEditor;
 }
 
 export class LetterForm extends PrefixedContext {
@@ -45,6 +47,7 @@ export class LetterForm extends PrefixedContext {
             var w5 = LookupEditor;
             var w6 = TextAreaEditor;
             var w7 = LetterAttachmentEditor;
+            var w8 = SignLettersEditor;
 
             initFormType(LetterForm, [
                 'LetterType', w0,
@@ -65,7 +68,8 @@ export class LetterForm extends PrefixedContext {
                 'LetterCarrier', w1,
                 'HasAttachment', w4,
                 'NeedAnswer', w4,
-                'DetailList', w7
+                'DetailList', w7,
+                'SignLettersDetailList', w8
             ]);
         }
     }

@@ -1,5 +1,6 @@
 ﻿import { fieldsProxy } from "@serenity-is/corelib";
 import { LetterAttachmentRow } from "../LetterAttachmentDB/LetterAttachmentRow";
+import { SignLettersRow } from "../SignLettersDB/SignLettersRow";
 
 export interface LetterRow {
     Id?: string;
@@ -31,6 +32,7 @@ export interface LetterRow {
     ReceiverName?: string;
     GrandSubjectTitle?: string;
     DetailList?: LetterAttachmentRow[];
+    SignLettersDetailList?: SignLettersRow[];
 }
 
 export abstract class LetterRow {

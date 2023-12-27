@@ -145,6 +145,7 @@ namespace CorrespondenceSystem.Texts {
                 export const ReceiverName: string;
                 export const SenderId: string;
                 export const SenderName: string;
+                export const SignLettersDetailList: string;
                 export const State: string;
                 export const Tag: string;
                 export const TemplateId: string;

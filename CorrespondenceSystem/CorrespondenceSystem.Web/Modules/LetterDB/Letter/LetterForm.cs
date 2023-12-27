@@ -1,5 +1,6 @@
 using CorrespondenceSystem.LetterAttachmentDB;
 using CorrespondenceSystem.Modules.Enums.Letter;
+using CorrespondenceSystem.SignLettersDB;
 using Serenity.ComponentModel;
 using System;
 
@@ -51,4 +52,8 @@ public class LetterForm
     //[OrderDetailsEditor]
     [LetterAttachmentRowEditor]
     public List<LetterAttachmentRow> DetailList { get; set; }
+
+    [Tab("SignLetters")]
+    [SignLettersRowEditor]
+    public List<SignLettersRow> SignLettersDetailList { get; set; }
 }
