@@ -7,7 +7,6 @@ export interface GrandSubjectForm {
     CreatorUserName: StringEditor;
     ModifiedDate: DateEditor;
     ModifiedUserName: StringEditor;
-    TimeStamp: StringEditor;
 }
 
 export class GrandSubjectForm extends PrefixedContext {
@@ -29,8 +28,7 @@ export class GrandSubjectForm extends PrefixedContext {
                 'CreatedDate', w1,
                 'CreatorUserName', w0,
                 'ModifiedDate', w1,
-                'ModifiedUserName', w0,
-                'TimeStamp', w0
+                'ModifiedUserName', w0
             ]);
         }
     }

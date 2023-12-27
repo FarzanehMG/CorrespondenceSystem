@@ -41,8 +41,8 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
     [DisplayName("Modified User Name"), Size(50)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
-    [DisplayName("Time Stamp 123"), Insertable(false), Updatable(false), NotNull]
-    public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
+    //[DisplayName("Time Stamp 123"), Insertable(false), Updatable(false), NotNull]
+    //public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
 
     [DisplayName("Letter Letter Identifier"), Origin(jLetter, nameof(LetterDB.LetterRow.LetterIdentifier))]
     public string LetterIdentifier { get => fields.LetterIdentifier[this]; set => fields.LetterIdentifier[this] = value; }
@@ -65,7 +65,7 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
-        public ByteArrayField TimeStamp;
+        //public ByteArrayField TimeStamp;
 
         public StringField LetterIdentifier;
     }

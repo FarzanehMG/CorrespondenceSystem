@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System;
 
 namespace CorrespondenceSystem.GrandSubjectDB.Forms;
@@ -13,5 +13,5 @@ public class GrandSubjectForm
     public string CreatorUserName { get; set; }
     public DateTime ModifiedDate { get; set; }
     public string ModifiedUserName { get; set; }
-    public byte[] TimeStamp { get; set; }
+    //public byte[] TimeStamp { get; set; }
 }

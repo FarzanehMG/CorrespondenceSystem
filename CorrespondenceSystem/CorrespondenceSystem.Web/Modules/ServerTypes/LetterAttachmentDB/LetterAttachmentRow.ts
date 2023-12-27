@@ -9,7 +9,6 @@ export interface LetterAttachmentRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
-    TimeStamp?: number[];
     LetterIdentifier?: string;
 }
 

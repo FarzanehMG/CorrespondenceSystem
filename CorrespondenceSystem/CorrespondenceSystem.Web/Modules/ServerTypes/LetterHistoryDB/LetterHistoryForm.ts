@@ -1,7 +1,7 @@
-﻿import { PrefixedContext, StringEditor, IntegerEditor, BooleanEditor, DateEditor, initFormType } from '@serenity-is/corelib';
+﻿import { ServiceLookupEditor, IntegerEditor, StringEditor, BooleanEditor, DateEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface LetterHistoryForm {
-    LetterId: StringEditor;
+    LetterId: ServiceLookupEditor;
     ActionType: IntegerEditor;
     TemplateId: StringEditor;
     ReceiverId: StringEditor;
@@ -27,39 +27,41 @@ export interface LetterHistoryForm {
 export class LetterHistoryForm extends PrefixedContext {
     static readonly formKey = 'LetterHistoryDB.LetterHistory';
     private static init: boolean;
-    
+
     constructor(prefix: string) {
         super(prefix);
+
         if (!LetterHistoryForm.init)  {
-                        LetterHistoryForm.init = true;
-            
-            var w0 = StringEditor;
+            LetterHistoryForm.init = true;
+
+            var w0 = ServiceLookupEditor;
             var w1 = IntegerEditor;
-            var w2 = BooleanEditor;
-            var w3 = DateEditor;
+            var w2 = StringEditor;
+            var w3 = BooleanEditor;
+            var w4 = DateEditor;
 
             initFormType(LetterHistoryForm, [
-            'LetterId', w0,
-            'ActionType', w1,
-            'TemplateId', w0,
-            'ReceiverId', w0,
-            'SenderId', w0,
-            'GrandSubjectId', w0,
-            'LetterIdentifier', w0,
-            'LetterIdentifierGen', w0,
-            'LetterNo', w0,
-            'Title', w0,
-            'LetterContent', w0,
-            'Tag', w0,
-            'LetterType', w1,
-            'State', w1,
-            'PriorityState', w1,
-            'HasAttachment', w2,
-            'CreatedDate', w3,
-            'CreatorUserName', w0,
-            'ModifiedDate', w3,
-            'ModifiedUserName', w3,
-            'LetterCarrier', w0,
+                'LetterId', w0,
+                'ActionType', w1,
+                'TemplateId', w2,
+                'ReceiverId', w2,
+                'SenderId', w2,
+                'GrandSubjectId', w2,
+                'LetterIdentifier', w2,
+                'LetterIdentifierGen', w2,
+                'LetterNo', w2,
+                'Title', w2,
+                'LetterContent', w2,
+                'Tag', w2,
+                'LetterType', w1,
+                'State', w1,
+                'PriorityState', w1,
+                'HasAttachment', w3,
+                'CreatedDate', w4,
+                'CreatorUserName', w2,
+                'ModifiedDate', w4,
+                'ModifiedUserName', w4,
+                'LetterCarrier', w2
             ]);
         }
     }

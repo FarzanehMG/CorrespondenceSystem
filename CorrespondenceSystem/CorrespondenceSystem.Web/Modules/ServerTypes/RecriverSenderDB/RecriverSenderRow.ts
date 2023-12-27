@@ -8,7 +8,6 @@ export interface RecriverSenderRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
-    TimeStamp?: number[];
 }
 
 export abstract class RecriverSenderRow {
