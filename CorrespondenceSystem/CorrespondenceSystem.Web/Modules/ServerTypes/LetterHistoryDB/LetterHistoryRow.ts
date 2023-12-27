@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from '@serenity-is/corelib';
+﻿import { fieldsProxy } from "@serenity-is/corelib";
 
 export interface LetterHistoryRow {
     Id?: string;
@@ -30,7 +30,6 @@ export abstract class LetterHistoryRow {
     static readonly idProperty = 'Id';
     static readonly nameProperty = 'LetterIdentifier';
     static readonly localTextPrefix = 'LetterHistoryDB.LetterHistory';
-
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';
     static readonly readPermission = 'Administration:General';

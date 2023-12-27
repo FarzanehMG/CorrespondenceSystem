@@ -24,7 +24,6 @@ export interface LetterColumns {
     CreatorUserName: Column<LetterRow>;
     ModifiedDate: Column<LetterRow>;
     ModifiedUserName: Column<LetterRow>;
-    TimeStamp: Column<LetterRow>;
     LetterCarrier: Column<LetterRow>;
     NeedAnswer: Column<LetterRow>;
     LetterFile: Column<LetterRow>;

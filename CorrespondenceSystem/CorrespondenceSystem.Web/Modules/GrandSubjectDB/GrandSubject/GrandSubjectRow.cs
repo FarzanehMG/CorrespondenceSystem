@@ -1,4 +1,5 @@
-﻿using Serenity.ComponentModel;
+using CorrespondenceSystem.LetterDB;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -33,9 +34,10 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
 
     [DisplayName("Modified User Name"), Size(100)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
+    [DisplayName("Letter"), MasterDetailRelation(foreignKey: nameof(LetterRow.Id)), NotMapped]
+    public List<LetterRow> LetterDetail { get => fields.LetterDetail[this]; set => fields.LetterDetail[this] = value; }
 
-    [DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
-    public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
+
 
     public class RowFields : RowFieldsBase
     {
@@ -46,7 +48,9 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
-        public ByteArrayField TimeStamp;
+        public RowListField<LetterRow> LetterDetail;
+
+
 
     }
 }

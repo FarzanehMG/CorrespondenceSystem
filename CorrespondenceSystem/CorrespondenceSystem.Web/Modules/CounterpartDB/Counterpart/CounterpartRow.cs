@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -27,7 +27,7 @@ public sealed class CounterpartRow : Row<CounterpartRow.RowFields>, IIdRow, INam
     [TextualField(nameof(ReciverName))]
     [ServiceLookupEditor(typeof(RecriverSenderDB.RecriverSenderRow), Service = "RecriverSenderDB/RecriverSender/List")]
     public Guid? ReciverId { get => fields.ReciverId[this]; set => fields.ReciverId[this] = value; }
-
+     
     [DisplayName("Copy Type")]
     public short? CopyType { get => fields.CopyType[this]; set => fields.CopyType[this] = value; }
 

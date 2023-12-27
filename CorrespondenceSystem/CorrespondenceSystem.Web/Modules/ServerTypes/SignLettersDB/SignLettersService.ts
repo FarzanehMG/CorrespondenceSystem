@@ -1,5 +1,5 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from '@serenity-is/corelib';
-import { SignLettersRow } from './SignLettersRow';
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+import { SignLettersRow } from "./SignLettersRow";
 
 export namespace SignLettersService {
     export const baseUrl = 'SignLettersDB/SignLetters';
@@ -25,8 +25,8 @@ export namespace SignLettersService {
         'Retrieve', 
         'List'
     ].forEach(x => {
-        (<any>SignLettersService)[x] = function (r, s, o) { 
-            return serviceRequest(baseUrl + '/' + x, r, s, o); 
+        (<any>SignLettersService)[x] = function (r, s, o) {
+            return serviceRequest(baseUrl + '/' + x, r, s, o);
         };
     });
 }

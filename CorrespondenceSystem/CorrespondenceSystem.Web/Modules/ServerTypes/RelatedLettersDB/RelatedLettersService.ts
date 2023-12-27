@@ -1,5 +1,5 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from '@serenity-is/corelib';
-import { RelatedLettersRow } from './RelatedLettersRow';
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+import { RelatedLettersRow } from "./RelatedLettersRow";
 
 export namespace RelatedLettersService {
     export const baseUrl = 'RelatedLettersDB/RelatedLetters';
@@ -25,8 +25,8 @@ export namespace RelatedLettersService {
         'Retrieve', 
         'List'
     ].forEach(x => {
-        (<any>RelatedLettersService)[x] = function (r, s, o) { 
-            return serviceRequest(baseUrl + '/' + x, r, s, o); 
+        (<any>RelatedLettersService)[x] = function (r, s, o) {
+            return serviceRequest(baseUrl + '/' + x, r, s, o);
         };
     });
 }

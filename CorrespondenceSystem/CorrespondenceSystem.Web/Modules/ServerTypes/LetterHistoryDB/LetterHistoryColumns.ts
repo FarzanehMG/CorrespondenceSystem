@@ -1,10 +1,10 @@
-﻿import { ColumnsBase, fieldsProxy } from '@serenity-is/corelib';
-import { Column } from '@serenity-is/sleekgrid';
-import { LetterHistoryRow } from './LetterHistoryRow';
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
+import { Column } from "@serenity-is/sleekgrid";
+import { LetterHistoryRow } from "./LetterHistoryRow";
 
 export interface LetterHistoryColumns {
     Id: Column<LetterHistoryRow>;
-    LetterId: Column<LetterHistoryRow>;
+    LetterLetterIdentifier: Column<LetterHistoryRow>;
     ActionType: Column<LetterHistoryRow>;
     TemplateId: Column<LetterHistoryRow>;
     ReceiverId: Column<LetterHistoryRow>;

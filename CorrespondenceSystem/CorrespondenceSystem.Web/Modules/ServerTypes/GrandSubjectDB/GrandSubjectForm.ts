@@ -1,13 +1,9 @@
-﻿import { StringEditor, DateEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { StringEditor, TextAreaEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface GrandSubjectForm {
     Title: StringEditor;
-    Description: StringEditor;
-    CreatedDate: DateEditor;
-    CreatorUserName: StringEditor;
-    ModifiedDate: DateEditor;
-    ModifiedUserName: StringEditor;
-    TimeStamp: StringEditor;
+    Description: TextAreaEditor;
+    LetterDetail: StringEditor;
 }
 
 export class GrandSubjectForm extends PrefixedContext {
@@ -21,16 +17,12 @@ export class GrandSubjectForm extends PrefixedContext {
             GrandSubjectForm.init = true;
 
             var w0 = StringEditor;
-            var w1 = DateEditor;
+            var w1 = TextAreaEditor;
 
             initFormType(GrandSubjectForm, [
                 'Title', w0,
-                'Description', w0,
-                'CreatedDate', w1,
-                'CreatorUserName', w0,
-                'ModifiedDate', w1,
-                'ModifiedUserName', w0,
-                'TimeStamp', w0
+                'Description', w1,
+                'LetterDetail', w0
             ]);
         }
     }

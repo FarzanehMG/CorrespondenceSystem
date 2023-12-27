@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
 
@@ -31,7 +31,7 @@ public class LetterColumns
     public string CreatorUserName { get; set; }
     public DateTime ModifiedDate { get; set; }
     public DateTime ModifiedUserName { get; set; }
-    public byte[] TimeStamp { get; set; }
+    //public byte[] TimeStamp { get; set; }
     public string LetterCarrier { get; set; }
     public bool NeedAnswer { get; set; }
     public string LetterFile { get; set; }

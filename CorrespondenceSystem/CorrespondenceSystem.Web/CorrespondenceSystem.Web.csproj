@@ -30,7 +30,6 @@
     <PackageReference Include="Serenity.Demo.Northwind" Version="6.9.6.4" />
     <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.9.6.4" />
   </ItemGroup>
-  <ItemGroup></ItemGroup>
   <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\@types\jquery\index.d.ts')">
     <Message Text="Installing NPM packages..." Importance="high" />
     <Exec Command="npm install" />

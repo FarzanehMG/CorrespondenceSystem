@@ -1,5 +1,5 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from '@serenity-is/corelib';
-import { CounterpartRow } from './CounterpartRow';
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+import { CounterpartRow } from "./CounterpartRow";
 
 export namespace CounterpartService {
     export const baseUrl = 'CounterpartDB/Counterpart';
@@ -25,8 +25,8 @@ export namespace CounterpartService {
         'Retrieve', 
         'List'
     ].forEach(x => {
-        (<any>CounterpartService)[x] = function (r, s, o) { 
-            return serviceRequest(baseUrl + '/' + x, r, s, o); 
+        (<any>CounterpartService)[x] = function (r, s, o) {
+            return serviceRequest(baseUrl + '/' + x, r, s, o);
         };
     });
 }

@@ -1,37 +1,30 @@
-﻿import { PrefixedContext, StringEditor, IntegerEditor, DateEditor, initFormType } from '@serenity-is/corelib';
+﻿import { ServiceLookupEditor, EnumEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { RelationTypes } from "../Modules/Global.RelationTypes";
 
 export interface RelatedLettersForm {
-    LetterId: StringEditor;
-    RelatedLetterId: StringEditor;
-    RelationType: IntegerEditor;
-    CreatedDate: DateEditor;
-    CreatorUserName: StringEditor;
-    ModifiedDate: DateEditor;
-    ModifiedUserName: StringEditor;
+    RelatedLetterId: ServiceLookupEditor;
+    RelationType: EnumEditor;
 }
 
 export class RelatedLettersForm extends PrefixedContext {
     static readonly formKey = 'RelatedLettersDB.RelatedLetters';
     private static init: boolean;
-    
+
     constructor(prefix: string) {
         super(prefix);
+
         if (!RelatedLettersForm.init)  {
-                        RelatedLettersForm.init = true;
-            
-            var w0 = StringEditor;
-            var w1 = IntegerEditor;
-            var w2 = DateEditor;
+            RelatedLettersForm.init = true;
+
+            var w0 = ServiceLookupEditor;
+            var w1 = EnumEditor;
 
             initFormType(RelatedLettersForm, [
-            'LetterId', w0,
-            'RelatedLetterId', w0,
-            'RelationType', w1,
-            'CreatedDate', w2,
-            'CreatorUserName', w0,
-            'ModifiedDate', w2,
-            'ModifiedUserName', w0,
+                'RelatedLetterId', w0,
+                'RelationType', w1
             ]);
         }
     }
 }
+
+[RelationTypes]; // referenced types

@@ -1,4 +1,5 @@
 ﻿import { fieldsProxy } from "@serenity-is/corelib";
+import { LetterRow } from "../LetterDB/LetterRow";
 
 export interface GrandSubjectRow {
     Id?: string;
@@ -8,7 +9,7 @@ export interface GrandSubjectRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
-    TimeStamp?: number[];
+    LetterDetail?: LetterRow[];
 }
 
 export abstract class GrandSubjectRow {

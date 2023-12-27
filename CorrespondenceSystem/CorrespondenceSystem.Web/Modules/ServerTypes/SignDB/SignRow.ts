@@ -1,4 +1,4 @@
-﻿import { fieldsProxy } from '@serenity-is/corelib';
+﻿import { fieldsProxy } from "@serenity-is/corelib";
 
 export interface SignRow {
     Id?: string;
@@ -16,7 +16,6 @@ export abstract class SignRow {
     static readonly idProperty = 'Id';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'SignDB.Sign';
-
     static readonly deletePermission = 'Administration:General';
     static readonly insertPermission = 'Administration:General';
     static readonly readPermission = 'Administration:General';
