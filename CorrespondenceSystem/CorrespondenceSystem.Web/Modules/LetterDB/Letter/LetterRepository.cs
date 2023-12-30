@@ -5,6 +5,7 @@ using CorrespondenceSystem.SignLettersDB.Columns;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
 using System.Security.Claims;
 
 namespace CorrespondenceSystem.Modules.LetterDB.Letter;
@@ -37,6 +38,18 @@ public class LetterRepository : BaseRepository
 
         var result = connection.Query<SignLetterViewModel>(sql, new { UserId = userId }).FirstOrDefault();
 
+        return result;
+    }
+
+    public Guid GetDefaultRecriverSenderId(HttpContext httpContext)
+    {
+        var connection = httpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("Training");
+
+        var sql = @"SELECT Id as SenderId
+                    FROM [CorrespondenceSystem].[dbo].[RecriverSender]
+                    WHERE IsDefault = 1";
+
+        var result = connection.Query<Guid>(sql).FirstOrDefault();
         return result;
     }
 

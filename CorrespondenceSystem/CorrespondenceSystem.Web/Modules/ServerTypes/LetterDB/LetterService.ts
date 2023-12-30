@@ -1,4 +1,4 @@
-﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, serviceRequest } from "@serenity-is/corelib";
+﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, ServiceRequest, serviceRequest } from "@serenity-is/corelib";
 import { LetterRow } from "./LetterRow";
 
 export namespace LetterService {
@@ -9,13 +9,15 @@ export namespace LetterService {
     export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<LetterRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<LetterRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function SetDefaultRecriverSender(request: ServiceRequest, onSuccess?: (response: string) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
     export const Methods = {
         Create: "LetterDB/Letter/Create",
         Update: "LetterDB/Letter/Update",
         Delete: "LetterDB/Letter/Delete",
         Retrieve: "LetterDB/Letter/Retrieve",
-        List: "LetterDB/Letter/List"
+        List: "LetterDB/Letter/List",
+        SetDefaultRecriverSender: "LetterDB/Letter/SetDefaultRecriverSender"
     } as const;
 
     [
@@ -23,7 +25,8 @@ export namespace LetterService {
         'Update', 
         'Delete', 
         'Retrieve', 
-        'List'
+        'List', 
+        'SetDefaultRecriverSender'
     ].forEach(x => {
         (<any>LetterService)[x] = function (r, s, o) {
             return serviceRequest(baseUrl + '/' + x, r, s, o);
