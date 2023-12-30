@@ -47,7 +47,7 @@ public class LetterForm
 
 
 
-    [Tab("Letter")]
+    [Tab("Letter Attachment")]
     //[Category("Letter Attachment Details")]
     //[OrderDetailsEditor]
     [LetterAttachmentRowEditor]
