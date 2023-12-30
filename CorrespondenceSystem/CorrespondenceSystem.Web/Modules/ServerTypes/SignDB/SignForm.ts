@@ -1,14 +1,8 @@
-﻿import { StringEditor, DateEditor, IntegerEditor, BooleanEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { StringEditor, ImageUploadEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface SignForm {
     Title: StringEditor;
-    SignAttachment: StringEditor;
-    CreatedDate: DateEditor;
-    CreatorUserName: StringEditor;
-    ModifiedDate: DateEditor;
-    ModifiedUserName: StringEditor;
-    UserId: IntegerEditor;
-    IsLast: BooleanEditor;
+    SignAttachment: ImageUploadEditor;
 }
 
 export class SignForm extends PrefixedContext {
@@ -22,19 +16,11 @@ export class SignForm extends PrefixedContext {
             SignForm.init = true;
 
             var w0 = StringEditor;
-            var w1 = DateEditor;
-            var w2 = IntegerEditor;
-            var w3 = BooleanEditor;
+            var w1 = ImageUploadEditor;
 
             initFormType(SignForm, [
                 'Title', w0,
-                'SignAttachment', w0,
-                'CreatedDate', w1,
-                'CreatorUserName', w0,
-                'ModifiedDate', w1,
-                'ModifiedUserName', w0,
-                'UserId', w2,
-                'IsLast', w3
+                'SignAttachment', w1
             ]);
         }
     }
