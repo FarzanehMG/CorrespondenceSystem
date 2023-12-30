@@ -53,4 +53,16 @@ public class LetterRepository : BaseRepository
         return result;
     }
 
+    public Guid GetDefaultTemplate(HttpContext httpContext)
+    {
+        var connection = httpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("Training");
+
+        var sql = @"SELECT Id as TemplateId
+                    FROM [CorrespondenceSystem].[dbo].[Template]
+                    WHERE IsDefault = 1";
+
+        var result = connection.Query<Guid>(sql).FirstOrDefault();
+        return result;
+    }
+
 }

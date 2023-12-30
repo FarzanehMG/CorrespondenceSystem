@@ -69,4 +69,11 @@ public class LetterEndpoint : ServiceEndpoint
         var res=  new LetterRepository(Context).GetDefaultRecriverSenderId(HttpContext);
         return res;
     }
+
+    [HttpPost]
+    public Guid SetDefaultTemplate()
+    {
+        var res = new LetterRepository(Context).GetDefaultTemplate(HttpContext);
+        return res;
+    }
 }

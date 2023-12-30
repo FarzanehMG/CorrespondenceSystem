@@ -1,6 +1,6 @@
 import { LetterForm, LetterRow, LetterService } from '@/ServerTypes/LetterDB';
 import { Decorators, EntityDialog, resolveUrl, serviceCall, EditorUtils } from '@serenity-is/corelib';
-import { LetterTypes } from '../../ServerTypes/Modules';
+import { LetterTypes, States } from '../../ServerTypes/Modules';
 
 @Decorators.registerClass('CorrespondenceSystem.LetterDB.LetterDialog')
 export class LetterDialog extends EntityDialog<LetterRow, any> {
@@ -18,6 +18,24 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
 
     afterLoadEntity() {
         this.SetRecriverSender()
+
+        this.SetDefaultTemplate()
+
+        this.form.LetterType.changeSelect2(e => {
+            if (this.form.LetterType.value === LetterTypes.Outgoing.toString()) {
+                EditorUtils.setValue(this.form.State, States.Draft);
+            }
+        });
+
+
+        //this.form.UseDefaultTemplate.changeSelect2(e => {
+        //    if (this.form.UseDefaultTemplate.value) {
+        //        EditorUtils.setReadonly(this.form.TemplateId.element, true);
+        //        this.SetDefaultTemplate();
+        //    } else {
+        //        EditorUtils.setReadonly(this.form.TemplateId.element, false);
+        //    }
+        //});
     }
 
     SetRecriverSender() {
@@ -42,6 +60,20 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
 
                 } else {
                     console.error('Invalid response format for SetDefaultRecriverSender');
+                }
+            },
+            method: 'post'
+        });
+    }
+
+
+    SetDefaultTemplate() {
+        serviceCall({
+            url: resolveUrl("~/Services/LetterDB/Letter/SetDefaultTemplate"),
+            onSuccess: (response: any) => {
+                if (this.form.LetterType.value == LetterTypes.Outgoing.toString()) {
+
+                    EditorUtils.setValue(this.form.TemplateId, response);
                 }
             },
             method: 'post'
