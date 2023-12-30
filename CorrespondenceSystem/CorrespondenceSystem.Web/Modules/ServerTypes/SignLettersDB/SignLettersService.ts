@@ -1,5 +1,5 @@
 ﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, ServiceRequest, serviceRequest } from "@serenity-is/corelib";
-import { SignLettersColumns } from "./SignLettersColumns";
+import { SignLetterViewModel } from "../Modules/LetterDB.DTO.SignLetterViewModel";
 import { SignLettersRow } from "./SignLettersRow";
 
 export namespace SignLettersService {
@@ -10,7 +10,7 @@ export namespace SignLettersService {
     export declare function Delete(request: DeleteRequest, onSuccess?: (response: DeleteResponse) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function Retrieve(request: RetrieveRequest, onSuccess?: (response: RetrieveResponse<SignLettersRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<SignLettersRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
-    export declare function AddSignLetter(request: ServiceRequest, onSuccess?: (response: SignLettersColumns) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function AddSignLetter(request: ServiceRequest, onSuccess?: (response: SignLetterViewModel) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
     export const Methods = {
         Create: "SignLettersDB/SignLetters/Create",

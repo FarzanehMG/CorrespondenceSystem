@@ -1,4 +1,5 @@
 using CorrespondenceSystem.Administration;
+using CorrespondenceSystem.Modules.LetterDB.DTO;
 using CorrespondenceSystem.SignDB;
 using CorrespondenceSystem.SignLettersDB.Columns;
 using Microsoft.AspNetCore.Http;
@@ -22,20 +23,21 @@ public class LetterRepository : BaseRepository
     }
 
 
-    public SignLettersColumns AddSign(string userId, HttpContext httpContext)
+    public SignLetterViewModel AddSign(string userId, HttpContext httpContext)
     {
-
-        //using var connection = _sqlConnections.NewByKey("Default");
         var connection = httpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("Training");
         var sql = @"
-            SELECT s.Title, s.CreatedDate
-            FROM [CorrespondenceSystem].[dbo].[Sign] s
-            INNER JOIN [TrainingDb].[dbo].[Users] u ON s.UserId = u.UserId
-            WHERE u.UserId = @UserId AND s.IsLast = 1
-        ";
+                SELECT 
+                s.Title,s.Id as id,
+                GETDATE() AS CreatedDate
+                FROM [CorrespondenceSystem].[dbo].[Sign] s
+                INNER JOIN [TrainingDb].[dbo].[Users] u ON s.UserId = u.UserId
+                WHERE u.UserId = 1 AND s.IsLast = 1
+                ";
 
-        var result = connection.Query<SignLettersColumns>(sql, new { UserId = userId }).FirstOrDefault();
+        var result = connection.Query<SignLetterViewModel>(sql, new { UserId = userId }).FirstOrDefault();
 
         return result;
     }
+
 }

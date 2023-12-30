@@ -1,3 +1,4 @@
+using CorrespondenceSystem.Modules.LetterDB.DTO;
 using CorrespondenceSystem.Modules.LetterDB.Letter;
 using CorrespondenceSystem.SignLettersDB.Columns;
 using Microsoft.AspNetCore.Mvc;
@@ -63,7 +64,7 @@ public class SignLettersEndpoint : ServiceEndpoint
     }
 
     [HttpPost]
-    public SignLettersColumns AddSignLetter()
+    public SignLetterViewModel AddSignLetter()
     {
         string userId = Context.User.GetIdentifier();
         return new LetterRepository(Context).AddSign(userId,HttpContext);

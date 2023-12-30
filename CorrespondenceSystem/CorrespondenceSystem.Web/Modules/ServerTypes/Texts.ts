@@ -238,6 +238,7 @@ namespace CorrespondenceSystem.Texts {
                 export const ModifiedUserName: string;
                 export const SignDate: string;
                 export const SignId: string;
+                export const SignLetterId: string;
                 export const SignTitle: string;
                 export const SignType: string;
             }
