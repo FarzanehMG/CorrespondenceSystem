@@ -11,6 +11,7 @@ export interface SignLettersRow {
     ModifiedUserName?: string;
     LetterIdentifier?: string;
     SignTitle?: string;
+    SignLetterId?: number;
 }
 
 export abstract class SignLettersRow {

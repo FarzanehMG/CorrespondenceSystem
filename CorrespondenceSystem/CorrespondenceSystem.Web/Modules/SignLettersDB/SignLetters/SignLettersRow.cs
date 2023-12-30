@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -15,6 +15,9 @@ public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INam
 {
     const string jLetter = nameof(jLetter);
     const string jSign = nameof(jSign);
+
+    [DisplayName("Sign Letter Id"), NotNull, Identity]
+    public int? SignLetterId { get => fields.SignLetterId[this]; set => fields.SignLetterId[this] = value; }
 
     [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
     public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
@@ -61,5 +64,7 @@ public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INam
 
         public StringField LetterIdentifier;
         public StringField SignTitle;
+
+        public Int32Field SignLetterId;
     }
 }

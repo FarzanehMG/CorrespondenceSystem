@@ -8,8 +8,8 @@ namespace CorrespondenceSystem.SignLettersDB.Columns;
 [BasedOnRow(typeof(SignLettersRow), CheckNames = true)]
 public class SignLettersColumns
 {
-    [EditLink, DisplayName("Title")]
+    [DisplayName("Title")]    
     public string SignTitle { get; set; }
-    public DateTime CreatedDate { get; set; }
+    public DateTime CreatedDate { get; set; } //= DateTime.Now;
 
 }
