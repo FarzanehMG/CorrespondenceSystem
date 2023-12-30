@@ -1,4 +1,5 @@
 using CorrespondenceSystem.LetterAttachmentDB;
+using CorrespondenceSystem.SignLettersDB;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -26,6 +27,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     public bool? UseDefaultTemplate { get => fields.UseDefaultTemplate[this]; set => fields.UseDefaultTemplate[this] = value; }
 
     [DisplayName("Template"), ForeignKey("Template", "Id"), LeftJoin(jTemplate), TextualField(nameof(TemplateTitle))]
+    [LookupEditor(typeof(TemplateDB.TemplateRow))]
     public Guid? TemplateId { get => fields.TemplateId[this]; set => fields.TemplateId[this] = value; }
 
     [DisplayName("Sender"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jSender), TextualField(nameof(SenderName))]
@@ -87,8 +89,8 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     [DisplayName("Modified User Name")]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
-    [DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
-    public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
+    //[DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
+    //public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
 
     [DisplayName("Letter Carrier"), Size(100)]
     public string LetterCarrier { get => fields.LetterCarrier[this]; set => fields.LetterCarrier[this] = value; }
@@ -114,6 +116,12 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(LetterAttachmentRow.LetterId)), NotMapped]
     [MinSelectLevel(SelectLevel.Details)]
     public List<LetterAttachmentRow> DetailList { get => fields.DetailList[this]; set => fields.DetailList[this] = value; }
+
+
+    [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(SignLettersRow.LetterId)), NotMapped]
+    [MinSelectLevel(SelectLevel.Details)]
+    public List<SignLettersRow> SignLettersDetailList { get => fields.SignLettersDetailList[this]; set => fields.SignLettersDetailList[this] = value; }
+
 
     public Field UpdateUserIdField => fields.ModifiedUserName;
 
@@ -146,7 +154,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
-        public ByteArrayField TimeStamp;
+        //public ByteArrayField TimeStamp;
         public StringField LetterCarrier;
         public BooleanField NeedAnswer;
         public StringField LetterFile;
@@ -157,5 +165,6 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
         public StringField GrandSubjectTitle;
 
         public RowListField<LetterAttachmentRow> DetailList;
+        public RowListField<SignLettersRow> SignLettersDetailList;
     }
 }

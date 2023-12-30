@@ -1,10 +1,10 @@
-﻿import { ColumnsBase, fieldsProxy } from '@serenity-is/corelib';
-import { Column } from '@serenity-is/sleekgrid';
-import { RelatedLettersRow } from './RelatedLettersRow';
+﻿import { ColumnsBase, fieldsProxy } from "@serenity-is/corelib";
+import { Column } from "@serenity-is/sleekgrid";
+import { RelatedLettersRow } from "./RelatedLettersRow";
 
 export interface RelatedLettersColumns {
     Id: Column<RelatedLettersRow>;
-    LetterId: Column<RelatedLettersRow>;
+    LetterIdentifier: Column<RelatedLettersRow>;
     RelatedLetterId: Column<RelatedLettersRow>;
     RelationType: Column<RelatedLettersRow>;
     CreatedDate: Column<RelatedLettersRow>;

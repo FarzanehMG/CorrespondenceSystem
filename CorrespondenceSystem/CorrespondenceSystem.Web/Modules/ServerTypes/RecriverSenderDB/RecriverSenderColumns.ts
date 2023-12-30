@@ -10,7 +10,6 @@ export interface RecriverSenderColumns {
     CreatorUserName: Column<RecriverSenderRow>;
     ModifiedDate: Column<RecriverSenderRow>;
     ModifiedUserName: Column<RecriverSenderRow>;
-    TimeStamp: Column<RecriverSenderRow>;
 }
 
 export class RecriverSenderColumns extends ColumnsBase<RecriverSenderRow> {

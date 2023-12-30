@@ -1,4 +1,4 @@
-﻿import { LetterForm, LetterRow, LetterService } from '@/ServerTypes/LetterDB';
+import { LetterForm, LetterRow, LetterService } from '@/ServerTypes/LetterDB';
 import { Decorators, EntityDialog } from '@serenity-is/corelib';
 
 @Decorators.registerClass('CorrespondenceSystem.LetterDB.LetterDialog')
@@ -8,4 +8,7 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
     protected getService() { return LetterService.baseUrl; }
 
     protected form = new LetterForm(this.idPrefix);
+
+
+
 }

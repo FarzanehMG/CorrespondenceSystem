@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -11,6 +11,7 @@ namespace CorrespondenceSystem.TemplateDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
+[LookupScript]
 public sealed class TemplateRow : Row<TemplateRow.RowFields>, IIdRow, INameRow
 {
     [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
