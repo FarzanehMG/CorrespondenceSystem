@@ -1,5 +1,6 @@
-﻿import { SignLettersForm, SignLettersRow, SignLettersService } from '@/ServerTypes/SignLettersDB';
-import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { SignLettersForm, SignLettersRow, SignLettersService } from '@/ServerTypes/SignLettersDB';
+import { Decorators, EntityDialog, text, serviceCall, resolveUrl } from '@serenity-is/corelib';
+import { LetterDialog } from '../../LetterDB/Letter/LetterDialog';
 
 @Decorators.registerClass('CorrespondenceSystem.SignLettersDB.SignLettersDialog')
 export class SignLettersDialog extends EntityDialog<SignLettersRow, any> {
@@ -8,4 +9,9 @@ export class SignLettersDialog extends EntityDialog<SignLettersRow, any> {
     protected getService() { return SignLettersService.baseUrl; }
 
     protected form = new SignLettersForm(this.idPrefix);
+
+
+
+
+
 }
