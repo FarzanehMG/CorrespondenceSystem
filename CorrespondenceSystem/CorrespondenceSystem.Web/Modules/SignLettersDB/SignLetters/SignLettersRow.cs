@@ -42,6 +42,9 @@ public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INam
     [DisplayName("Creator User Name"), Size(200), QuickSearch, NameProperty]
     public string CreatorUserName { get => fields.CreatorUserName[this]; set => fields.CreatorUserName[this] = value; }
 
+    [DisplayName("Modified Date")]
+    public DateTime? ModifiedDate { get => fields.ModifiedDate[this]; set => fields.ModifiedDate[this] = value; }
+
     [DisplayName("Modified User Name"), Size(200)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
@@ -73,6 +76,7 @@ public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INam
         public DateTimeField SignDate;
         public DateTimeField CreatedDate;
         public StringField CreatorUserName;
+        public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
         public Int16Field IsActive;
 
