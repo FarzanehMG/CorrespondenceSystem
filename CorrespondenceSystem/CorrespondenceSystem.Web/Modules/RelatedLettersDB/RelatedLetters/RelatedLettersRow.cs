@@ -42,6 +42,18 @@ public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow
 
     [DisplayName("Letter Letter Identifier"), Origin(jLetter, nameof(LetterDB.LetterRow.LetterIdentifier))]
     public string LetterIdentifier { get => fields.LetterIdentifier[this]; set => fields.LetterIdentifier[this] = value; }
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => fields.IsActive;
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
 
     public class RowFields : RowFieldsBase
     {
