@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -20,6 +20,7 @@ public sealed class SignRow : Row<SignRow.RowFields>, IIdRow, INameRow
     public string Title { get => fields.Title[this]; set => fields.Title[this] = value; }
 
     [DisplayName("Sign Attachment"), Size(200)]
+    [FileUploadEditor]
     public string SignAttachment { get => fields.SignAttachment[this]; set => fields.SignAttachment[this] = value; }
 
     [DisplayName("Created Date")]

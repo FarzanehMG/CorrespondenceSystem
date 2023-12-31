@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.SignDB.SignRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.SignDB.SignRow;
@@ -12,5 +12,10 @@ public class SignSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
     public SignSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+    protected override void ValidateRequest()
+    {
+        Row.Id = Guid.NewGuid();
+        base.ValidateRequest();
     }
 }
