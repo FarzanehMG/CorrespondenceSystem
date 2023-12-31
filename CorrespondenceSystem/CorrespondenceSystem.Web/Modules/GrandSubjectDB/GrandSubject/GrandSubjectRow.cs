@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.GrandSubjectDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, INameRow
+public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, INameRow, IIsActiveRow, ILoggingRow
 {
     [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
     public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
@@ -33,6 +33,18 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
 
     [DisplayName("Modified User Name"), Size(100)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => fields.IsActive;
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
 
     //[DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
     //public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
@@ -46,6 +58,7 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
+        public Int16Field IsActive;
         //public ByteArrayField TimeStamp;
 
     }

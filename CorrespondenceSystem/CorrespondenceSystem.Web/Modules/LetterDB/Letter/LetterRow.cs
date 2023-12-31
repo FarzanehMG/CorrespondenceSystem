@@ -13,7 +13,7 @@ namespace CorrespondenceSystem.LetterDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILoggingRow
+public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow, ILoggingRow, IIsActiveRow
 {
     const string jTemplate = nameof(jTemplate);
     const string jSender = nameof(jSender);
@@ -113,6 +113,9 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     [DisplayName("Grand Subject Title"), Expression($"{jGrandSubject}.[Title]")]
     public string GrandSubjectTitle { get => fields.GrandSubjectTitle[this]; set => fields.GrandSubjectTitle[this] = value; }
 
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
     [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(LetterAttachmentRow.LetterId)), NotMapped]
     [MinSelectLevel(SelectLevel.Details)]
     public List<LetterAttachmentRow> DetailList { get => fields.DetailList[this]; set => fields.DetailList[this] = value; }
@@ -130,6 +133,8 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
     public Field InsertUserIdField => fields.CreatorUserName;
 
     public DateTimeField InsertDateField => fields.CreatedDate;
+
+    public Int16Field IsActiveField => fields.IsActive;
 
     public class RowFields : RowFieldsBase
     {
@@ -163,6 +168,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow,ILogg
         public StringField SenderName;
         public StringField ReceiverName;
         public StringField GrandSubjectTitle;
+        public Int16Field IsActive;
 
         public RowListField<LetterAttachmentRow> DetailList;
         public RowListField<SignLettersRow> SignLettersDetailList;

@@ -23,8 +23,7 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
         buttons.splice(indexOf(buttons, x => x.cssClass == "undo-delete-button"), 1);
         buttons.splice(indexOf(buttons, x => x.cssClass == "localization-button"), 1);
         buttons.splice(indexOf(buttons, x => x.cssClass == "clone-button"), 1);
-        buttons.splice(indexOf(buttons, x => x.cssClass == "button-outer"), 1);
-        buttons.splice(indexOf(buttons, x => x.cssClass == "delete-button"), 1);
+        buttons.splice(indexOf(buttons, x => x.cssClass == "apply-changes-button"), 1);      
 
         return buttons;
     }
