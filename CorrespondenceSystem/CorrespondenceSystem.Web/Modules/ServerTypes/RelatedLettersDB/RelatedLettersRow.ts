@@ -9,11 +9,13 @@ export interface RelatedLettersRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
+    IsActive?: number;
     LetterIdentifier?: string;
 }
 
 export abstract class RelatedLettersRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'CreatorUserName';
     static readonly localTextPrefix = 'RelatedLettersDB.RelatedLetters';
     static readonly deletePermission = 'Administration:General';

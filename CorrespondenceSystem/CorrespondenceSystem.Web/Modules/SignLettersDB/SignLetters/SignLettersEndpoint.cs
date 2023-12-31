@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using CorrespondenceSystem.Modules.LetterDB.DTO;
+using CorrespondenceSystem.Modules.LetterDB.Letter;
+using CorrespondenceSystem.SignLettersDB.Columns;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -58,5 +61,12 @@ public class SignLettersEndpoint : ServiceEndpoint
         var bytes = exporter.Export(data, typeof(Columns.SignLettersColumns), request.ExportColumns);
         return ExcelContentResult.Create(bytes, "SignLettersList_" +
             DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
+    }
+
+    [HttpPost]
+    public SignLetterViewModel AddSignLetter()
+    {
+        string userId = Context.User.GetIdentifier();
+        return new LetterRepository(Context).AddSign(userId,HttpContext);
     }
 }

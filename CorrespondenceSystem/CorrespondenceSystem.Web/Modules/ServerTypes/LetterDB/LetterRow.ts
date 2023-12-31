@@ -1,5 +1,6 @@
 ﻿import { fieldsProxy } from "@serenity-is/corelib";
 import { LetterAttachmentRow } from "../LetterAttachmentDB/LetterAttachmentRow";
+import { SignLettersRow } from "../SignLettersDB/SignLettersRow";
 
 export interface LetterRow {
     Id?: string;
@@ -23,7 +24,6 @@ export interface LetterRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
-    TimeStamp?: number[];
     LetterCarrier?: string;
     NeedAnswer?: boolean;
     LetterFile?: string;
@@ -31,11 +31,14 @@ export interface LetterRow {
     SenderName?: string;
     ReceiverName?: string;
     GrandSubjectTitle?: string;
+    IsActive?: number;
     DetailList?: LetterAttachmentRow[];
+    SignLettersDetailList?: SignLettersRow[];
 }
 
 export abstract class LetterRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'LetterIdentifier';
     static readonly localTextPrefix = 'LetterDB.Letter';
     static readonly deletePermission = 'Administration:General';

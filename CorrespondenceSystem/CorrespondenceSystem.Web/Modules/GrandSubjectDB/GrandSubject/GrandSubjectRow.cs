@@ -12,7 +12,7 @@ namespace CorrespondenceSystem.GrandSubjectDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, INameRow
+public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, INameRow, IIsActiveRow, ILoggingRow
 {
     [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
     public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }

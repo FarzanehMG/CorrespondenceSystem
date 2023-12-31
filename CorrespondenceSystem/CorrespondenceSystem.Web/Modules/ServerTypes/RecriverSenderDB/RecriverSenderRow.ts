@@ -8,11 +8,12 @@ export interface RecriverSenderRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
-    TimeStamp?: number[];
+    IsActive?: number;
 }
 
 export abstract class RecriverSenderRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'Name';
     static readonly localTextPrefix = 'RecriverSenderDB.RecriverSender';
     static readonly deletePermission = 'Administration:General';

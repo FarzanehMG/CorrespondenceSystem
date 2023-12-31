@@ -14,6 +14,7 @@ export interface GrandSubjectRow {
 
 export abstract class GrandSubjectRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'GrandSubjectDB.GrandSubject';
     static readonly deletePermission = 'Administration:General';

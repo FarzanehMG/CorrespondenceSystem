@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using CorrespondenceSystem.Modules.LetterDB.DTO;
+using CorrespondenceSystem.Modules.LetterDB.Letter;
+using Microsoft.AspNetCore.Mvc;
 using Serenity.Data;
 using Serenity.Reporting;
 using Serenity.Services;
@@ -58,5 +60,20 @@ public class LetterEndpoint : ServiceEndpoint
         var bytes = exporter.Export(data, typeof(Columns.LetterColumns), request.ExportColumns);
         return ExcelContentResult.Create(bytes, "LetterList_" +
             DateTime.Now.ToString("yyyyMMdd_HHmmss", CultureInfo.InvariantCulture) + ".xlsx");
+    }
+
+
+    [HttpPost]
+    public Guid SetDefaultRecriverSender()
+    {
+        var res=  new LetterRepository(Context).GetDefaultRecriverSenderId(HttpContext);
+        return res;
+    }
+
+    [HttpPost]
+    public Guid SetDefaultTemplate()
+    {
+        var res = new LetterRepository(Context).GetDefaultTemplate(HttpContext);
+        return res;
     }
 }

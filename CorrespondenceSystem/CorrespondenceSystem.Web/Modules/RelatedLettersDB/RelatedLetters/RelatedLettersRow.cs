@@ -12,7 +12,7 @@ namespace CorrespondenceSystem.RelatedLettersDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow, INameRow
+public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow, INameRow, IIsActiveRow, ILoggingRow
 {
     const string jLetter = nameof(jLetter);
 
@@ -54,6 +54,7 @@ public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
+        public Int16Field IsActive;
 
         public StringField LetterIdentifier;
     }

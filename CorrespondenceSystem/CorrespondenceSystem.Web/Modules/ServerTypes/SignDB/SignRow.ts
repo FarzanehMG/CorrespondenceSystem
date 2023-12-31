@@ -10,10 +10,12 @@ export interface SignRow {
     ModifiedUserName?: string;
     UserId?: number;
     IsLast?: boolean;
+    IsActive?: number;
 }
 
 export abstract class SignRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'SignDB.Sign';
     static readonly deletePermission = 'Administration:General';

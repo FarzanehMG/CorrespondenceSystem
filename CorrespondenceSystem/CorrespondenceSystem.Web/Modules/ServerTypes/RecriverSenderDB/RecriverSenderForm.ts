@@ -7,7 +7,6 @@ export interface RecriverSenderForm {
     CreatorUserName: StringEditor;
     ModifiedDate: DateEditor;
     ModifiedUserName: StringEditor;
-    TimeStamp: StringEditor;
 }
 
 export class RecriverSenderForm extends PrefixedContext {
@@ -30,8 +29,7 @@ export class RecriverSenderForm extends PrefixedContext {
                 'CreatedDate', w2,
                 'CreatorUserName', w0,
                 'ModifiedDate', w2,
-                'ModifiedUserName', w0,
-                'TimeStamp', w0
+                'ModifiedUserName', w0
             ]);
         }
     }

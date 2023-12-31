@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.SignLettersDB.SignLettersRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.SignLettersDB.SignLettersRow;
@@ -12,5 +12,12 @@ public class SignLettersSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyRes
     public SignLettersSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+
+    protected override void ValidateRequest()
+    {
+        //Row.CreatedDate = DateTime.Now;
+        Row.Id = Guid.NewGuid();
+        base.ValidateRequest();
     }
 }

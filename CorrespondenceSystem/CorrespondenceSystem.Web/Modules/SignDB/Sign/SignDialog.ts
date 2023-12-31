@@ -1,5 +1,5 @@
-﻿import { SignForm, SignRow, SignService } from '@/ServerTypes/SignDB';
-import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { SignForm, SignRow, SignService } from '@/ServerTypes/SignDB';
+import { Decorators, EntityDialog, serviceCall, resolveUrl,EditorUtils } from '@serenity-is/corelib';
 
 @Decorators.registerClass('CorrespondenceSystem.SignDB.SignDialog')
 export class SignDialog extends EntityDialog<SignRow, any> {
@@ -8,4 +8,7 @@ export class SignDialog extends EntityDialog<SignRow, any> {
     protected getService() { return SignService.baseUrl; }
 
     protected form = new SignForm(this.idPrefix);
+
+
+
 }
