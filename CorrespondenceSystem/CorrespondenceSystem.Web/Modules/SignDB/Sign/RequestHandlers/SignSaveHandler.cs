@@ -15,6 +15,7 @@ public class SignSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse>,
     }
     protected override void ValidateRequest()
     {
+        Row.UserId = Convert.ToInt32(Context.User.GetIdentifier());
         Row.Id = Guid.NewGuid();
         base.ValidateRequest();
     }

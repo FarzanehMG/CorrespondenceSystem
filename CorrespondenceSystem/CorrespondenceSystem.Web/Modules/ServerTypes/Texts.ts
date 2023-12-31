@@ -89,6 +89,7 @@ namespace CorrespondenceSystem.Texts {
                 export const ModifiedUserName: string;
                 export const ReciverId: string;
                 export const ReciverName: string;
+                export const UserId: string;
             }
         }
 
@@ -244,6 +245,7 @@ namespace CorrespondenceSystem.Texts {
                 export const IsActive: string;
                 export const LetterId: string;
                 export const LetterIdentifier: string;
+                export const ModifiedDate: string;
                 export const ModifiedUserName: string;
                 export const SignDate: string;
                 export const SignId: string;

@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.SignDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class SignRow : Row<SignRow.RowFields>, IIdRow, INameRow , IIsActiveDeletedRow, IIsActiveRow,ILoggingRow
+public sealed class SignRow : Row<SignRow.RowFields>, IIdRow, INameRow , IIsActiveDeletedRow, ILoggingRow
 {
     [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
     public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }

@@ -8,6 +8,7 @@ export interface SignLettersRow {
     SignDate?: string;
     CreatedDate?: string;
     CreatorUserName?: string;
+    ModifiedDate?: string;
     ModifiedUserName?: string;
     IsActive?: number;
     LetterIdentifier?: string;

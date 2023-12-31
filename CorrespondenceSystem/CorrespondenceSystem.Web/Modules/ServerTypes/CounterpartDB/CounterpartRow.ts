@@ -10,6 +10,7 @@ export interface CounterpartRow {
     ModifiedDate?: string;
     ModifiedUserName?: string;
     IsActive?: number;
+    UserId?: number;
     LetterIdentifier?: string;
     ReciverName?: string;
 }
