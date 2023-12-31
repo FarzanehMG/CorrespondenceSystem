@@ -19,23 +19,18 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
     afterLoadEntity() {
         this.SetRecriverSender()
 
-        this.SetDefaultTemplate()
 
         this.form.LetterType.changeSelect2(e => {
             if (this.form.LetterType.value === LetterTypes.Outgoing.toString()) {
-                EditorUtils.setValue(this.form.State, States.Draft);
+                EditorUtils.setValue(this.form.State, States.Draft);            
             }
         });
 
+        this.form.LetterType.changeSelect2(e => {
+            this.SetDefaultTemplate();
+        });
 
-        //this.form.UseDefaultTemplate.changeSelect2(e => {
-        //    if (this.form.UseDefaultTemplate.value) {
-        //        EditorUtils.setReadonly(this.form.TemplateId.element, true);
-        //        this.SetDefaultTemplate();
-        //    } else {
-        //        EditorUtils.setReadonly(this.form.TemplateId.element, false);
-        //    }
-        //});
+        
     }
 
     SetRecriverSender() {
@@ -47,14 +42,18 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
                         if (this.form.LetterType.value == LetterTypes.Incoming.toString()) {
 
                             EditorUtils.setValue(this.form.ReceiverId, response);
+                            EditorUtils.setReadonly(this.form.ReceiverId.element,true);
                             EditorUtils.setValue(this.form.SenderId, null);
+                            EditorUtils.setReadonly(this.form.SenderId.element, false);
                         }
 
                         if (this.form.LetterType.value == LetterTypes.Outgoing.toString()) {
                             var id = this.SetRecriverSender();
 
                             EditorUtils.setValue(this.form.SenderId, response);
+                            EditorUtils.setReadonly(this.form.SenderId.element, true);
                             EditorUtils.setValue(this.form.ReceiverId, null);
+                            EditorUtils.setReadonly(this.form.ReceiverId.element, false);
                         }
                     });
 
@@ -71,14 +70,24 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
         serviceCall({
             url: resolveUrl("~/Services/LetterDB/Letter/SetDefaultTemplate"),
             onSuccess: (response: any) => {
-                if (this.form.LetterType.value == LetterTypes.Outgoing.toString()) {
 
+                if (this.form.LetterType.value === LetterTypes.Outgoing.toString()) {
+                    EditorUtils.setValue(this.form.UseDefaultTemplate, true);
                     EditorUtils.setValue(this.form.TemplateId, response);
+                    EditorUtils.setReadonly(this.form.TemplateId.element, true);
+                } else {
+                    EditorUtils.setValue(this.form.UseDefaultTemplate, false);
+                    EditorUtils.setValue(this.form.TemplateId, null);
+                    EditorUtils.setReadonly(this.form.TemplateId.element, false);
                 }
+
+                 
+                
             },
             method: 'post'
         });
     }
+
 
 
     
