@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.SignDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class SignRow : Row<SignRow.RowFields>, IIdRow, INameRow
+public sealed class SignRow : Row<SignRow.RowFields>, IIdRow, INameRow , IIsActiveDeletedRow, ILoggingRow
 {
     [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
     public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
@@ -41,6 +41,19 @@ public sealed class SignRow : Row<SignRow.RowFields>, IIdRow, INameRow
     [DisplayName("Is Last")]
     public bool? IsLast { get => fields.IsLast[this]; set => fields.IsLast[this] = value; }
 
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => Fields.IsActive;
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
+
     public class RowFields : RowFieldsBase
     {
         public GuidField Id;
@@ -52,6 +65,7 @@ public sealed class SignRow : Row<SignRow.RowFields>, IIdRow, INameRow
         public StringField ModifiedUserName;
         public Int32Field UserId;
         public BooleanField IsLast;
+        public Int16Field IsActive;
 
     }
 }

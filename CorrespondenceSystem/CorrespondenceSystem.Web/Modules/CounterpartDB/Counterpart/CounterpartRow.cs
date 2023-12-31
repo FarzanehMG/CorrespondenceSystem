@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.CounterpartDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class CounterpartRow : Row<CounterpartRow.RowFields>, IIdRow, INameRow
+public sealed class CounterpartRow : Row<CounterpartRow.RowFields>, IIdRow, INameRow, IIsActiveRow, ILoggingRow
 {
     const string jLetter = nameof(jLetter);
     const string jReciver = nameof(jReciver);
@@ -48,6 +48,18 @@ public sealed class CounterpartRow : Row<CounterpartRow.RowFields>, IIdRow, INam
 
     [DisplayName("Reciver Name"), Origin(jReciver, nameof(RecriverSenderDB.RecriverSenderRow.Name))]
     public string ReciverName { get => fields.ReciverName[this]; set => fields.ReciverName[this] = value; }
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => fields.IsActive;
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
 
     public class RowFields : RowFieldsBase
     {
@@ -59,6 +71,7 @@ public sealed class CounterpartRow : Row<CounterpartRow.RowFields>, IIdRow, INam
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
+        public Int16Field IsActive;
 
         public StringField LetterIdentifier;
         public StringField ReciverName;

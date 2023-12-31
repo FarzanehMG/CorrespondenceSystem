@@ -8,10 +8,12 @@ export interface GrandSubjectRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
+    IsActive?: number;
 }
 
 export abstract class GrandSubjectRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'GrandSubjectDB.GrandSubject';
     static readonly deletePermission = 'Administration:General';

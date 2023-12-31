@@ -9,10 +9,12 @@ export interface TemplateRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
+    IsActive?: number;
 }
 
 export abstract class TemplateRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'TemplateDB.Template';
     static readonly lookupKey = 'TemplateDB.Template';

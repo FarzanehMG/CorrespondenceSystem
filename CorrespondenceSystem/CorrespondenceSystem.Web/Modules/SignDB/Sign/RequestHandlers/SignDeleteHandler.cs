@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.DeleteRequest;
 using MyResponse = Serenity.Services.DeleteResponse;
 using MyRow = CorrespondenceSystem.SignDB.SignRow;
@@ -13,4 +13,6 @@ public class SignDeleteHandler : DeleteRequestHandler<MyRow, MyRequest, MyRespon
             : base(context)
     {
     }
+
+    
 }

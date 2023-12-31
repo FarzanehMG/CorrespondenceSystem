@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.SignLettersDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INameRow
+public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INameRow , IIsActiveRow, ILoggingRow
 {
     const string jLetter = nameof(jLetter);
     const string jSign = nameof(jSign);
@@ -42,6 +42,9 @@ public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INam
     [DisplayName("Creator User Name"), Size(200), QuickSearch, NameProperty]
     public string CreatorUserName { get => fields.CreatorUserName[this]; set => fields.CreatorUserName[this] = value; }
 
+    [DisplayName("Modified Date")]
+    public DateTime? ModifiedDate { get => fields.ModifiedDate[this]; set => fields.ModifiedDate[this] = value; }
+
     [DisplayName("Modified User Name"), Size(200)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
@@ -50,6 +53,19 @@ public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INam
 
     [DisplayName("Sign Title"), Origin(jSign, nameof(SignDB.SignRow.Title))]
     public string SignTitle { get => fields.SignTitle[this]; set => fields.SignTitle[this] = value; }
+
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => fields.IsActive;
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
 
     public class RowFields : RowFieldsBase
     {
@@ -60,7 +76,9 @@ public sealed class SignLettersRow : Row<SignLettersRow.RowFields>, IIdRow, INam
         public DateTimeField SignDate;
         public DateTimeField CreatedDate;
         public StringField CreatorUserName;
+        public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
+        public Int16Field IsActive;
 
         public StringField LetterIdentifier;
         public StringField SignTitle;

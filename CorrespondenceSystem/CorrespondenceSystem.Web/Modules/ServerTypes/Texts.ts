@@ -82,12 +82,14 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const LetterId: string;
                 export const LetterIdentifier: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
                 export const ReciverId: string;
                 export const ReciverName: string;
+                export const UserId: string;
             }
         }
 
@@ -98,6 +100,7 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatorUserName: string;
                 export const Description: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
                 export const Title: string;
@@ -111,6 +114,7 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const LetterId: string;
                 export const LetterIdentifier: string;
                 export const ModifiedDate: string;
@@ -130,6 +134,7 @@ namespace CorrespondenceSystem.Texts {
                 export const GrandSubjectTitle: string;
                 export const HasAttachment: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const LetterCarrier: string;
                 export const LetterContent: string;
                 export const LetterFile: string;
@@ -164,6 +169,7 @@ namespace CorrespondenceSystem.Texts {
                 export const GrandSubjectId: string;
                 export const HasAttachment: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const LetterCarrier: string;
                 export const LetterContent: string;
                 export const LetterId: string;
@@ -190,6 +196,7 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const IsDefault: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
@@ -203,6 +210,7 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const LetterId: string;
                 export const LetterIdentifier: string;
                 export const ModifiedDate: string;
@@ -218,6 +226,7 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const IsLast: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
@@ -233,8 +242,10 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const LetterId: string;
                 export const LetterIdentifier: string;
+                export const ModifiedDate: string;
                 export const ModifiedUserName: string;
                 export const SignDate: string;
                 export const SignId: string;
@@ -250,6 +261,7 @@ namespace CorrespondenceSystem.Texts {
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const Id: string;
+                export const IsActive: string;
                 export const IsDefault: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;

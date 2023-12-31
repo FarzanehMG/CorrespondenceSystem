@@ -8,7 +8,9 @@ export interface SignLettersRow {
     SignDate?: string;
     CreatedDate?: string;
     CreatorUserName?: string;
+    ModifiedDate?: string;
     ModifiedUserName?: string;
+    IsActive?: number;
     LetterIdentifier?: string;
     SignTitle?: string;
     SignLetterId?: number;
@@ -16,6 +18,7 @@ export interface SignLettersRow {
 
 export abstract class SignLettersRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'CreatorUserName';
     static readonly localTextPrefix = 'SignLettersDB.SignLetters';
     static readonly deletePermission = 'Administration:General';

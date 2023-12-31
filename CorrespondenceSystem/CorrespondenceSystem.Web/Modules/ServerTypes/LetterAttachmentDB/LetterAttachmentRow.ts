@@ -9,11 +9,13 @@ export interface LetterAttachmentRow {
     CreatorUserName?: string;
     ModifiedDate?: string;
     ModifiedUserName?: string;
+    IsActive?: number;
     LetterIdentifier?: string;
 }
 
 export abstract class LetterAttachmentRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'Title';
     static readonly localTextPrefix = 'LetterAttachmentDB.LetterAttachment';
     static readonly deletePermission = 'Administration:General';

@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
 using System;
@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.LetterHistoryDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class LetterHistoryRow : Row<LetterHistoryRow.RowFields>, IIdRow, INameRow
+public sealed class LetterHistoryRow : Row<LetterHistoryRow.RowFields>, IIdRow, INameRow, IIsActiveRow, ILoggingRow
 {
     const string jLetter = nameof(jLetter);
 
@@ -85,6 +85,19 @@ public sealed class LetterHistoryRow : Row<LetterHistoryRow.RowFields>, IIdRow, 
     [DisplayName("Letter Letter Identifier"), Origin(jLetter, nameof(LetterDB.LetterRow.LetterIdentifier))]
     public string LetterLetterIdentifier { get => fields.LetterLetterIdentifier[this]; set => fields.LetterLetterIdentifier[this] = value; }
 
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => fields.IsActive;
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
+
     public class RowFields : RowFieldsBase
     {
         public GuidField Id;
@@ -109,6 +122,7 @@ public sealed class LetterHistoryRow : Row<LetterHistoryRow.RowFields>, IIdRow, 
         public DateTimeField ModifiedDate;
         public DateTimeField ModifiedUserName;
         public StringField LetterCarrier;
+        public Int16Field IsActive;
 
         public StringField LetterLetterIdentifier;
     }

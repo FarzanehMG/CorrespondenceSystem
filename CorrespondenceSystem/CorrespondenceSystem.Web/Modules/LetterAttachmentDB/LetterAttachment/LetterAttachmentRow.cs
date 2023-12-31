@@ -11,7 +11,7 @@ namespace CorrespondenceSystem.LetterAttachmentDB;
 [ReadPermission("Administration:General")]
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
-public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, IIdRow, INameRow,ILoggingRow
+public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, IIdRow, INameRow,ILoggingRow,IIsActiveRow
 {
     const string jLetter = nameof(jLetter);
 
@@ -47,6 +47,11 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
     [DisplayName("Letter Letter Identifier"), Origin(jLetter, nameof(LetterDB.LetterRow.LetterIdentifier))]
     public string LetterIdentifier { get => fields.LetterIdentifier[this]; set => fields.LetterIdentifier[this] = value; }
 
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => fields.IsActive;
+
     public Field UpdateUserIdField => fields.ModifiedUserName;
 
     public DateTimeField UpdateDateField => fields.ModifiedDate;
@@ -65,6 +70,7 @@ public sealed class LetterAttachmentRow : Row<LetterAttachmentRow.RowFields>, II
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
+        public Int16Field IsActive;
         //public ByteArrayField TimeStamp;
 
         public StringField LetterIdentifier;

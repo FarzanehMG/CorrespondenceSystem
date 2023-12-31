@@ -12,7 +12,7 @@ namespace CorrespondenceSystem.TemplateDB;
 [ModifyPermission("Administration:General")]
 [ServiceLookupPermission("Administration:General")]
 [LookupScript]
-public sealed class TemplateRow : Row<TemplateRow.RowFields>, IIdRow, INameRow
+public sealed class TemplateRow : Row<TemplateRow.RowFields>, IIdRow, INameRow, IIsActiveRow, ILoggingRow
 {
     [DisplayName("Id"), PrimaryKey, NotNull, IdProperty]
     public Guid? Id { get => fields.Id[this]; set => fields.Id[this] = value; }
@@ -38,6 +38,19 @@ public sealed class TemplateRow : Row<TemplateRow.RowFields>, IIdRow, INameRow
     [DisplayName("Modified User Name"), Size(200)]
     public string ModifiedUserName { get => fields.ModifiedUserName[this]; set => fields.ModifiedUserName[this] = value; }
 
+    [DisplayName("Is Active")]
+    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
+
+    public Int16Field IsActiveField => fields.IsActive;
+
+    public Field UpdateUserIdField => fields.ModifiedUserName;
+
+    public DateTimeField UpdateDateField => fields.ModifiedDate;
+
+    public Field InsertUserIdField => fields.CreatorUserName;
+
+    public DateTimeField InsertDateField => fields.CreatedDate;
+
     public class RowFields : RowFieldsBase
     {
         public GuidField Id;
@@ -48,6 +61,7 @@ public sealed class TemplateRow : Row<TemplateRow.RowFields>, IIdRow, INameRow
         public StringField CreatorUserName;
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
+        public Int16Field IsActive;
 
     }
 }

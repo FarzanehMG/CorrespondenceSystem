@@ -23,11 +23,13 @@ export interface LetterHistoryRow {
     ModifiedDate?: string;
     ModifiedUserName?: string;
     LetterCarrier?: string;
+    IsActive?: number;
     LetterLetterIdentifier?: string;
 }
 
 export abstract class LetterHistoryRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'LetterIdentifier';
     static readonly localTextPrefix = 'LetterHistoryDB.LetterHistory';
     static readonly deletePermission = 'Administration:General';
