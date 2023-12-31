@@ -31,12 +31,14 @@ export interface LetterRow {
     SenderName?: string;
     ReceiverName?: string;
     GrandSubjectTitle?: string;
+    IsActive?: number;
     DetailList?: LetterAttachmentRow[];
     SignLettersDetailList?: SignLettersRow[];
 }
 
 export abstract class LetterRow {
     static readonly idProperty = 'Id';
+    static readonly isActiveProperty = 'IsActive';
     static readonly nameProperty = 'LetterIdentifier';
     static readonly localTextPrefix = 'LetterDB.Letter';
     static readonly deletePermission = 'Administration:General';

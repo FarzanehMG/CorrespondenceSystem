@@ -1,0 +1,8 @@
+ var StudentCode = Connection.TryFirst<StudentRow>(q => q.Select(StudentRow.Fields.StudentCode).Where(StudentRow.Fields.StudentCode == Row.StudentCode));
+                //var StudentCode =  Connection.TryFirst<StudentRow>(StudentRow.Fields.StudentCode == Row.StudentCode);
+
+                if (StudentCode != null)
+                {
+                    throw new Exception("شماره کد تکراری است");
+                }
+                base.BeforeSave();
