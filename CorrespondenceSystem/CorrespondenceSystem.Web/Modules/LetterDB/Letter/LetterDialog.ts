@@ -1,5 +1,5 @@
 import { LetterForm, LetterRow, LetterService } from '@/ServerTypes/LetterDB';
-import { Decorators, EntityDialog, resolveUrl, serviceCall, EditorUtils, notifyError } from '@serenity-is/corelib';
+import { Decorators, EntityDialog, resolveUrl, serviceCall, EditorUtils, notifyError, tryFirst, indexOf } from '@serenity-is/corelib';
 import { LetterAttachmentRow } from '../../ServerTypes/LetterAttachmentDB';
 import { LetterTypes, States } from '../../ServerTypes/Modules';
 
@@ -15,6 +15,19 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
     //    super(container);
     //    this.SetDefaultSender()
     //}
+
+
+    protected getToolbarButtons() {
+        var buttons = super.getToolbarButtons();
+
+        buttons.splice(indexOf(buttons, x => x.cssClass == "undo-delete-button"), 1);
+        buttons.splice(indexOf(buttons, x => x.cssClass == "localization-button"), 1);
+        buttons.splice(indexOf(buttons, x => x.cssClass == "clone-button"), 1);
+        buttons.splice(indexOf(buttons, x => x.cssClass == "button-outer"), 1);
+        buttons.splice(indexOf(buttons, x => x.cssClass == "delete-button"), 1);
+
+        return buttons;
+    }
 
 
     afterLoadEntity() {
