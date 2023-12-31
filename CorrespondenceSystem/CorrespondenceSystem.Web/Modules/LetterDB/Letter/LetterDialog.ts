@@ -1,5 +1,6 @@
 import { LetterForm, LetterRow, LetterService } from '@/ServerTypes/LetterDB';
-import { Decorators, EntityDialog, resolveUrl, serviceCall, EditorUtils } from '@serenity-is/corelib';
+import { Decorators, EntityDialog, resolveUrl, serviceCall, EditorUtils, notifyError } from '@serenity-is/corelib';
+import { LetterAttachmentRow } from '../../ServerTypes/LetterAttachmentDB';
 import { LetterTypes, States } from '../../ServerTypes/Modules';
 
 @Decorators.registerClass('CorrespondenceSystem.LetterDB.LetterDialog')
@@ -29,9 +30,18 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
         this.form.LetterType.changeSelect2(e => {
             this.SetDefaultTemplate();
         });
-
         
     }
+
+    validateBeforeSave() {
+        if (this.form.HasAttachment.value && this.form.DetailList.value.length == 0) {
+            notifyError("Attach file!!!");
+            return false;
+        }
+        return true;
+    }
+
+
 
     SetRecriverSender() {
         serviceCall({
@@ -87,6 +97,7 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
             method: 'post'
         });
     }
+
 
 
 
