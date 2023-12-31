@@ -98,7 +98,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow, ILog
     [DisplayName("Need Answer")]
     public bool? NeedAnswer { get => fields.NeedAnswer[this]; set => fields.NeedAnswer[this] = value; }
 
-    [DisplayName("Letter File"), Size(1000)]
+    [DisplayName("Letter File"), Size(200), FileUploadEditor]
     public string LetterFile { get => fields.LetterFile[this]; set => fields.LetterFile[this] = value; }
 
     [DisplayName("Template Title"), Expression($"{jTemplate}.[Title]")]

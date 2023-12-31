@@ -56,4 +56,7 @@ public class LetterForm
     [Tab("SignLetters")]
     [SignLettersRowEditor]
     public List<SignLettersRow> SignLettersDetailList { get; set; }
+
+    [Tab("Letter File")]
+    public String LetterFile { get; set; }
 }

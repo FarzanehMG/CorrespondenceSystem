@@ -89,7 +89,6 @@ namespace CorrespondenceSystem.Texts {
                 export const ModifiedUserName: string;
                 export const ReciverId: string;
                 export const ReciverName: string;
-                export const UserId: string;
             }
         }
 

@@ -7,6 +7,8 @@ namespace CorrespondenceSystem.SignDB.Forms;
 [BasedOnRow(typeof(SignRow), CheckNames = true)]
 public class SignForm
 {
+    [Required]
     public string Title { get; set; }
+    [Required]
     public string SignAttachment { get; set; }
 }
