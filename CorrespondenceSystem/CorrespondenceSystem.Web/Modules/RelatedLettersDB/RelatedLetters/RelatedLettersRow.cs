@@ -55,18 +55,6 @@ public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow
 
     public DateTimeField InsertDateField => fields.CreatedDate;
 
-    [DisplayName("Is Active")]
-    public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
-
-    public Int16Field IsActiveField => fields.IsActive;
-
-    public Field UpdateUserIdField => fields.ModifiedUserName;
-
-    public DateTimeField UpdateDateField => fields.ModifiedDate;
-
-    public Field InsertUserIdField => fields.CreatorUserName;
-
-    public DateTimeField InsertDateField => fields.CreatedDate;
 
     public class RowFields : RowFieldsBase
     {

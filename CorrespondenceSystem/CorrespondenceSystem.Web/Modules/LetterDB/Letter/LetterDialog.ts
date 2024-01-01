@@ -1,5 +1,5 @@
 import { LetterForm, LetterRow, LetterService } from '@/ServerTypes/LetterDB';
-import { Decorators, EntityDialog, resolveUrl, serviceCall, EditorUtils, notifyError, tryFirst, indexOf } from '@serenity-is/corelib';
+import { Decorators, EntityDialog, resolveUrl, serviceCall, EditorUtils, notifyError, tryFirst, indexOf, postToService } from '@serenity-is/corelib';
 import { LetterAttachmentRow } from '../../ServerTypes/LetterAttachmentDB';
 import { LetterTypes, States } from '../../ServerTypes/Modules';
 import { GridEditorDialog } from '@serenity-is/extensions'
@@ -17,13 +17,40 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
     //}
 
 
+    protected reportKey: string;
+
+    executeReport(targetFrame: string, exportType: string): void {
+        if (!this.validateForm()) {
+            return;
+        }
+        var parameters = new Object();
+        this.propertyGrid.save(parameters);
+        postToService({
+            service: 'Report/Execute',
+            request: {
+                ReportKey: this.reportKey,
+                DesignId: 'Default',
+                ExportType: exportType,
+                Parameters: parameters
+            }, target: targetFrame
+        });
+
+    }
+
+
     protected getToolbarButtons() {
         var buttons = super.getToolbarButtons();
 
         buttons.splice(indexOf(buttons, x => x.cssClass == "undo-delete-button"), 1);
         buttons.splice(indexOf(buttons, x => x.cssClass == "localization-button"), 1);
         buttons.splice(indexOf(buttons, x => x.cssClass == "clone-button"), 1);
-        buttons.splice(indexOf(buttons, x => x.cssClass == "apply-changes-button"), 1);      
+        buttons.splice(indexOf(buttons, x => x.cssClass == "apply-changes-button"), 1);
+
+        //buttons.push({
+        //    title: 'Word', cssClass: 'export-docx-button', onClick: () => {
+        //        this.executeReport('', 'Docx');
+        //    }
+        //});
 
         return buttons;
     }
