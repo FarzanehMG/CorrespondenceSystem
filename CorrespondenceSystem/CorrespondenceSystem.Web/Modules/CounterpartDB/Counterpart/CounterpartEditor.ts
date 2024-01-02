@@ -4,7 +4,7 @@ import { Decorators, alertDialog, toId } from "@serenity-is/corelib";
 import { GridEditorBase } from "@serenity-is/extensions";
 import { CounterpartDialog } from "./CounterpartDialog";
 
-@Decorators.registerEditor('CorrespondenceSystem.LetterDB.LetterEditor')
+@Decorators.registerEditor('CorrespondenceSystem.CounterpartDB.CounterpartEditor')
 export class TaskDescriptionEditor<P = {}> extends GridEditorBase<CounterpartRow, P> {
     protected getColumnsKey() { return CounterpartColumns.columnsKey; }
     protected getDialogType() { return CounterpartDialog; }
