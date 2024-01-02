@@ -48,15 +48,17 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
 
             e.preventDefault()
 
-            this.DownloadWord()
+            this.DownloadWord(item.Id)
 
         }
 
     }
 
-    DownloadWord() {
+    DownloadWord(Id) {
         serviceCall({
             url: resolveUrl("~/Services/LetterDB/Letter/DownloadWordLetter"),
+            data: JSON.stringify({ Id: Id }),  // Serialize the data to JSON
+            contentType: 'application/json',    // Set content type to JSON
             onSuccess: (response: any) => {
                 return response;
             },

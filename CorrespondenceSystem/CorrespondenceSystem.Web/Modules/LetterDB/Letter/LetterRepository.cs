@@ -33,7 +33,7 @@ public class LetterRepository : BaseRepository
                 GETDATE() AS CreatedDate
                 FROM [CorrespondenceSystem].[dbo].[Sign] s
                 INNER JOIN [TrainingDb].[dbo].[Users] u ON s.UserId = u.UserId
-                WHERE u.UserId = 1 AND s.IsLast = 1
+                WHERE u.UserId = @UserId AND s.IsLast = 1
                 ";
 
         var result = connection.Query<SignLetterViewModel>(sql, new { UserId = userId }).FirstOrDefault();
@@ -62,6 +62,27 @@ public class LetterRepository : BaseRepository
                     WHERE IsDefault = 1";
 
         var result = connection.Query<Guid>(sql).FirstOrDefault();
+        return result;
+    }
+
+    public DownloadLetter DownloadWordLetter(DownloadRequest letterId, HttpContext httpContext)
+    {
+        var connection = httpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("CorrespondenceSystem");
+        var sql = @"SELECT l.Title,l.LetterIdentifier,l.LetterIdentifierGen,l.LetterNo,
+                    rsSender.Name as Sender,
+                    rsReceiver.Name as Receiver,
+                    gs.Title as GrandSubjectTitle,
+                    t.Title as TemplateTitle,
+                    l.LetterContent,l.Tag,l.LetterCarrier
+                    FROM Letter as l
+                    INNER JOIN RecriverSender as rsSender ON l.SenderId = rsSender.Id
+                    INNER JOIN RecriverSender as rsReceiver ON l.ReceiverId = rsReceiver.Id
+                    INNER JOIN GrandSubject as gs ON gs.Id = l.GrandSubjectId
+                    INNER JOIN Template as t ON t.Id = l.TemplateId
+                    WHERE l.Id = @LetterId";
+
+        var result = connection.Query<DownloadLetter>(sql, new { LetterId = letterId.Id }).FirstOrDefault();
+
         return result;
     }
 

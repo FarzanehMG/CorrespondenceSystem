@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +9,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting.Internal;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using Serenity.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ using Serenity.Localization;
 using Serenity.Navigation;
 using System.Data.Common;
 using System.IO;
+
 
 namespace CorrespondenceSystem;
 public partial class Startup
@@ -94,6 +96,7 @@ public partial class Startup
             loggingBuilder.AddDebug();
         });
 
+
         services.AddSingleton<IDataMigrations, AppServices.DataMigrations>();
         services.AddSingleton<IElevationHandler, DefaultElevationHandler>();
         services.AddSingleton<IEmailSender, EmailSender>();
@@ -113,6 +116,10 @@ public partial class Startup
         services.AddScriptBundling();
         services.AddUploadStorage();
         services.AddReporting();
+
+
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
     }
 
     public static void InitializeLocalTexts(IServiceProvider services)
