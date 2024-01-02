@@ -72,7 +72,7 @@ public class LetterRepository : BaseRepository
                     rsSender.Name as Sender,
                     rsReceiver.Name as Receiver,
                     gs.Title as GrandSubjectTitle,
-                    t.Title as TemplateTitle,
+                    t.TemplateFile as TemplateFile,
                     l.LetterContent,l.Tag,l.LetterCarrier
                     FROM Letter as l
                     INNER JOIN RecriverSender as rsSender ON l.SenderId = rsSender.Id
@@ -82,6 +82,15 @@ public class LetterRepository : BaseRepository
                     WHERE l.Id = @LetterId";
 
         var result = connection.Query<DownloadLetter>(sql, new { LetterId = letterId.Id }).FirstOrDefault();
+
+        if (result != null && !string.IsNullOrEmpty(result.TemplateFile))
+        {
+            // Read the file content
+            byte[] fileBytes = System.IO.File.ReadAllBytes(result.TemplateFile);
+
+            // Set the file content in the DownloadLetter object
+            result.TemplateFileContent = fileBytes;
+        }
 
         return result;
     }

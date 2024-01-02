@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Serenity.Reporting;
 using Syncfusion.DocIO;
 using Syncfusion.DocIO.DLS;
+using Syncfusion.DocIORenderer;
 using System.Globalization;
 using System.IO;
 using MyRow = CorrespondenceSystem.LetterDB.LetterRow;
@@ -92,43 +93,158 @@ public class LetterEndpoint : ServiceEndpoint
     {
         //string letterId = Id;
         // Fetch data from the database
-        DownloadLetter letterData = new LetterRepository(Context).DownloadWordLetter(request, _httpContextAccessor.HttpContext);
+        //DownloadLetter letterData = new LetterRepository(Context).DownloadWordLetter(request, _httpContextAccessor.HttpContext);
+
+
+
+        //// Access the section in a Word document
+        //IWSection section = document.AddSection();
+
+        //// Add new paragraph to the section
+        //IWParagraph paragraph = section.AddParagraph();
+        //paragraph.ParagraphFormat.FirstLineIndent = 36;
+        //paragraph.BreakCharacterFormat.FontSize = 12f;
+
 
         // Open a new Word document
         WordDocument document = new WordDocument();
+        // Fetch data from the database
+        DownloadLetter letterData = new LetterRepository(Context).DownloadWordLetter(request, _httpContextAccessor.HttpContext);
 
-        // Access the section in a Word document
-        IWSection section = document.AddSection();
+        //string basePath = _webHostEnvironment.WebRootPath;
 
-        // Add new paragraph to the section
-        IWParagraph paragraph = section.AddParagraph();
-        paragraph.ParagraphFormat.FirstLineIndent = 36;
-        paragraph.BreakCharacterFormat.FontSize = 12f;
 
-        // Populate the Word document with data from the database
-        paragraph.AppendText($"عنوان: {letterData.Title}\n");
-        paragraph.AppendText($"شناسه نامه: {letterData.LetterIdentifier}\n");
-        paragraph.AppendText($"فرستنده: {letterData.SenderTitle}\n");
-        paragraph.AppendText($"گیرنده: {letterData.ReceiverTitle}\n");
-        paragraph.AppendText($"موضوع اصلی: {letterData.GrandSubjectTitle}\n");
-        paragraph.AppendText($"قالب: {letterData.TemplateTitle}\n");
-        paragraph.AppendText($"متن نامه: {letterData.LetterContent}\n");
-        paragraph.AppendText($"تگ: {letterData.Tag}\n");
-        paragraph.AppendText($"حامل نامه: {letterData.LetterCarrier}\n");
+        // Load the template.
+        //var dataPath = letterData.TemplateFileContent;
+        //using FileStream fileStream = new(dataPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        //document.Open(fileStream, FormatType.Automatic);
+
+
+        // Load the template.
+        var templateContent = letterData.TemplateFileContent;
+
+        // Use MemoryStream to read the byte array
+        using (MemoryStream memoryStream = new MemoryStream(templateContent))
+        {
+            document.Open(memoryStream, FormatType.Automatic);
+        }
+
+        //Update Template
+
+        TextSelection textSelection = document.Find("xx_letterData_Title", false, true);
+        WTextRange textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.Title ?? string.Empty;
+
+        textSelection = document.Find("xx_letterData_LetterIdentifier", false, true);
+        textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.LetterIdentifier ?? string.Empty;
+
+        textSelection = document.Find("xx_letterData_SenderTitle", false, true);
+        textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.SenderTitle ?? string.Empty;
+
+        textSelection = document.Find("xx_letterData_ReceiverTitle", false, true);
+        textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.ReceiverTitle ?? string.Empty;
+
+        textSelection = document.Find("xx_letterData_GrandSubjectTitle", false, true);
+        textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.GrandSubjectTitle ?? string.Empty;
+
+        textSelection = document.Find("xx_letterData_LetterContent", false, true);
+        textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.LetterContent ?? string.Empty;
+
+        textSelection = document.Find("xx_letterData_Tag", false, true);
+        textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.Tag ?? string.Empty;
+
+        textSelection = document.Find("xx_letterData_LetterCarrier", false, true);
+        textRange = textSelection.GetAsOneRange();
+        textRange.Text = letterData.LetterCarrier ?? string.Empty;
 
 
         // Save the Word document to a specific folder in your project
         string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "FileName");
-        string filePath = Path.Combine(folderPath, "SampleLetter.docx");
+        string filePath = Path.Combine(folderPath, "BookingDetailsTest.docx");
 
         // Ensure the folder exists, create it if not
         Directory.CreateDirectory(folderPath);
 
         // Save the document to the specified path
-        using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+        using (FileStream fileStreams = new FileStream(filePath, FileMode.Create))
         {
-            document.Save(fileStream, FormatType.Docx);
+            document.Save(fileStreams, FormatType.Docx);
         }
+
+
+
+        using DocIORenderer renderer = new();
+        MemoryStream stream = new();
+
+        document.Save(stream, FormatType.Docx);
+        stream.Position = 0;
+
+        return File(stream, "application/docx", "BookingDetailsTest.docx");
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //// Populate the Word document with data from the database
+        //paragraph.AppendText($"عنوان: {letterData.Title}\n");
+        //paragraph.AppendText($"شناسه نامه: {letterData.LetterIdentifier}\n");
+        //paragraph.AppendText($"فرستنده: {letterData.SenderTitle}\n");
+        //paragraph.AppendText($"گیرنده: {letterData.ReceiverTitle}\n");
+        //paragraph.AppendText($"موضوع اصلی: {letterData.GrandSubjectTitle}\n");
+        //paragraph.AppendText($"قالب: {letterData.TemplateTitle}\n");
+        //paragraph.AppendText($"متن نامه: {letterData.LetterContent}\n");
+        //paragraph.AppendText($"تگ: {letterData.Tag}\n");
+        //paragraph.AppendText($"حامل نامه: {letterData.LetterCarrier}\n");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //// Save the Word document to a specific folder in your project
+        //string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "FileName");
+        //string filePath = Path.Combine(folderPath, "SampleLetter.docx");
+
+        //// Ensure the folder exists, create it if not
+        //Directory.CreateDirectory(folderPath);
+
+        //// Save the document to the specified path
+        //using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
+        //{
+        //    document.Save(fileStream, FormatType.Docx);
+        //}
 
         //// Return a JSON response, you can customize it as needed
         //return new ContentResult
@@ -140,13 +256,13 @@ public class LetterEndpoint : ServiceEndpoint
 
 
 
-        // Save the Word document to MemoryStream
-        MemoryStream stream = new MemoryStream();
-        document.Save(stream, FormatType.Docx);
-        stream.Position = 0;
+        //// Save the Word document to MemoryStream
+        //MemoryStream stream = new MemoryStream();
+        //document.Save(stream, FormatType.Docx);
+        //stream.Position = 0;
 
-        // Download Word document in the browser
-        return File(stream, "application/msword", "SampleLetter.docx");
+        //// Download Word document in the browser
+        //return File(stream, "application/msword", "SampleLetter.docx");
 
     }
 

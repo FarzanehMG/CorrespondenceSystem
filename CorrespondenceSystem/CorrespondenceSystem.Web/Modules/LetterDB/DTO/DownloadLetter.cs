@@ -14,7 +14,8 @@ public class DownloadLetter
     public string SenderTitle { get; set; }
     public string ReceiverTitle { get; set; }
     public string GrandSubjectTitle { get; set; }
-    public string TemplateTitle { get; set; }
+    public string TemplateFile { get; set; }
+    public byte[] TemplateFileContent { get; set; }
     public string LetterContent { get; set; }
     public string Tag { get; set; }
     public string LetterCarrier { get; set; }

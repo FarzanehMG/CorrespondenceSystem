@@ -38,7 +38,7 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
         return columns;
     }
 
-    protected onClick(e: JQueryEventObject, row: number, cell: number) {
+    protected onClick(e: JQueryEventObject, row: number, cell: 6) {
         super.onClick(e, row, cell);
 
         let item = this.itemAt(row);

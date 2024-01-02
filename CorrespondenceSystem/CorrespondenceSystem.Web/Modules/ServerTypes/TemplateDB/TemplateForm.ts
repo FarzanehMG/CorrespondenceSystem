@@ -1,13 +1,9 @@
-﻿import { StringEditor, BooleanEditor, DateEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { StringEditor, ImageUploadEditor, BooleanEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 
 export interface TemplateForm {
     Title: StringEditor;
-    TemplateFile: StringEditor;
+    TemplateFile: ImageUploadEditor;
     IsDefault: BooleanEditor;
-    CreatedDate: DateEditor;
-    CreatorUserName: StringEditor;
-    ModifiedDate: DateEditor;
-    ModifiedUserName: StringEditor;
 }
 
 export class TemplateForm extends PrefixedContext {
@@ -21,17 +17,13 @@ export class TemplateForm extends PrefixedContext {
             TemplateForm.init = true;
 
             var w0 = StringEditor;
-            var w1 = BooleanEditor;
-            var w2 = DateEditor;
+            var w1 = ImageUploadEditor;
+            var w2 = BooleanEditor;
 
             initFormType(TemplateForm, [
                 'Title', w0,
-                'TemplateFile', w0,
-                'IsDefault', w1,
-                'CreatedDate', w2,
-                'CreatorUserName', w0,
-                'ModifiedDate', w2,
-                'ModifiedUserName', w0
+                'TemplateFile', w1,
+                'IsDefault', w2
             ]);
         }
     }

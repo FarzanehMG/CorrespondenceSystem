@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.TemplateDB.TemplateRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.TemplateDB.TemplateRow;
@@ -12,5 +12,11 @@ public class TemplateSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyRespon
     public TemplateSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+
+    protected override void ValidateRequest()
+    {
+        Row.Id = Guid.NewGuid();
+        base.ValidateRequest();
     }
 }

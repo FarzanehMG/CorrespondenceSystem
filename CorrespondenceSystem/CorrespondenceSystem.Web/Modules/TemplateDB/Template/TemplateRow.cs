@@ -20,7 +20,7 @@ public sealed class TemplateRow : Row<TemplateRow.RowFields>, IIdRow, INameRow, 
     [DisplayName("Title"), Size(100), QuickSearch, NameProperty]
     public string Title { get => fields.Title[this]; set => fields.Title[this] = value; }
 
-    [DisplayName("Template File"), Size(200)]
+    [DisplayName("Template File"), Size(200),FileUploadEditor]
     public string TemplateFile { get => fields.TemplateFile[this]; set => fields.TemplateFile[this] = value; }
 
     [DisplayName("Is Default")]
