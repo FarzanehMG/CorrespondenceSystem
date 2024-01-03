@@ -76,4 +76,9 @@ public class LetterEndpoint : ServiceEndpoint
         var res = new LetterRepository(Context).GetDefaultTemplate(HttpContext);
         return res;
     }
+    public identifiregenViewModel SetDefaultIdentifireGen()
+    {
+        var res = new LetterRepository(Context).GetDefaultIdentifireGen(HttpContext);
+        return res;
+    }
 }
