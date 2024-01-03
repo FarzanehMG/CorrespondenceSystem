@@ -4,6 +4,7 @@ using CorrespondenceSystem.SignLettersDB;
 using CorrespondenceSystem.CounterpartDB;
 using Serenity.ComponentModel;
 using System;
+using CorrespondenceSystem.RelatedLettersDB;
 
 namespace CorrespondenceSystem.LetterDB.Forms;
 
@@ -63,4 +64,8 @@ public class LetterForm
     [Tab("CounterPart")]
     [CounterpartEditor]
     public List<CounterpartRow> CounterpartDetailList { get; set; }
+    [Tab("RelatedLetter")]
+    [RelatedLetterEditor]
+    public List<RelatedLettersRow> RelatedLetterDetailList { get; set; }
+
 }
