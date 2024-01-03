@@ -15,6 +15,4 @@ public class GrandSubjectForm
     [TextAreaEditor]
     public string Description { get; set; }
     
-    [LetterEditor]
-    public List<LetterRow> LetterDetail { get; set; }
 }

@@ -54,9 +54,7 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
 
 
 
-    [DisplayName("Letter"), MasterDetailRelation(foreignKey: nameof(LetterRow.Id)), NotMapped]
-    public List<LetterRow> LetterDetail { get => fields.LetterDetail[this]; set => fields.LetterDetail[this] = value; }
-
+    
     public class RowFields : RowFieldsBase
     {
         public GuidField Id;
@@ -68,7 +66,6 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
         public StringField ModifiedUserName;
         public Int16Field IsActive;
         
-        public RowListField<LetterRow> LetterDetail;
         //public ByteArrayField TimeStamp;
 
     }
