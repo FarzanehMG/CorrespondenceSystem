@@ -92,21 +92,6 @@ public class LetterEndpoint : ServiceEndpoint
     [HttpPost]
     public ActionResult DownloadWordLetter([FromBody] DownloadRequest request)
     {
-        //string letterId = Id;
-        // Fetch data from the database
-        //DownloadLetter letterData = new LetterRepository(Context).DownloadWordLetter(request, _httpContextAccessor.HttpContext);
-
-
-
-        //// Access the section in a Word document
-        //IWSection section = document.AddSection();
-
-        //// Add new paragraph to the section
-        //IWParagraph paragraph = section.AddParagraph();
-        //paragraph.ParagraphFormat.FirstLineIndent = 36;
-        //paragraph.BreakCharacterFormat.FontSize = 12f;
-
-
         // Open a new Word document
         WordDocument document = new WordDocument();
         // Fetch data from the database
@@ -123,22 +108,6 @@ public class LetterEndpoint : ServiceEndpoint
 
         using FileStream fileStream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         document.Open(fileStream, FormatType.Automatic);
-
-
-        // Load the template.
-        //var dataPath = letterData.TemplateFileContent;
-        //using FileStream fileStream = new(dataPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-        //document.Open(fileStream, FormatType.Automatic);
-
-
-        // Load the template.
-        //var templateContent = letterData.TemplateFileContent;
-
-        // Use MemoryStream to read the byte array
-        //using (MemoryStream memoryStream = new MemoryStream(templateContent))
-        //{
-        //    document.Open(memoryStream, FormatType.Automatic);
-        //}
 
         //Update Template
 
@@ -176,38 +145,15 @@ public class LetterEndpoint : ServiceEndpoint
                 string folderPathImage = Path.Combine(basePath, "Image");
                 FileStream imageStream = new FileStream(Path.GetFullPath(folderPathImage + "/" + textSelections[i].SelectedText + ".jpg"), FileMode.Open, FileAccess.ReadWrite);
                 WPicture picture = paragraph.AppendPicture(imageStream) as WPicture;
+                // Set layout options for the image
+                picture.TextWrappingStyle = TextWrappingStyle.Square;
+                picture.VerticalOrigin = VerticalOrigin.Paragraph;
+                picture.Height = picture.WidthScale;
+                picture.Width = 200;
                 TextBodyPart bodyPart = new TextBodyPart(document);
                 bodyPart.BodyItems.Add(paragraph);
                 document.Replace(textSelections[i].SelectedText, bodyPart, true, true);
             }
-        
-
-        //// Save the Word document to a specific folder in your project
-        //string folderPathImage = Path.Combine(basePath, "Image");
-        ////string filePathImage = Path.Combine(folderPathImage, "sign.jpg");
-        //string imagePath = Path.GetFullPath(@"../../../Image/sign.jpg");
-
-        //// Ensure the folder exists, create it if not
-        //Directory.CreateDirectory(folderPathImage);
-
-        //textSelection = document.Find("xx_letterData_SignImage", false, true);
-        //textRange = textSelection.GetAsOneRange();
-        ////FileStream imageStream = new FileStream(Path.GetFullPath(imagePath), FileMode.Open, FileAccess.ReadWrite);
-        //// Create a new paragraph and append the image to it
-        //WParagraph paragraphWithImage = new WParagraph(document);
-        //using (FileStream imageStream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
-        //{
-        //    WPicture picture = paragraphWithImage.AppendPicture(imageStream) as WPicture;
-        //}
-        //document.Replace(textSelection, paragraphWithImage, true, true);
-
-
-        //textSelection = document.Find("xx_letterData_counterpart", false, true);
-        //textRange = textSelection.GetAsOneRange();
-        //textRange.Text = letterData.LetterCarrier ?? string.Empty;
-
-
-
 
         // Save the Word document to a specific folder in your project
         string saveFolderPath = Path.Combine(_webHostEnvironment.WebRootPath, "FileName");
@@ -220,9 +166,6 @@ public class LetterEndpoint : ServiceEndpoint
 
         // Combine the formatted date with the filename
         string saveFilePath = Path.Combine(saveFolderPath, $"Letter_{formattedDate}.docx");
-
-
-        //string saveFilePath = Path.Combine(saveFolderPath, "BookingDetailsTest.docx");
 
         // Ensure the folder exists, create it if not
         Directory.CreateDirectory(folderPath);
@@ -244,123 +187,6 @@ public class LetterEndpoint : ServiceEndpoint
         return File(stream, "application/docx", "BookingDetailsTest.docx");
 
 
-
-
-
-
-
-
-
-
-
-
-
-        //// Populate the Word document with data from the database
-        //paragraph.AppendText($"عنوان: {letterData.Title}\n");
-        //paragraph.AppendText($"شناسه نامه: {letterData.LetterIdentifier}\n");
-        //paragraph.AppendText($"فرستنده: {letterData.SenderTitle}\n");
-        //paragraph.AppendText($"گیرنده: {letterData.ReceiverTitle}\n");
-        //paragraph.AppendText($"موضوع اصلی: {letterData.GrandSubjectTitle}\n");
-        //paragraph.AppendText($"قالب: {letterData.TemplateTitle}\n");
-        //paragraph.AppendText($"متن نامه: {letterData.LetterContent}\n");
-        //paragraph.AppendText($"تگ: {letterData.Tag}\n");
-        //paragraph.AppendText($"حامل نامه: {letterData.LetterCarrier}\n");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //// Save the Word document to a specific folder in your project
-        //string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "FileName");
-        //string filePath = Path.Combine(folderPath, "SampleLetter.docx");
-
-        //// Ensure the folder exists, create it if not
-        //Directory.CreateDirectory(folderPath);
-
-        //// Save the document to the specified path
-        //using (FileStream fileStream = new FileStream(filePath, FileMode.Create))
-        //{
-        //    document.Save(fileStream, FormatType.Docx);
-        //}
-
-        //// Return a JSON response, you can customize it as needed
-        //return new ContentResult
-        //{
-        //    Content = "{\"success\": true, \"message\": \"Document saved successfully\"}",
-        //    ContentType = "application/json"
-        //};
-
-
-
-
-        //// Save the Word document to MemoryStream
-        //MemoryStream stream = new MemoryStream();
-        //document.Save(stream, FormatType.Docx);
-        //stream.Position = 0;
-
-        //// Download Word document in the browser
-        //return File(stream, "application/msword", "SampleLetter.docx");
-
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    //[HttpPost]
-    //public ActionResult DownloadWordLetter(string Id)
-    //{
-    //    string letterId = Id ;
-
-    //    //Open an existing Word document.
-    //    WordDocument document = new WordDocument(new FileStream("Input.docx", FileMode.Open, FileAccess.Read), FormatType.Automatic);
-
-    //    //Access the section in a Word document
-    //    IWSection section = document.Sections[0];
-    //    //Add new paragraph to the section
-    //    IWParagraph paragraph = section.AddParagraph();
-    //    paragraph.ParagraphFormat.FirstLineIndent = 36;
-    //    paragraph.BreakCharacterFormat.FontSize = 12f;
-    //    //Add new text to the paragraph
-    //    IWTextRange textRange = paragraph.AppendText("In 2000, AdventureWorks Cycles bought a small manufacturing plant, Importadores Neptuno, located in Mexico. Importadores Neptuno manufactures several critical subcomponents for the AdventureWorks Cycles product line. These subcomponents are shipped to the Bothell location for final product assembly. In 2001, Importadores Neptuno, became the sole manufacturer and distributor of the touring bicycle product group.") as IWTextRange;
-    //    textRange.CharacterFormat.FontSize = 12f;
-
-    //    //Save the Word document to MemoryStream.
-    //    MemoryStream stream = new MemoryStream();
-    //    document.Save(stream, FormatType.Docx);
-    //    stream.Position = 0;
-
-    //    //Download Word document in the browser.
-    //    return File(stream, "application/msword", "Sample.docx");
-
-    //    //var res = new LetterRepository(Context).DownloadWordLetter(letterId,HttpContext);
-    //    //return res;
-    //}
 }
