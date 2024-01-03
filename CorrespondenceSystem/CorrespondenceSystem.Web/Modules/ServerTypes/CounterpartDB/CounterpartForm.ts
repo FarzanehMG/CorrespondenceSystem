@@ -1,13 +1,9 @@
-﻿import { ServiceLookupEditor, IntegerEditor, DateEditor, StringEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+﻿import { ServiceLookupEditor, EnumEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
+import { CopyType } from "../Modules/Enums.Letter.CopyType";
 
 export interface CounterpartForm {
-    LetterId: ServiceLookupEditor;
     ReciverId: ServiceLookupEditor;
-    CopyType: IntegerEditor;
-    CreatedDate: DateEditor;
-    CreatorUserName: StringEditor;
-    ModifiedDate: DateEditor;
-    ModifiedUserName: StringEditor;
+    CopyType: EnumEditor;
 }
 
 export class CounterpartForm extends PrefixedContext {
@@ -21,19 +17,14 @@ export class CounterpartForm extends PrefixedContext {
             CounterpartForm.init = true;
 
             var w0 = ServiceLookupEditor;
-            var w1 = IntegerEditor;
-            var w2 = DateEditor;
-            var w3 = StringEditor;
+            var w1 = EnumEditor;
 
             initFormType(CounterpartForm, [
-                'LetterId', w0,
                 'ReciverId', w0,
-                'CopyType', w1,
-                'CreatedDate', w2,
-                'CreatorUserName', w3,
-                'ModifiedDate', w2,
-                'ModifiedUserName', w3
+                'CopyType', w1
             ]);
         }
     }
 }
+
+[CopyType]; // referenced types

@@ -1,5 +1,5 @@
 import { LetterColumns, LetterRow, LetterService } from '@/ServerTypes/LetterDB';
-import { Decorators, EditorUtils, EntityGrid, resolveUrl, serviceCall, ToolButton } from '@serenity-is/corelib';
+import { Decorators, EditorUtils, EntityGrid, resolveUrl, serviceCall, ToolButton, tryFirst, Criteria } from '@serenity-is/corelib';
 import { Column } from '@serenity-is/sleekgrid';
 import { LetterDialog } from './LetterDialog';
 
@@ -76,6 +76,23 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
     //handleButtonClick() {
     //    this.SetDefaultTemplate();
     //}
+    getQuickFilters() {
 
+        let filter = super.getQuickFilters();
+        let tag = tryFirst(filter, x => x.field == LetterRow.Fields.Tag)
+
+
+        tag.handler = h => {
+            //h.active = !!h.value;
+            if (h.active) {
+
+                h.request.Criteria = Criteria.and(h.request.Criteria,
+                    [[LetterRow.Fields.Tag], 'like', "%" + h.value + "%"])
+            }
+        }
+
+
+        return filter;
+    }
 
 }
