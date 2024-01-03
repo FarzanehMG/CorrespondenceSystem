@@ -25,7 +25,7 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
         let downloadLetterColumn: Column<LetterRow> = {
             name: "Download letter",
             width: 120,
-            format: ctx => `<a class="fa fa-download download"></a>`,
+            format: ctx => `<a class="fa fa-download downloaded" style="display: flex; align-items: center; justify-content: center;"></a>`,
             minWidth: 120,
             maxWidth: 120,
             cssClass: 'download'     
@@ -38,21 +38,18 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
         return columns;
     }
 
-    protected onClick(e: JQueryEventObject, row: number, cell: 6) {
+    protected onClick(e: JQueryEventObject, row: number, cell: number) {
         super.onClick(e, row, cell);
 
         let item = this.itemAt(row);
 
-
-        if ($(e.target).closest("download")) {
-
-            e.preventDefault()
-
-            this.DownloadWord(item.Id)
-
+        // Check if the clicked element has the "download" class
+        if ($(e.target).hasClass("download")) {
+            e.preventDefault();
+            this.DownloadWord(item.Id);
         }
-
     }
+
 
     DownloadWord(Id) {
         serviceCall({

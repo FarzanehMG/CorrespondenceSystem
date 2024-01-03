@@ -8,6 +8,7 @@ namespace CorrespondenceSystem.Modules.LetterDB.DTO;
 public class DownloadLetter
 {
     public string Title { get; set; }
+    public DateTime CreatedDate { get; set; }
     public string LetterIdentifier { get; set; }
     public string LetterIdentifierGen { get; set; }
     public string LetterNo { get; set; }
@@ -19,5 +20,7 @@ public class DownloadLetter
     public string LetterContent { get; set; }
     public string Tag { get; set; }
     public string LetterCarrier { get; set; }
+    public bool HasAttachment { get; set; } 
+    public string HasAttachmentText { get; set; }
 
 }

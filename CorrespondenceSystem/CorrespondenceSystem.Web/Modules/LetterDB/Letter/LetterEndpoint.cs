@@ -8,6 +8,7 @@ using Syncfusion.DocIO.DLS;
 using Syncfusion.DocIORenderer;
 using System.Globalization;
 using System.IO;
+using System.Text.RegularExpressions;
 using MyRow = CorrespondenceSystem.LetterDB.LetterRow;
 
 namespace CorrespondenceSystem.LetterDB.Endpoints;
@@ -111,7 +112,17 @@ public class LetterEndpoint : ServiceEndpoint
         // Fetch data from the database
         DownloadLetter letterData = new LetterRepository(Context).DownloadWordLetter(request, _httpContextAccessor.HttpContext);
 
-        //string basePath = _webHostEnvironment.WebRootPath;
+        string basePath = _webHostEnvironment.WebRootPath;
+
+        // Save the Word document to a specific folder in your project
+        string folderPath = Path.Combine(basePath, "LetterTemplate");
+        string filePath = Path.Combine(folderPath, "BookingDetails.docx");
+
+        // Ensure the folder exists, create it if not
+        Directory.CreateDirectory(folderPath);
+
+        using FileStream fileStream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        document.Open(fileStream, FormatType.Automatic);
 
 
         // Load the template.
@@ -121,27 +132,27 @@ public class LetterEndpoint : ServiceEndpoint
 
 
         // Load the template.
-        var templateContent = letterData.TemplateFileContent;
+        //var templateContent = letterData.TemplateFileContent;
 
         // Use MemoryStream to read the byte array
-        using (MemoryStream memoryStream = new MemoryStream(templateContent))
-        {
-            document.Open(memoryStream, FormatType.Automatic);
-        }
+        //using (MemoryStream memoryStream = new MemoryStream(templateContent))
+        //{
+        //    document.Open(memoryStream, FormatType.Automatic);
+        //}
 
         //Update Template
 
-        TextSelection textSelection = document.Find("xx_letterData_Title", false, true);
+        TextSelection textSelection = document.Find("xx_letterData_CreatedDate", false, true);
         WTextRange textRange = textSelection.GetAsOneRange();
-        textRange.Text = letterData.Title ?? string.Empty;
+        textRange.Text = letterData.CreatedDate.ToString() ?? string.Empty;
 
         textSelection = document.Find("xx_letterData_LetterIdentifier", false, true);
         textRange = textSelection.GetAsOneRange();
         textRange.Text = letterData.LetterIdentifier ?? string.Empty;
 
-        textSelection = document.Find("xx_letterData_SenderTitle", false, true);
+        textSelection = document.Find("xx_letterData_attachment", false, true);
         textRange = textSelection.GetAsOneRange();
-        textRange.Text = letterData.SenderTitle ?? string.Empty;
+        textRange.Text = letterData.HasAttachmentText ?? string.Empty;
 
         textSelection = document.Find("xx_letterData_ReceiverTitle", false, true);
         textRange = textSelection.GetAsOneRange();
@@ -155,24 +166,69 @@ public class LetterEndpoint : ServiceEndpoint
         textRange = textSelection.GetAsOneRange();
         textRange.Text = letterData.LetterContent ?? string.Empty;
 
-        textSelection = document.Find("xx_letterData_Tag", false, true);
-        textRange = textSelection.GetAsOneRange();
-        textRange.Text = letterData.Tag ?? string.Empty;
 
-        textSelection = document.Find("xx_letterData_LetterCarrier", false, true);
-        textRange = textSelection.GetAsOneRange();
-        textRange.Text = letterData.LetterCarrier ?? string.Empty;
+            //Finds all the image placeholder text in the Word document.
+            TextSelection[] textSelections = document.FindAll(new Regex("Sign"));
+            for (int i = 0; i < textSelections.Length; i++)
+            {
+                //Replaces the image placeholder text with desired image.
+                WParagraph paragraph = new WParagraph(document);
+                string folderPathImage = Path.Combine(basePath, "Image");
+                FileStream imageStream = new FileStream(Path.GetFullPath(folderPathImage + "/" + textSelections[i].SelectedText + ".jpg"), FileMode.Open, FileAccess.ReadWrite);
+                WPicture picture = paragraph.AppendPicture(imageStream) as WPicture;
+                TextBodyPart bodyPart = new TextBodyPart(document);
+                bodyPart.BodyItems.Add(paragraph);
+                document.Replace(textSelections[i].SelectedText, bodyPart, true, true);
+            }
+        
+
+        //// Save the Word document to a specific folder in your project
+        //string folderPathImage = Path.Combine(basePath, "Image");
+        ////string filePathImage = Path.Combine(folderPathImage, "sign.jpg");
+        //string imagePath = Path.GetFullPath(@"../../../Image/sign.jpg");
+
+        //// Ensure the folder exists, create it if not
+        //Directory.CreateDirectory(folderPathImage);
+
+        //textSelection = document.Find("xx_letterData_SignImage", false, true);
+        //textRange = textSelection.GetAsOneRange();
+        ////FileStream imageStream = new FileStream(Path.GetFullPath(imagePath), FileMode.Open, FileAccess.ReadWrite);
+        //// Create a new paragraph and append the image to it
+        //WParagraph paragraphWithImage = new WParagraph(document);
+        //using (FileStream imageStream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
+        //{
+        //    WPicture picture = paragraphWithImage.AppendPicture(imageStream) as WPicture;
+        //}
+        //document.Replace(textSelection, paragraphWithImage, true, true);
+
+
+        //textSelection = document.Find("xx_letterData_counterpart", false, true);
+        //textRange = textSelection.GetAsOneRange();
+        //textRange.Text = letterData.LetterCarrier ?? string.Empty;
+
+
 
 
         // Save the Word document to a specific folder in your project
-        string folderPath = Path.Combine(_webHostEnvironment.WebRootPath, "FileName");
-        string filePath = Path.Combine(folderPath, "BookingDetailsTest.docx");
+        string saveFolderPath = Path.Combine(_webHostEnvironment.WebRootPath, "FileName");
+
+        // Get the current date and time
+        DateTime currentDate = DateTime.Now;
+
+        // Format the date to include in the filename
+        string formattedDate = currentDate.ToString("yyyyMMdd_HHmmss");
+
+        // Combine the formatted date with the filename
+        string saveFilePath = Path.Combine(saveFolderPath, $"Letter_{formattedDate}.docx");
+
+
+        //string saveFilePath = Path.Combine(saveFolderPath, "BookingDetailsTest.docx");
 
         // Ensure the folder exists, create it if not
         Directory.CreateDirectory(folderPath);
 
         // Save the document to the specified path
-        using (FileStream fileStreams = new FileStream(filePath, FileMode.Create))
+        using (FileStream fileStreams = new FileStream(saveFilePath, FileMode.Create))
         {
             document.Save(fileStreams, FormatType.Docx);
         }

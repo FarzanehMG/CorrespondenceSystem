@@ -68,29 +68,35 @@ public class LetterRepository : BaseRepository
     public DownloadLetter DownloadWordLetter(DownloadRequest letterId, HttpContext httpContext)
     {
         var connection = httpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("CorrespondenceSystem");
-        var sql = @"SELECT l.Title,l.LetterIdentifier,l.LetterIdentifierGen,l.LetterNo,
-                    rsSender.Name as Sender,
-                    rsReceiver.Name as Receiver,
+        var sql = @"SELECT l.Title,l.LetterIdentifier,l.LetterIdentifierGen,l.LetterNo,l.CreatedDate,
+                    rsSender.Name as SenderTitle, 
+                    rsReceiver.Name as ReceiverTitle,
                     gs.Title as GrandSubjectTitle,
                     t.TemplateFile as TemplateFile,
-                    l.LetterContent,l.Tag,l.LetterCarrier
+                    l.LetterContent,l.Tag,l.LetterCarrier,l.HasAttachment as HasAttachmentText,
+					s.SignAttachment as sign
                     FROM Letter as l
                     INNER JOIN RecriverSender as rsSender ON l.SenderId = rsSender.Id
                     INNER JOIN RecriverSender as rsReceiver ON l.ReceiverId = rsReceiver.Id
                     INNER JOIN GrandSubject as gs ON gs.Id = l.GrandSubjectId
                     INNER JOIN Template as t ON t.Id = l.TemplateId
+					INNER JOIN SignedLetters as sl ON sl.LetterId = l.Id 
+					INNER JOIN Sign as s ON sl.SignId = s.Id
                     WHERE l.Id = @LetterId";
 
         var result = connection.Query<DownloadLetter>(sql, new { LetterId = letterId.Id }).FirstOrDefault();
 
-        if (result != null && !string.IsNullOrEmpty(result.TemplateFile))
-        {
-            // Read the file content
-            byte[] fileBytes = System.IO.File.ReadAllBytes(result.TemplateFile);
+        // Check if HasAttachment is true and set the corresponding value
+        result.HasAttachmentText = result.HasAttachment ? "دارد" : "ندارد";
 
-            // Set the file content in the DownloadLetter object
-            result.TemplateFileContent = fileBytes;
-        }
+        //if (result != null && !string.IsNullOrEmpty(result.TemplateFile))
+        //{
+        //    // Read the file content
+        //    byte[] fileBytes = System.IO.File.ReadAllBytes(result.TemplateFile);
+
+        //    // Set the file content in the DownloadLetter object
+        //    result.TemplateFileContent = fileBytes;
+        //}
 
         return result;
     }
