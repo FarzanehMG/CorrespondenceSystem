@@ -25,7 +25,7 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
         let downloadLetterColumn: Column<LetterRow> = {
             name: "Download letter",
             width: 120,
-            format: ctx => `<a class="fa fa-download download"></a>`,
+            format: ctx => `<a class="fa fa-download downloaded" style="display: flex; align-items: center; justify-content: center;"></a>`,
             minWidth: 120,
             maxWidth: 120,
             cssClass: 'download'     
@@ -43,20 +43,19 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
 
         let item = this.itemAt(row);
 
-
-        if ($(e.target).closest("download")) {
-
-            e.preventDefault()
-
-            this.DownloadWord()
-
+        // Check if the clicked element has the "download" class
+        if ($(e.target).hasClass("download")) {
+            e.preventDefault();
+            this.DownloadWord(item.Id);
         }
-
     }
 
-    DownloadWord() {
+
+    DownloadWord(Id) {
         serviceCall({
             url: resolveUrl("~/Services/LetterDB/Letter/DownloadWordLetter"),
+            data: JSON.stringify({ Id: Id }),  // Serialize the data to JSON
+            contentType: 'application/json',    // Set content type to JSON
             onSuccess: (response: any) => {
                 return response;
             },
