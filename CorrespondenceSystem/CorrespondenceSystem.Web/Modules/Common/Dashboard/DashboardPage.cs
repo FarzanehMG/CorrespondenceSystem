@@ -1,27 +1,49 @@
-
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CorrespondenceSystem.Common.Pages;
-
-[Route("Dashboard/[action]")]
-public class DashboardPage : Controller
-{ 
-    [PageAuthorize, HttpGet, Route("~/")]
-    public ActionResult Index()
+namespace CorrespondenceSystem.Common.Pages
+{
+    [Route("Dashboard/[action]")]
+    public class DashboardPage : Controller
     {
-        var model = new DashboardPageModel();
+        [PageAuthorize, HttpGet, Route("~/")]
+        public ActionResult Index()
+        {
+            var model = new DashboardPageModel();
 
+            var Connection = HttpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("CorrespondenceSystem");
 
-        var Connection = HttpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("CorrespondenceSystem");
+            var IncomingLetters = Connection.Query<LetterCount>(@"
+                SELECT YEAR(CreatedDate) AS year,
+                       MONTH(CreatedDate) AS month,
+                       COUNT(letterType) AS letterCount
+                FROM Letter
+                WHERE letterType = 1
+                GROUP BY YEAR(CreatedDate), MONTH(CreatedDate);");
 
-        var IncomingLetter = Connection.Query<int>(@"Select count(letterType) from Letter where lettertype = 1").FirstOrDefault();
+            var OutgoingLetters = Connection.Query<LetterCount>(@"
+                SELECT YEAR(CreatedDate) AS year,
+                       MONTH(CreatedDate) AS month,
+                       COUNT(letterType) AS letterCount
+                FROM Letter
+                WHERE letterType = 0
+                GROUP BY YEAR(CreatedDate), MONTH(CreatedDate);");
 
-        var OutgoingLetter = Connection.Query<int>(@"Select count(lettertype) from letter where letterType = 0").FirstOrDefault();
+            model.CountIncomingLetterNov = IncomingLetters.FirstOrDefault(x => x.month == 11)?.letterCount ?? 0;
+            model.CountIncomingLetterDec = IncomingLetters.FirstOrDefault(x => x.month == 12)?.letterCount ?? 0;
+            // Repeat the above pattern for each month...
 
-        model.CountIncomingLetter = IncomingLetter;
-        model.CountOutgoingLetter = OutgoingLetter;
+            model.CountOutgoingLetterJan = OutgoingLetters.FirstOrDefault(x => x.month == 1)?.letterCount ?? 0;
+            model.CountOutgoingLetterDec = OutgoingLetters.FirstOrDefault(x => x.month == 12)?.letterCount ?? 0;
+            // Repeat the above pattern for each month...
 
-        return View(MVC.Views.Common.Dashboard.DashboardIndex,model);
+            return View(MVC.Views.Common.Dashboard.DashboardIndex, model);
+        }
+
+        private class LetterCount
+        {
+            public int year { get; set; }
+            public int month { get; set; }
+            public int letterCount { get; set; }
+        }
     }
-
 }

@@ -136,16 +136,18 @@ ViewData["PageId"] = "Dashboard";
     </div>
 </div>
 
-<div class="col-md-6">
-    <div class="card border-primary text-dark">
-        <div class="card-header d-flex justify-content-between align-items-center bg-transparent">
-            <h5 class="mb-0">Letter Chart</h5>
-        </div>
-        <div class="card-body p-2">
-            <canvas id="barChart" class="w-100"></canvas>
+    <div class="col-md-6">
+        <div class="card border-primary text-dark">
+            <div class="card-header d-flex justify-content-between align-items-center bg-transparent">
+                <h5 class="mb-0">Incoming Letter Chart</h5>
+            </div>
+            <div class="card-body p-2">
+            <canvas id="combinedBarChart" class="w-100"></canvas>
+            </div>
         </div>
     </div>
-</div>
+
+
 
 
 <script>
@@ -177,30 +179,33 @@ ViewData["PageId"] = "Dashboard";
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        var barChartCanvas = document.getElementById("barChart").getContext("2d");
+        var barChartCanvas = document.getElementById("combinedBarChart").getContext("2d");
 
         if (barChartCanvas) {
             var barChart = new Chart(barChartCanvas, {
                 type: "bar",
                 data: {
-                    labels: ["Incoming Letter", "Outgoing Letter"],
+                    labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Oct", "Sep", "Nov", "Dec","Jan", "Feb", "March", "April", "May", "June", "July", "August", "Oct", "Sep", "Nov", "Dec"],
                     datasets: [{
-                        label: 'Letter Count',
-                        data: [@Model.CountIncomingLetter, @Model.CountOutgoingLetter],
+                        label: 'Incoming Letter Count',
+                        data: [
+    @Model.CountIncomingLetterJan, @Model.CountIncomingLetterFeb, @Model.CountIncomingLetterMarch, @Model.CountIncomingLetterApril, @Model.CountIncomingLetterMay, @Model.CountIncomingLetterJune,
+    @Model.CountIncomingLetterJuly, @Model.CountIncomingLetterAugust, @Model.CountIncomingLetterJOct, @Model.CountIncomingLetterSep, @Model.CountIncomingLetterNov, @Model.CountIncomingLetterDec,
+                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                        ],
                         backgroundColor: ["#87ceeb", "#87ceeb"],
+                    },
+                    {
+                        label: 'Outgoing Letter Count',
+                        data: [
+                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    @Model.CountOutgoingLetterJan, @Model.CountOutgoingLetterFeb, @Model.CountOutgoingLetterMarch, @Model.CountOutgoingLetterApril, @Model.CountOutgoingLetterMay, @Model.CountOutgoingLetterJune,
+    @Model.CountOutgoingLetterJuly, @Model.CountOutgoingLetterAugust, @Model.CountOutgoingLetterOct, @Model.CountOutgoingLetterSep, @Model.CountOutgoingLetterNov, @Model.CountOutgoingLetterDec
+                            ],
+                        backgroundColor: ["#ffc0cb", "#ffc0cb"],
                     }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
                 }
             });
-
-            barChartCanvas.canvas.style.width = "50%";
-            barChartCanvas.canvas.style.height = "50%";
         }
     });
 </script>
