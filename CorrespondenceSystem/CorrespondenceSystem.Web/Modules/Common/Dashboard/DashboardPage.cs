@@ -1,4 +1,4 @@
-﻿
+
 namespace CorrespondenceSystem.Common.Pages;
 
 [Route("Dashboard/[action]")]
@@ -35,4 +35,5 @@ public class DashboardPage : Controller
             });
         return View(MVC.Views.Common.Dashboard.DashboardIndex, cachedModel);
     }
+
 }
