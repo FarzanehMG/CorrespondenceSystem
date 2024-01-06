@@ -136,51 +136,16 @@ ViewData["PageId"] = "Dashboard";
     </div>
 </div>
 
-
-
-<!--<div class="row" id="openLetterForm">
-    <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm bg-primary bg-opacity-50">
-            <div class="card-body">
-                <i class="fa fa-wpforms icon" style="font-size: 3rem;"></i>
-                    <h5>Open Letter Form</h5>
-                </div>
+<div class="col-md-6">
+    <div class="card border-primary text-dark">
+        <div class="card-header d-flex justify-content-between align-items-center bg-transparent">
+            <h5 class="mb-0">Letter Chart</h5>
+        </div>
+        <div class="card-body p-2">
+            <canvas id="barChart" class="w-100"></canvas>
         </div>
     </div>
 </div>
-
-<div class="row" id="openSignForm">
-    <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm bg-primary bg-opacity-50">
-            <div class="card-body">
-                <i class="fa fa-wpforms icon" style="font-size: 3rem;"></i>
-                <h5>Open Sign Form</h5>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row" id="openGrandsubjectForm">
-    <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm bg-primary bg-opacity-50">
-            <div class="card-body">
-                <i class="fa fa-wpforms icon" style="font-size: 3rem;"></i>
-                <h5>Open Grandsubject Form</h5>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row" id="openTemplateForm">
-    <div class="col-lg-3 col-sm-6">
-        <div class="card s-dashboard-card-sm bg-primary bg-opacity-50">
-            <div class="card-body">
-                <i class="fa fa-wpforms icon" style="font-size: 3rem;"></i>
-                <h5>Open Template Form</h5>
-            </div>
-        </div>
-    </div>
-</div>-->
 
 
 <script>
@@ -208,3 +173,34 @@ ViewData["PageId"] = "Dashboard";
 </script>
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var barChartCanvas = document.getElementById("barChart").getContext("2d");
+
+        if (barChartCanvas) {
+            var barChart = new Chart(barChartCanvas, {
+                type: "bar",
+                data: {
+                    labels: ["Incoming Letter", "Outgoing Letter"],
+                    datasets: [{
+                        label: 'Letter Count',
+                        data: [@Model.CountIncomingLetter, @Model.CountOutgoingLetter],
+                        backgroundColor: ["#87ceeb", "#87ceeb"],
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            barChartCanvas.canvas.style.width = "50%";
+            barChartCanvas.canvas.style.height = "50%";
+        }
+    });
+</script>

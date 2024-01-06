@@ -1,10 +1,11 @@
-﻿
+
 namespace CorrespondenceSystem.Common;
 
 public class DashboardPageModel
 {
-    public int OpenOrders { get; set; }
-    public int ClosedOrderPercent { get; set; }
-    public int CustomerCount { get; set; }
-    public int ProductCount { get; set; }
+    public int CountIncomingLetter { get; set; }
+    public int CountOutgoingLetter { get; set; }
+
+    public string[] PieChartLabel { get; set; }
+    public int[] PieChartData { get; set; }
 }

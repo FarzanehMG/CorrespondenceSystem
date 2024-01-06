@@ -7,6 +7,18 @@ public static class Views
     {
         public static class Dashboard
         {
+            public static class Chart
+            {
+                public static class IncomingLetter
+                {
+                    public const string IncomingLetterIndex = "~/Modules/Common/Dashboard/Chart/IncomingLetter/IncomingLetterIndex.cshtml";
+                }
+
+                public static class OutgoingLetter
+                {
+                    public const string OutgoingLetterIndex = "~/Modules/Common/Dashboard/Chart/OutgoingLetter/OutgoingLetterIndex.cshtml";
+                }
+            }
             public const string DashboardIndex = "~/Modules/Common/Dashboard/DashboardIndex.cshtml";
         }
     }
