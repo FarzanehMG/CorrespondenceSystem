@@ -185,20 +185,18 @@ ViewData["PageId"] = "Dashboard";
             var barChart = new Chart(barChartCanvas, {
                 type: "bar",
                 data: {
-                    labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Oct", "Sep", "Nov", "Dec","Jan", "Feb", "March", "April", "May", "June", "July", "August", "Oct", "Sep", "Nov", "Dec"],
+                    labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Oct", "Sep", "Nov", "Dec"],
                     datasets: [{
                         label: 'Incoming Letter Count',
                         data: [
     @Model.CountIncomingLetterJan, @Model.CountIncomingLetterFeb, @Model.CountIncomingLetterMarch, @Model.CountIncomingLetterApril, @Model.CountIncomingLetterMay, @Model.CountIncomingLetterJune,
-    @Model.CountIncomingLetterJuly, @Model.CountIncomingLetterAugust, @Model.CountIncomingLetterJOct, @Model.CountIncomingLetterSep, @Model.CountIncomingLetterNov, @Model.CountIncomingLetterDec,
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    @Model.CountIncomingLetterJuly, @Model.CountIncomingLetterAugust, @Model.CountIncomingLetterJOct, @Model.CountIncomingLetterSep, @Model.CountIncomingLetterNov, @Model.CountIncomingLetterDec
                         ],
                         backgroundColor: ["#87ceeb", "#87ceeb"],
                     },
                     {
                         label: 'Outgoing Letter Count',
-                        data: [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                        data: [                           
     @Model.CountOutgoingLetterJan, @Model.CountOutgoingLetterFeb, @Model.CountOutgoingLetterMarch, @Model.CountOutgoingLetterApril, @Model.CountOutgoingLetterMay, @Model.CountOutgoingLetterJune,
     @Model.CountOutgoingLetterJuly, @Model.CountOutgoingLetterAugust, @Model.CountOutgoingLetterOct, @Model.CountOutgoingLetterSep, @Model.CountOutgoingLetterNov, @Model.CountOutgoingLetterDec
                             ],
