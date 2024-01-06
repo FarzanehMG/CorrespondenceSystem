@@ -1,4 +1,6 @@
-﻿import { LetterAttachmentEditor } from "@/LetterAttachmentDB/LetterAttachment/LetterAttachmentEditor";
+﻿import { TaskDescriptionEditor } from "@/CounterpartDB/Counterpart/CounterpartEditor";
+import { LetterAttachmentEditor } from "@/LetterAttachmentDB/LetterAttachment/LetterAttachmentEditor";
+import { RelatedLettersEditor } from "@/RelatedLettersDB/RelatedLetters/RelatedLettersEditor";
 import { SignLettersEditor } from "@/SignLettersDB/SignLetters/SignLettersEditor";
 import { RadioButtonEditor, StringEditor, EnumEditor, ServiceLookupEditor, BooleanEditor, LookupEditor, TextAreaEditor, ImageUploadEditor, PrefixedContext, initFormType } from "@serenity-is/corelib";
 import { ConfidentialLevels } from "../Modules/Enums.Letter.ConfidentialLevels";
@@ -28,6 +30,8 @@ export interface LetterForm {
     DetailList: LetterAttachmentEditor;
     SignLettersDetailList: SignLettersEditor;
     LetterFile: ImageUploadEditor;
+    CounterpartDetailList: TaskDescriptionEditor;
+    RelatedLetterDetailList: RelatedLettersEditor;
 }
 
 export class LetterForm extends PrefixedContext {
@@ -50,6 +54,8 @@ export class LetterForm extends PrefixedContext {
             var w7 = LetterAttachmentEditor;
             var w8 = SignLettersEditor;
             var w9 = ImageUploadEditor;
+            var w10 = TaskDescriptionEditor;
+            var w11 = RelatedLettersEditor;
 
             initFormType(LetterForm, [
                 'LetterType', w0,
@@ -72,7 +78,9 @@ export class LetterForm extends PrefixedContext {
                 'NeedAnswer', w4,
                 'DetailList', w7,
                 'SignLettersDetailList', w8,
-                'LetterFile', w9
+                'LetterFile', w9,
+                'CounterpartDetailList', w10,
+                'RelatedLetterDetailList', w11
             ]);
         }
     }

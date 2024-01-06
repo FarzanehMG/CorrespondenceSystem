@@ -1,4 +1,5 @@
 ﻿import { SaveRequest, SaveResponse, ServiceOptions, DeleteRequest, DeleteResponse, RetrieveRequest, RetrieveResponse, ListRequest, ListResponse, ServiceRequest, serviceRequest } from "@serenity-is/corelib";
+import { identifiregenViewModel } from "../Modules/LetterDB.DTO.identifiregenViewModel";
 import { LetterRow } from "./LetterRow";
 
 export namespace LetterService {
@@ -11,6 +12,7 @@ export namespace LetterService {
     export declare function List(request: ListRequest, onSuccess?: (response: ListResponse<LetterRow>) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function SetDefaultRecriverSender(request: ServiceRequest, onSuccess?: (response: string) => void, opt?: ServiceOptions<any>): JQueryXHR;
     export declare function SetDefaultTemplate(request: ServiceRequest, onSuccess?: (response: string) => void, opt?: ServiceOptions<any>): JQueryXHR;
+    export declare function SetDefaultIdentifireGen(request: ServiceRequest, onSuccess?: (response: identifiregenViewModel) => void, opt?: ServiceOptions<any>): JQueryXHR;
 
     export const Methods = {
         Create: "LetterDB/Letter/Create",
@@ -19,7 +21,8 @@ export namespace LetterService {
         Retrieve: "LetterDB/Letter/Retrieve",
         List: "LetterDB/Letter/List",
         SetDefaultRecriverSender: "LetterDB/Letter/SetDefaultRecriverSender",
-        SetDefaultTemplate: "LetterDB/Letter/SetDefaultTemplate"
+        SetDefaultTemplate: "LetterDB/Letter/SetDefaultTemplate",
+        SetDefaultIdentifireGen: "LetterDB/Letter/SetDefaultIdentifireGen"
     } as const;
 
     [
@@ -29,7 +32,8 @@ export namespace LetterService {
         'Retrieve', 
         'List', 
         'SetDefaultRecriverSender', 
-        'SetDefaultTemplate'
+        'SetDefaultTemplate', 
+        'SetDefaultIdentifireGen'
     ].forEach(x => {
         (<any>LetterService)[x] = function (r, s, o) {
             return serviceRequest(baseUrl + '/' + x, r, s, o);

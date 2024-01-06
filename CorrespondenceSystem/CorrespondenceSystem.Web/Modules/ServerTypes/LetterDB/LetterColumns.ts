@@ -5,8 +5,10 @@ import { LetterRow } from "./LetterRow";
 
 export interface LetterColumns {
     Title: Column<LetterRow>;
+    Tag: Column<LetterRow>;
     GrandSubjectTitle: Column<LetterRow>;
     LetterNo: Column<LetterRow>;
+    CreatedDate: Column<LetterRow>;
     State: Column<LetterRow>;
     LetterType: Column<LetterRow>;
 }

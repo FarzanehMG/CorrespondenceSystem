@@ -1,5 +1,7 @@
+using CorrespondenceSystem.CounterpartDB;
 using CorrespondenceSystem.LetterAttachmentDB;
 using CorrespondenceSystem.Modules.Enums.Letter;
+using CorrespondenceSystem.RelatedLettersDB;
 using CorrespondenceSystem.SignLettersDB;
 using Serenity.ComponentModel;
 using System;
@@ -59,4 +61,12 @@ public class LetterForm
 
     [Tab("Letter File")]
     public String LetterFile { get; set; }
+
+    [Tab("CounterPart")]
+    [CounterpartEditor]
+    public List<CounterpartRow> CounterpartDetailList { get; set; }
+
+    [Tab("RelatedLetter")]
+    [RelatedLetterEditor]
+    public List<RelatedLettersRow> RelatedLetterDetailList { get; set; }
 }

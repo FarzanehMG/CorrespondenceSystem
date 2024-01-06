@@ -88,6 +88,13 @@ public class LetterEndpoint : ServiceEndpoint
         return res;
     }
 
+    [HttpPost]
+    public identifiregenViewModel SetDefaultIdentifireGen()
+    {
+        var res = new LetterRepository(Context).GetDefaultIdentifireGen(HttpContext);
+        return res;
+    }
+
 
     [HttpPost]
     public ActionResult DownloadWordLetter([FromBody] DownloadRequest request)

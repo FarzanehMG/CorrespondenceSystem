@@ -5,6 +5,7 @@ using CorrespondenceSystem.SignLettersDB.Columns;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data;
 using System.Net.Http;
 using System.Security.Claims;
 
@@ -63,6 +64,22 @@ public class LetterRepository : BaseRepository
 
         var result = connection.Query<Guid>(sql).FirstOrDefault();
         return result;
+    }
+
+    public identifiregenViewModel GetDefaultIdentifireGen(HttpContext httpContext)
+    {
+
+        using (var connection = httpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("CorrespondenceSystem"))
+        {
+            var result = Dapper.SqlMapper.ExecuteScalar<string>(connection, "AutoIncrement", commandType: CommandType.StoredProcedure);
+
+            var viewModel = new identifiregenViewModel
+            {
+                Identifier = result
+            };
+            return viewModel;
+        }
+
     }
 
     public DownloadLetter DownloadWordLetter(DownloadRequest letterId, HttpContext httpContext)

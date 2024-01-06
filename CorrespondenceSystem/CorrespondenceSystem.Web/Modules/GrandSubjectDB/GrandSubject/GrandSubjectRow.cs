@@ -49,6 +49,10 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
     //[DisplayName("Time Stamp"), Insertable(false), Updatable(false), NotNull]
     //public byte[] TimeStamp { get => fields.TimeStamp[this]; set => fields.TimeStamp[this] = value; }
 
+
+
+
+
     public class RowFields : RowFieldsBase
     {
         public GuidField Id;
@@ -59,6 +63,7 @@ public sealed class GrandSubjectRow : Row<GrandSubjectRow.RowFields>, IIdRow, IN
         public DateTimeField ModifiedDate;
         public StringField ModifiedUserName;
         public Int16Field IsActive;
+
         //public ByteArrayField TimeStamp;
 
     }

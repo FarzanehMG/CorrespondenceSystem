@@ -126,6 +126,7 @@ namespace CorrespondenceSystem.Texts {
 
             namespace Letter {
                 export const ConfidentialLevel: string;
+                export const CounterpartDetailList: string;
                 export const CreatedDate: string;
                 export const CreatorUserName: string;
                 export const DetailList: string;
@@ -147,6 +148,7 @@ namespace CorrespondenceSystem.Texts {
                 export const PriorityState: string;
                 export const ReceiverId: string;
                 export const ReceiverName: string;
+                export const RelatedLetterDetailList: string;
                 export const SenderId: string;
                 export const SenderName: string;
                 export const SignLettersDetailList: string;

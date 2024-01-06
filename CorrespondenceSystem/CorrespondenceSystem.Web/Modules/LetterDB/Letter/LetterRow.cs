@@ -1,4 +1,6 @@
+using CorrespondenceSystem.CounterpartDB;
 using CorrespondenceSystem.LetterAttachmentDB;
+using CorrespondenceSystem.RelatedLettersDB;
 using CorrespondenceSystem.SignLettersDB;
 using Serenity.ComponentModel;
 using Serenity.Data;
@@ -125,6 +127,14 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow, ILog
     [MinSelectLevel(SelectLevel.Details)]
     public List<SignLettersRow> SignLettersDetailList { get => fields.SignLettersDetailList[this]; set => fields.SignLettersDetailList[this] = value; }
 
+    [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(CounterpartRow.LetterId)), NotMapped]
+    [MinSelectLevel(SelectLevel.Details)]
+    public List<CounterpartRow> CounterpartDetailList { get => fields.CounterpartDetailList[this]; set => fields.CounterpartDetailList[this] = value; }
+
+    [DisplayName("Details"), MasterDetailRelation(foreignKey: nameof(RelatedLettersRow.LetterId)), NotMapped]
+    [MinSelectLevel(SelectLevel.Details)]
+    public List<RelatedLettersRow> RelatedLetterDetailList { get => fields.RelatedLetterDetailList[this]; set => fields.RelatedLetterDetailList[this] = value; }
+
 
     public Field UpdateUserIdField => fields.ModifiedUserName;
 
@@ -172,5 +182,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow, ILog
 
         public RowListField<LetterAttachmentRow> DetailList;
         public RowListField<SignLettersRow> SignLettersDetailList;
+        public RowListField<CounterpartRow> CounterpartDetailList;
+        public RowListField<RelatedLettersRow> RelatedLetterDetailList;
     }
 }
