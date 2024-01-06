@@ -18,11 +18,9 @@ public class OutgoingLetterrViewComponent : ViewComponent
 
         var c = Connection.NewByKey("CorrespondenceSystem");
 
+        var OutgoingLettersCount = c.Query<int>(@"Select count(letterType) from Letter where lettertype = 0").FirstOrDefault();
 
-            var OutgoingLettersCount = c.Query<int>(@"Select count(letterType) from Letter where lettertype = 1").FirstOrDefault();
-
-
-            model.CountOutgoingLetters = OutgoingLettersCount;
+        model.CountOutgoingLetters = OutgoingLettersCount;
 
         return View(MVC.Views.Common.Dashboard.Chart.OutgoingLetter.OutgoingLetterIndex, model);
     }

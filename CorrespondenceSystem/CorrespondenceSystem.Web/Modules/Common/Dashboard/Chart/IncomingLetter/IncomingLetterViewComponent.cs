@@ -17,10 +17,10 @@ public class IncomingLetterViewComponent : ViewComponent
 
         var model = new IncomingLettersModel();
 
-        var c = Connection.NewByKey("CorrespondenceSystem");
+        var connection = Connection.NewByKey("CorrespondenceSystem");
 
 
-        var IncomingLettersCount = c.Query<int>(@"Select count(letterType) from Letter where lettertype = 2").FirstOrDefault();
+        var IncomingLettersCount = connection.Query<int>(@"Select count(letterType) from Letter where lettertype = 1").FirstOrDefault();
 
 
         model.CountIncomingLetters = IncomingLettersCount;
