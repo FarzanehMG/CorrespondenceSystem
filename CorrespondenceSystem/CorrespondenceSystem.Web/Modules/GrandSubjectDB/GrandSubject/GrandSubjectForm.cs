@@ -1,3 +1,4 @@
+using CorrespondenceSystem.LetterDB;
 using Serenity.ComponentModel;
 using System;
 
@@ -7,11 +8,11 @@ namespace CorrespondenceSystem.GrandSubjectDB.Forms;
 [BasedOnRow(typeof(GrandSubjectRow), CheckNames = true)]
 public class GrandSubjectForm
 {
+    
     public string Title { get; set; }
+    [Insertable(true)]
+    [Updatable]
+    [TextAreaEditor]
     public string Description { get; set; }
-    public DateTime CreatedDate { get; set; }
-    public string CreatorUserName { get; set; }
-    public DateTime ModifiedDate { get; set; }
-    public string ModifiedUserName { get; set; }
-    //public byte[] TimeStamp { get; set; }
+    
 }

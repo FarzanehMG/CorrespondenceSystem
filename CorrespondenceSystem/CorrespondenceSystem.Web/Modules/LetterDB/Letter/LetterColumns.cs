@@ -9,10 +9,16 @@ namespace CorrespondenceSystem.LetterDB.Columns;
 [BasedOnRow(typeof(LetterRow), CheckNames = true)]
 public class LetterColumns
 {
-    [EditLink]
+    [EditLink, QuickFilter]
     public string Title { get; set; }
+    [QuickFilter]
+    public string Tag { get; set; }
+    [QuickFilter]
     public string GrandSubjectTitle { get; set; }
+    [QuickFilter]
     public string LetterNo { get; set; }
+    [QuickFilter]
+    public DateTime CreatedDate { get; set; }
     public States State { get; set; }
     public LetterTypes LetterType { get; set; }
 

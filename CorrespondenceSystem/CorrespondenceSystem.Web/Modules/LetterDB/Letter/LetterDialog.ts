@@ -58,6 +58,7 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
 
     afterLoadEntity() {
         this.SetRecriverSender()
+        this.SetDefaultIdentifireGen();
 
 
         this.form.LetterType.changeSelect2(e => {
@@ -136,6 +137,37 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
             method: 'post'
         });
     }
+    SetDefaultIdentifireGen() {
+        serviceCall({
+            url: resolveUrl("~/Services/LetterDB/Letter/SetDefaultIdentifireGen"),
+            onSuccess: (response: any) => {
+                if (response) {
+                    this.form.LetterType.changeSelect2(e => {
+                        if (this.form.LetterType.value == LetterTypes.Outgoing.toString()) {
+
+                            EditorUtils.setValue(this.form.LetterIdentifierGen, response.Identifier);
+                            EditorUtils.setReadonly(this.form.LetterIdentifierGen.element, true);
+                        }
+
+                        if (this.form.LetterType.value == LetterTypes.Incoming.toString()) {
+                            var id = this.SetRecriverSender();
+
+                            EditorUtils.setValue(this.form.LetterIdentifierGen, null);
+                            EditorUtils.setReadonly(this.form.LetterIdentifierGen.element, false);
+
+
+                        }
+                    });
+
+                } else {
+                    console.error('Invalid response format for SetDefaultRecriverSender');
+                }
+            },
+            method: 'post'
+        });
+    }
+
+
 
 
 

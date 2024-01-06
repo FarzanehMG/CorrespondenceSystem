@@ -1,3 +1,4 @@
+using CorrespondenceSystem.LetterDB;
 using Serenity.ComponentModel;
 using Serenity.Data;
 using Serenity.Data.Mapping;
@@ -23,6 +24,7 @@ public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow
     public Guid? LetterId { get => fields.LetterId[this]; set => fields.LetterId[this] = value; }
 
     [DisplayName("Related Letter Id"), NotNull]
+    [ServiceLookupEditor(typeof(LetterRow), Service = "LetterDB/Letter/List")]
     public Guid? RelatedLetterId { get => fields.RelatedLetterId[this]; set => fields.RelatedLetterId[this] = value; }
 
     [DisplayName("Relation Type"), NotNull]
