@@ -14,17 +14,12 @@ public class DashboardPage : Controller
 
         var Connection = HttpContext.RequestServices.GetRequiredService<ISqlConnections>().NewByKey("CorrespondenceSystem");
 
-        var IncomingLetter = Connection.Query<int>(@"Select count(letterType) from Letter where lettertype = 2").FirstOrDefault();
+        var IncomingLetter = Connection.Query<int>(@"Select count(letterType) from Letter where lettertype = 1").FirstOrDefault();
 
-        var OutgoingLetter = Connection.Query<int>(@"Select count(lettertype) from letter where letterType = 1").FirstOrDefault();
+        var OutgoingLetter = Connection.Query<int>(@"Select count(lettertype) from letter where letterType = 0").FirstOrDefault();
 
         model.CountIncomingLetter = IncomingLetter;
         model.CountOutgoingLetter = OutgoingLetter;
-
-        model.PieChartLabel = new[] {"Incoming Letters", "Outgoing Letters" };
-        model.PieChartData = new[] { model.CountIncomingLetter, model.CountOutgoingLetter };
-
-        var username = User?.Identity?.Name;
 
         return View(MVC.Views.Common.Dashboard.DashboardIndex,model);
     }
