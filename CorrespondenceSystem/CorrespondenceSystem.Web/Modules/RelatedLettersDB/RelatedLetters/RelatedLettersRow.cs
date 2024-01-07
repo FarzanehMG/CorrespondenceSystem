@@ -48,7 +48,7 @@ public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow
     public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
 
     [DisplayName("RelatedLetter Title")]
-    [Expression("(SELECT l.Title FROM RelatedLetters as rl INNER JOIN Letter as l ON l.Id = rl.RelatedLetterId where rl.LetterId = T0.Id)")]
+    [Expression("(SELECT l.Title FROM RelatedLetters as rl INNER JOIN Letter as l ON l.Id = rl.RelatedLetterId where rl.LetterId = [T0].Id)")]
     public string RelatedLetterTitle { get => fields.RelatedLetterTitle[this]; set => fields.RelatedLetterTitle[this] = value; }
 
 

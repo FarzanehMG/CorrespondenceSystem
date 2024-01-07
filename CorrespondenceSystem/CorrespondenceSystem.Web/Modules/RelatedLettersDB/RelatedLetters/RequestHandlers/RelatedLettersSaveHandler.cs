@@ -18,4 +18,9 @@ public class RelatedLettersSaveHandler : SaveRequestHandler<MyRow, MyRequest, My
         Row.Id = Guid.NewGuid();
         base.ValidateRequest();
     }
+
+    protected override void BeforeSave()
+    {
+        base.BeforeSave();
+    }
 }

@@ -1,8 +1,9 @@
-﻿import { CounterpartForm, CounterpartRow, CounterpartService } from '@/ServerTypes/CounterpartDB';
+import { CounterpartForm, CounterpartRow, CounterpartService } from '@/ServerTypes/CounterpartDB';
 import { Decorators, EntityDialog } from '@serenity-is/corelib';
+import { GridEditorDialog } from '@serenity-is/extensions';
 
 @Decorators.registerClass('CorrespondenceSystem.CounterpartDB.CounterpartDialog')
-export class CounterpartDialog extends EntityDialog<CounterpartRow, any> {
+export class CounterpartDialog extends GridEditorDialog<CounterpartRow> {
     protected getFormKey() { return CounterpartForm.formKey; }
     protected getRowDefinition() { return CounterpartRow; }
     protected getService() { return CounterpartService.baseUrl; }
