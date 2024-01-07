@@ -1,0 +1,48 @@
+
+
+
+
+<div class="col-md-6">
+    <div class="card border-primary text-dark">
+        <div class="card-header d-flex justify-content-between align-items-center bg-transparent">
+            <h5 class="mb-0">Incoming Letter Chart</h5>
+        </div>
+        <div class="card-body p-2">
+            <canvas id="combinedBarChart" class="w-100"></canvas>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var barChartCanvas = document.getElementById("combinedBarChart").getContext("2d");
+
+        if (barChartCanvas) {
+            var barChart = new Chart(barChartCanvas, {
+                type: "bar",
+                data: {
+                    labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Oct", "Sep", "Nov", "Dec"],
+                    datasets: [{
+                        label: 'Incoming Letter Count',
+                        data: [
+    @Model.CountIncomingLetterJan, @Model.CountIncomingLetterFeb, @Model.CountIncomingLetterMarch, @Model.CountIncomingLetterApril, @Model.CountIncomingLetterMay, @Model.CountIncomingLetterJune,
+    @Model.CountIncomingLetterJuly, @Model.CountIncomingLetterAugust, @Model.CountIncomingLetterJOct, @Model.CountIncomingLetterSep, @Model.CountIncomingLetterNov, @Model.CountIncomingLetterDec
+                            ],
+                        backgroundColor: ["#87ceeb", "#87ceeb"],
+                    },
+                    {
+                        label: 'Outgoing Letter Count',
+                        data: [
+    @Model.CountOutgoingLetterJan, @Model.CountOutgoingLetterFeb, @Model.CountOutgoingLetterMarch, @Model.CountOutgoingLetterApril, @Model.CountOutgoingLetterMay, @Model.CountOutgoingLetterJune,
+    @Model.CountOutgoingLetterJuly, @Model.CountOutgoingLetterAugust, @Model.CountOutgoingLetterOct, @Model.CountOutgoingLetterSep, @Model.CountOutgoingLetterNov, @Model.CountOutgoingLetterDec
+                                ],
+                        backgroundColor: ["#ffc0cb", "#ffc0cb"],
+                    }]
+                }
+            });
+        }
+    });
+</script>
