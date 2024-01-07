@@ -19,8 +19,4 @@ public class RelatedLettersSaveHandler : SaveRequestHandler<MyRow, MyRequest, My
         base.ValidateRequest();
     }
 
-    protected override void BeforeSave()
-    {
-        base.BeforeSave();
-    }
 }

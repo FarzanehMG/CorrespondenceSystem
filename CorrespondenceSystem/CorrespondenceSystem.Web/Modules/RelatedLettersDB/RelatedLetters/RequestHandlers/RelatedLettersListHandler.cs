@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.ListRequest;
 using MyResponse = Serenity.Services.ListResponse<CorrespondenceSystem.RelatedLettersDB.RelatedLettersRow>;
 using MyRow = CorrespondenceSystem.RelatedLettersDB.RelatedLettersRow;
@@ -13,4 +13,5 @@ public class RelatedLettersListHandler : ListRequestHandler<MyRow, MyRequest, My
             : base(context)
     {
     }
+
 }
