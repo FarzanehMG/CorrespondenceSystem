@@ -1,4 +1,4 @@
-﻿using Serenity.ComponentModel;
+using Serenity.ComponentModel;
 using System;
 using System.ComponentModel;
 
@@ -8,14 +8,12 @@ namespace CorrespondenceSystem.CounterpartDB.Columns;
 [BasedOnRow(typeof(CounterpartRow), CheckNames = true)]
 public class CounterpartColumns
 {
-    [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
-    public Guid Id { get; set; }
+    [EditLink, DisplayName("LetterIdentifier"), AlignRight]
+    
     public string LetterIdentifier { get; set; }
-    public string ReciverName { get; set; }
+    [Width(80)]
     public short CopyType { get; set; }
     public DateTime CreatedDate { get; set; }
-    [EditLink]
-    public string CreatorUserName { get; set; }
-    public DateTime ModifiedDate { get; set; }
-    public string ModifiedUserName { get; set; }
+    
 }
+   

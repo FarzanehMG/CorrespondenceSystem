@@ -1,4 +1,5 @@
 using CorrespondenceSystem.LetterHistoryDB;
+using CorrespondenceSystem.Modules.Common.Helpers;
 using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.LetterDB.LetterRow>;
 using MyResponse = Serenity.Services.SaveResponse;
@@ -42,38 +43,9 @@ public class LetterSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyResponse
             actiontype = 3;
         }
         var Letterhistory = new LetterHistoryRow { ActionType = actiontype };
-        MapTo(Row, Letterhistory);
+        Mapper.MapTo(Row, Letterhistory);
         Connection.Insert<LetterHistoryRow>(Letterhistory);
 
     }
-    public void MapTo(IRow src, IRow des)
-    {
-
-        foreach (var s in src.GetFields())
-        {
-            foreach (var d in des.GetFields())
-            {
-                if (d.Name == "Id")
-                {
-                    Guid Id = Guid.NewGuid();
-                    des[d.Name] = Id;
-                }
-                else if (d.Name == "LetterId")
-                {
-
-                    des[d.Name] = src["Id"];
-                }
-                else if (s.Name == d.Name && s.Type == d.Type)
-                {
-                    
-                    
-                        des[d.Name] = src[s.Name];
-                    
-
-                }
-            }
-        }
-
-
-    }
+    
 }
