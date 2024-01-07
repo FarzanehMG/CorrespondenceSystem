@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.RecriverSenderDB.RecriverSenderRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.RecriverSenderDB.RecriverSenderRow;
@@ -12,5 +12,11 @@ public class RecriverSenderSaveHandler : SaveRequestHandler<MyRow, MyRequest, My
     public RecriverSenderSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+
+    protected override void ValidateRequest()
+    {
+        Row.Id = Guid.NewGuid();
+        base.ValidateRequest();
     }
 }

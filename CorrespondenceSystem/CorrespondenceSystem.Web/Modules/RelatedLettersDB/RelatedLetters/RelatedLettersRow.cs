@@ -47,6 +47,11 @@ public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow
     [DisplayName("Is Active")]
     public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
 
+    [DisplayName("RelatedLetter Title")]
+    [Expression("(SELECT l.Title FROM RelatedLetters as rl INNER JOIN Letter as l ON l.Id = rl.RelatedLetterId where rl.LetterId = T0.Id)")]
+    public string RelatedLetterTitle { get => fields.RelatedLetterTitle[this]; set => fields.RelatedLetterTitle[this] = value; }
+
+
     public Int16Field IsActiveField => fields.IsActive;
 
     public Field UpdateUserIdField => fields.ModifiedUserName;
@@ -71,5 +76,7 @@ public sealed class RelatedLettersRow : Row<RelatedLettersRow.RowFields>, IIdRow
         public Int16Field IsActive;
 
         public StringField LetterIdentifier;
+
+        public StringField RelatedLetterTitle;
     }
 }

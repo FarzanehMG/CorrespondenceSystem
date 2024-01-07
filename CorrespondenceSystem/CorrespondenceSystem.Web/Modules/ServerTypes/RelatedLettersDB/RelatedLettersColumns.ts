@@ -4,6 +4,7 @@ import { RelatedLettersRow } from "./RelatedLettersRow";
 
 export interface RelatedLettersColumns {
     LetterIdentifier: Column<RelatedLettersRow>;
+    RelatedLetterTitle: Column<RelatedLettersRow>;
     RelationType: Column<RelatedLettersRow>;
     CreatedDate: Column<RelatedLettersRow>;
 }

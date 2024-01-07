@@ -11,6 +11,7 @@ export interface RelatedLettersRow {
     ModifiedUserName?: string;
     IsActive?: number;
     LetterIdentifier?: string;
+    RelatedLetterTitle?: string;
 }
 
 export abstract class RelatedLettersRow {

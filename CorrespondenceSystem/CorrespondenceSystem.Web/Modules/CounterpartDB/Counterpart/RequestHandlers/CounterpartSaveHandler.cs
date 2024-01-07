@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.CounterpartDB.CounterpartRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.CounterpartDB.CounterpartRow;
@@ -12,5 +12,10 @@ public class CounterpartSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyRes
     public CounterpartSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+    protected override void ValidateRequest()
+    {
+        Row.Id = Guid.NewGuid();
+        base.ValidateRequest();
     }
 }

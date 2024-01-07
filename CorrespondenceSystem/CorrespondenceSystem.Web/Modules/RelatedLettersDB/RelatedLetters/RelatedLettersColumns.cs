@@ -9,9 +9,10 @@ namespace CorrespondenceSystem.RelatedLettersDB.Columns;
 public class RelatedLettersColumns
 {
     [EditLink, DisplayName("Letter Identifire"), AlignRight]
-    
+    [Width(120)]
     public string LetterIdentifier { get; set; }
-   
+    [Width(120)]
+    public string RelatedLetterTitle { get; set; }
     public short RelationType { get; set; }
     public DateTime CreatedDate { get; set; }
     

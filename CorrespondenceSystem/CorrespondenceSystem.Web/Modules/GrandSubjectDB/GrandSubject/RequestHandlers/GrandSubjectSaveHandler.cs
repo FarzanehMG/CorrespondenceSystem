@@ -1,4 +1,4 @@
-﻿using Serenity.Services;
+using Serenity.Services;
 using MyRequest = Serenity.Services.SaveRequest<CorrespondenceSystem.GrandSubjectDB.GrandSubjectRow>;
 using MyResponse = Serenity.Services.SaveResponse;
 using MyRow = CorrespondenceSystem.GrandSubjectDB.GrandSubjectRow;
@@ -12,5 +12,10 @@ public class GrandSubjectSaveHandler : SaveRequestHandler<MyRow, MyRequest, MyRe
     public GrandSubjectSaveHandler(IRequestContext context)
             : base(context)
     {
+    }
+    protected override void ValidateRequest()
+    {
+        Row.Id = Guid.NewGuid();
+        base.ValidateRequest();
     }
 }

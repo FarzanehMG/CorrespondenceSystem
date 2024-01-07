@@ -217,6 +217,7 @@ namespace CorrespondenceSystem.Texts {
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
                 export const RelatedLetterId: string;
+                export const RelatedLetterTitle: string;
                 export const RelationType: string;
             }
         }
