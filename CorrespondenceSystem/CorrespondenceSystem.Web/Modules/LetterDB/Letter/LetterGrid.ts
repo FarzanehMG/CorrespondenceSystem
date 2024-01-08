@@ -23,7 +23,7 @@ export class LetterGrid extends EntityGrid<LetterRow, any> {
 
         // Add the "Download letter" column
         let downloadLetterColumn: Column<LetterRow> = {
-            name: "Download letter",
+            name: "دانلود نامه",
             width: 120,
             format: ctx => `<a class="fa fa-download downloaded" style="display: flex; align-items: center; justify-content: center;"></a>`,
             minWidth: 120,

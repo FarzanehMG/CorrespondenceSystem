@@ -7,6 +7,7 @@ namespace CorrespondenceSystem.LetterDB.Columns;
 
 [ColumnsScript("LetterDB.Letter")]
 [BasedOnRow(typeof(LetterRow), CheckNames = true)]
+[AlignRight]
 public class LetterColumns
 {
     [EditLink, QuickFilter]

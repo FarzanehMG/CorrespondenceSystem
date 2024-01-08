@@ -7,9 +7,6 @@ export interface GrandSubjectColumns {
     Title: Column<GrandSubjectRow>;
     Description: Column<GrandSubjectRow>;
     CreatedDate: Column<GrandSubjectRow>;
-    CreatorUserName: Column<GrandSubjectRow>;
-    ModifiedDate: Column<GrandSubjectRow>;
-    ModifiedUserName: Column<GrandSubjectRow>;
 }
 
 export class GrandSubjectColumns extends ColumnsBase<GrandSubjectRow> {
