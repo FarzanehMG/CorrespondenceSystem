@@ -3,8 +3,8 @@ namespace CorrespondenceSystem.Modules.Enums.Letter;
 [EnumKey("LetterTypes")]
 public enum LetterTypes
 {
-    [Description("Outgoing")]
+    [Description("صادره")]
     Outgoing = 0,
-    [Description("Incoming")]
+    [Description("وارده")]
     Incoming = 1,
 }

@@ -1,4 +1,4 @@
-﻿using Serenity.Navigation;
+using Serenity.Navigation;
 using MyPages = CorrespondenceSystem.SignDB.Pages;
 
-[assembly: NavigationLink(int.MaxValue, "SignDB/Sign", typeof(MyPages.SignPage), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Sign", typeof(MyPages.SignPage), icon: null)]

@@ -4,8 +4,8 @@ namespace CorrespondenceSystem.Modules.Enums.Letter;
 
 public enum ConfidentialLevels
 {
-    [Description("Normal")]
+    [Description("عادی")]
     Normal = 0,
-    [Description("Secret")]
+    [Description("محرمانه")]
     Secret = 1,
 }

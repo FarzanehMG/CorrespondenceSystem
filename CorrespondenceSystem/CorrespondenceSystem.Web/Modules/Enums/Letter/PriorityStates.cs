@@ -4,11 +4,11 @@ namespace CorrespondenceSystem.Modules.Enums.Letter;
 [EnumKey("PriorityState")]
 public enum PriorityStates
 {
-    [Description("Urgent")]
+    [Description("فوری")]
     Urgent = 0,
-    [Description("Instant")]
+    [Description("آنی")]
     Instant = 1,
-    [Description("Normal")]
+    [Description("عادی")]
     Normal = 2,
 }
 

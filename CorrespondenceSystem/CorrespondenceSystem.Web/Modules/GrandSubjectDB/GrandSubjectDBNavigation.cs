@@ -1,4 +1,4 @@
 using Serenity.Navigation;
 using MyPages = CorrespondenceSystem.GrandSubjectDB.Pages;
 
-[assembly: NavigationLink(int.MaxValue, "GrandSubjectDB/Grand Subject", typeof(MyPages.GrandSubjectPage), icon: null)]
+[assembly: NavigationLink(int.MaxValue, "Grand Subject", typeof(MyPages.GrandSubjectPage), icon: null)]

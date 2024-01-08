@@ -3,11 +3,11 @@ namespace CorrespondenceSystem.Modules.Enums.Letter;
 [EnumKey("State")]
 public enum States
 {
-    [Description("Draft")]
+    [Description("پیش نویس")]
     Draft = 0,
-    [Description("Posted")]
+    [Description("ارسال شده")]
     Posted = 1,
-    [Description("Received")]
+    [Description("دریافت شده")]
     Received = 2,
 }
 
