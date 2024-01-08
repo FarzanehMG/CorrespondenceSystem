@@ -1,0 +1,1 @@
+Message: Uncaught Each data element must implement a unique '__id' property. Object at index '0' has no identity value: {} in serenity framework

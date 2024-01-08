@@ -1,0 +1,38 @@
+afterLoadEntity() {
+    super.afterLoadEntity()
+    EditorUtils.setReadonly(this.form.Description.element, false)
+    this.saveAndCloseButton.enableSelection()
+}
+
+
+
+
+
+
+
+-- Alter the EmployeeProject table to add a foreign key constraint
+ALTER TABLE [ToDoTest2].[dbo].[EmployeeProject]
+ADD CONSTRAINT FK_EmployeeProject_Projects
+FOREIGN KEY ([ProjectsId]) REFERENCES [ToDoTest2].[dbo].[Projects] ([Id]);
+
+
+
+[LookupEditor(typeof(ProjectsRow), Multiple = true)]
+
+
+	[EnumKey("CopyType")]
+    public enum CopyType
+    {
+	
+        [Description("رو نوشت")]
+        Copy = 1,
+        [Description("جهت اطلاع")]
+        ForInformation = 2,
+    }
+
+
+string userName = Context.User.Identity.Name;
+var User = Connection.TryFirst<UserRow>(UserRow.Fields.Username == userName);
+Row.UserId = (int)User.UserId;
+
+Context.User.GetIdentifier()

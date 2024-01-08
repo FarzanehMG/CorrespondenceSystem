@@ -29,14 +29,13 @@
     <PackageReference Include="Serenity.Scripts" Version="6.9.6" />
     <PackageReference Include="Serenity.Net.Web" Version="6.9.6" />
     <PackageReference Include="Serenity.Extensions" Version="6.9.6.4" />
-    <PackageReference Include="Serenity.Demo.Northwind" Version="6.9.6.4" />
-    <PackageReference Include="Serenity.Demo.BasicSamples" Version="6.9.6.4" />
     <PackageReference Include="Syncfusion.DocIO.Net.Core" Version="24.1.43" />
     <PackageReference Include="Syncfusion.DocIORenderer.Net.Core" Version="24.1.43" />
     <PackageReference Include="Syncfusion.Licensing" Version="24.1.43" />
     <PackageReference Include="Syncfusion.Presentation.Net.Core" Version="24.1.43" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\FileName\" />
   </ItemGroup>
   <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\@types\jquery\index.d.ts')">

@@ -180,7 +180,7 @@ public partial class Startup
             endpoints.MapControllers();
         });
 
-        app.ApplicationServices.GetRequiredService<IDataMigrations>().Initialize();
+        //app.ApplicationServices.GetRequiredService<IDataMigrations>().Initialize();
     }
 
     public static Action<IApplicationBuilder> ConfigureTestPipeline { get; set; }
