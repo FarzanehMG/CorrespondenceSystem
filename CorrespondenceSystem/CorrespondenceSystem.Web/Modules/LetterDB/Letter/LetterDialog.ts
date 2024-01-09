@@ -69,8 +69,75 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
         this.form.LetterType.changeSelect2(e => {
             this.SetDefaultTemplate();
         });
+
+        this.form.LetterType.changeSelect2(e => {
+            if (this.form.LetterType.value == LetterTypes.Proceedings.toString()) {
+                EditorUtils.setReadonly(this.form.LetterIdentifier.element, true);
+                EditorUtils.setReadonly(this.form.LetterIdentifierGen.element, true);
+                EditorUtils.setReadonly(this.form.LetterNo.element, true);
+                EditorUtils.setReadonly(this.form.ReceiverId.element, true);
+                EditorUtils.setReadonly(this.form.SenderId.element, true);
+                EditorUtils.setReadonly(this.form.TemplateId.element, true);
+                EditorUtils.setReadonly(this.form.LetterContent.element, true);
+                EditorUtils.setReadonly(this.form.Tag.element, true);
+                EditorUtils.setReadonly(this.form.LetterCarrier.element, true);
+                EditorUtils.setReadonly(this.form.State.element, true);
+                EditorUtils.setReadonly(this.form.CounterpartDetailList.element, true);
+                this.HideCounterPart();
+                this.HideRelationLetter();
+            } else {
+                EditorUtils.setReadonly(this.form.LetterIdentifier.element, false);
+                EditorUtils.setReadonly(this.form.LetterIdentifierGen.element, false);
+                EditorUtils.setReadonly(this.form.LetterNo.element, false);
+                EditorUtils.setReadonly(this.form.ReceiverId.element, false);
+                EditorUtils.setReadonly(this.form.SenderId.element, false);
+                EditorUtils.setReadonly(this.form.TemplateId.element, false);
+                EditorUtils.setReadonly(this.form.LetterContent.element, false);
+                EditorUtils.setReadonly(this.form.Tag.element, false);
+                EditorUtils.setReadonly(this.form.LetterCarrier.element, false);
+                EditorUtils.setReadonly(this.form.State.element, false);
+                EditorUtils.setReadonly(this.form.CounterpartDetailList.element, false);
+            }
+        });
         
     }
+
+    HideCounterPart() {
+        if (this.form.LetterType.value == LetterTypes.Proceedings.toString()) {
+            this.hideEditorTab(this.form.CounterpartDetailList.getGridField(), true, true)
+
+        }
+        this.form.LetterType.changeSelect2(e => {
+            if (this.form.LetterType.value == LetterTypes.Proceedings.toString()) {
+                this.hideEditorTab(this.form.CounterpartDetailList.getGridField(), true, true)
+
+            }
+            else {
+                this.hideEditorTab(this.form.CounterpartDetailList.getGridField(), true, false)
+            }
+
+
+        })
+    }
+
+    HideRelationLetter() {
+        if (this.form.LetterType.value == LetterTypes.Proceedings.toString()) {
+            this.hideEditorTab(this.form.RelatedLetterDetailList.getGridField(), true, true)
+
+        }
+        this.form.LetterType.changeSelect2(e => {
+            if (this.form.LetterType.value == LetterTypes.Proceedings.toString()) {
+                this.hideEditorTab(this.form.RelatedLetterDetailList.getGridField(), true, true)
+
+            }
+            else {
+                this.hideEditorTab(this.form.RelatedLetterDetailList.getGridField(), true, false)
+            }
+
+
+        })
+    }
+
 
     validateBeforeSave() {
         if (this.form.HasAttachment.value && this.form.DetailList.value.length == 0) {
@@ -167,7 +234,29 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
         });
     }
 
+    hideEditorTab(editor: any, value: boolean = true, flag) {
 
+        if (flag == true) {
+
+            let tabId = editor.closest('.tab-pane').hide().attr('id');
+
+            let tabAnchor = editor.closest('.s-PropertyGrid').find(`a[href='#${tabId}']`);
+
+            tabAnchor.closest('li').hide();
+        } else {
+
+            let tabId = editor.closest('.tab-pane').hide().attr('id');
+
+
+            let tabAnchor = editor.closest('.s-PropertyGrid').find(`a[href='#${tabId}']`);
+
+
+            tabAnchor.closest('li').show();
+
+            editor.closest('.tab-pane').removeAttr('style');
+
+        }
+    }
 
 
     
