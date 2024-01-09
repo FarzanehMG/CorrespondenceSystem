@@ -142,6 +142,7 @@ namespace CorrespondenceSystem.Texts {
                 export const LetterIdentifierGen: string;
                 export const LetterNo: string;
                 export const LetterType: string;
+                export const ListOfAttendees: string;
                 export const ModifiedDate: string;
                 export const ModifiedUserName: string;
                 export const NeedAnswer: string;

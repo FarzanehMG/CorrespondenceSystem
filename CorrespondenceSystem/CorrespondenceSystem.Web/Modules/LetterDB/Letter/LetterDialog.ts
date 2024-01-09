@@ -62,7 +62,25 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
 
         this.form.LetterType.changeSelect2(e => {
             if (this.form.LetterType.value === LetterTypes.Outgoing.toString()) {
-                EditorUtils.setValue(this.form.State, States.Draft);            
+                EditorUtils.setValue(this.form.State, States.Draft);              
+            } else if (this.form.LetterType.value === LetterTypes.Proceedings.toString()){
+                EditorUtils.setReadonly(this.form.ListOfAttendees.element, false);
+            }
+        });
+
+        this.form.LetterType.changeSelect2(e => {
+            if (this.form.LetterType.value === LetterTypes.Outgoing.toString())
+            {
+                EditorUtils.setRequired(this.form.SenderId, true);
+                EditorUtils.setRequired(this.form.ReceiverId, true);
+            } else if (this.form.LetterType.value === LetterTypes.Incoming.toString())
+            {
+                EditorUtils.setRequired(this.form.SenderId, true);
+                EditorUtils.setRequired(this.form.ReceiverId, true);
+            } else
+            {
+                EditorUtils.setRequired(this.form.SenderId, false);
+                EditorUtils.setRequired(this.form.ReceiverId, false);
             }
         });
 
@@ -75,8 +93,10 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
                 EditorUtils.setReadonly(this.form.LetterIdentifier.element, true);
                 EditorUtils.setReadonly(this.form.LetterIdentifierGen.element, true);
                 EditorUtils.setReadonly(this.form.LetterNo.element, true);
+
                 EditorUtils.setReadonly(this.form.ReceiverId.element, true);
                 EditorUtils.setReadonly(this.form.SenderId.element, true);
+
                 EditorUtils.setReadonly(this.form.TemplateId.element, true);
                 EditorUtils.setReadonly(this.form.LetterContent.element, true);
                 EditorUtils.setReadonly(this.form.Tag.element, true);
@@ -85,6 +105,7 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
                 EditorUtils.setReadonly(this.form.CounterpartDetailList.element, true);
                 this.HideCounterPart();
                 this.HideRelationLetter();
+                this.HideSignLetter();
             } else {
                 EditorUtils.setReadonly(this.form.LetterIdentifier.element, false);
                 EditorUtils.setReadonly(this.form.LetterIdentifierGen.element, false);
@@ -132,6 +153,24 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
             }
             else {
                 this.hideEditorTab(this.form.RelatedLetterDetailList.getGridField(), true, false)
+            }
+
+
+        })
+    }
+
+    HideSignLetter() {
+        if (this.form.LetterType.value == LetterTypes.Proceedings.toString()) {
+            this.hideEditorTab(this.form.SignLettersDetailList.getGridField(), true, true)
+
+        }
+        this.form.LetterType.changeSelect2(e => {
+            if (this.form.LetterType.value == LetterTypes.Proceedings.toString()) {
+                this.hideEditorTab(this.form.SignLettersDetailList.getGridField(), true, true)
+
+            }
+            else {
+                this.hideEditorTab(this.form.SignLettersDetailList.getGridField(), true, false)
             }
 
 
@@ -191,10 +230,12 @@ export class LetterDialog extends EntityDialog<LetterRow, any> {
                     EditorUtils.setValue(this.form.UseDefaultTemplate, true);
                     EditorUtils.setValue(this.form.TemplateId, response);
                     EditorUtils.setReadonly(this.form.TemplateId.element, true);
-                } else {
-                    EditorUtils.setValue(this.form.UseDefaultTemplate, false);
+                } else if (this.form.LetterType.value === LetterTypes.Incoming.toString()) {
+                    EditorUtils.setValue(this.form.UseDefaultTemplate, true);
                     EditorUtils.setValue(this.form.TemplateId, null);
                     EditorUtils.setReadonly(this.form.TemplateId.element, false);
+                } else {
+                    EditorUtils.setReadonly(this.form.TemplateId.element, true);
                 }
 
                  

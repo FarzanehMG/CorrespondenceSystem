@@ -29,6 +29,7 @@ export interface LetterRow {
     LetterCarrier?: string;
     NeedAnswer?: boolean;
     LetterFile?: string;
+    ListOfAttendees?: string;
     TemplateTitle?: string;
     SenderName?: string;
     ReceiverName?: string;

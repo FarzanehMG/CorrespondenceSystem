@@ -32,12 +32,12 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow, ILog
     [LookupEditor(typeof(TemplateDB.TemplateRow))]
     public Guid? TemplateId { get => fields.TemplateId[this]; set => fields.TemplateId[this] = value; }
 
-    [DisplayName("Sender"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jSender), TextualField(nameof(SenderName))]
+    [DisplayName("Sender"), ForeignKey("RecriverSender", "Id"), LeftJoin(jSender), TextualField(nameof(SenderName))]
     [ServiceLookupEditor(typeof(RecriverSenderDB.RecriverSenderRow))]
 
     public Guid? SenderId { get => fields.SenderId[this]; set => fields.SenderId[this] = value; }
 
-    [DisplayName("Receiver"), NotNull, ForeignKey("RecriverSender", "Id"), LeftJoin(jReceiver), TextualField(nameof(ReceiverName))]
+    [DisplayName("Receiver"), ForeignKey("RecriverSender", "Id"), LeftJoin(jReceiver), TextualField(nameof(ReceiverName))]
     [ServiceLookupEditor(typeof(RecriverSenderDB.RecriverSenderRow))]
     public Guid? ReceiverId { get => fields.ReceiverId[this]; set => fields.ReceiverId[this] = value; }
 
@@ -114,7 +114,8 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow, ILog
 
     [DisplayName("Grand Subject Title"), Expression($"{jGrandSubject}.[Title]")]
     public string GrandSubjectTitle { get => fields.GrandSubjectTitle[this]; set => fields.GrandSubjectTitle[this] = value; }
-
+    [DisplayName("List Of Attendees")]
+    public string ListOfAttendees { get => fields.ListOfAttendees[this]; set => fields.ListOfAttendees[this] = value; }
     [DisplayName("Is Active")]
     public short? IsActive { get => fields.IsActive[this]; set => fields.IsActive[this] = value; }
 
@@ -174,6 +175,7 @@ public sealed class LetterRow : Row<LetterRow.RowFields>, IIdRow, INameRow, ILog
         public BooleanField NeedAnswer;
         public StringField LetterFile;
 
+        public StringField ListOfAttendees;
         public StringField TemplateTitle;
         public StringField SenderName;
         public StringField ReceiverName;
