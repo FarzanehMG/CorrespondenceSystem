@@ -22,6 +22,7 @@ export interface LetterForm {
     GrandSubjectId: ServiceLookupEditor;
     UseDefaultTemplate: BooleanEditor;
     TemplateId: LookupEditor;
+    ListOfAttendees: StringEditor;
     LetterContent: TextAreaEditor;
     Tag: StringEditor;
     LetterCarrier: StringEditor;
@@ -71,6 +72,7 @@ export class LetterForm extends PrefixedContext {
                 'GrandSubjectId', w3,
                 'UseDefaultTemplate', w4,
                 'TemplateId', w5,
+                'ListOfAttendees', w1,
                 'LetterContent', w6,
                 'Tag', w1,
                 'LetterCarrier', w1,

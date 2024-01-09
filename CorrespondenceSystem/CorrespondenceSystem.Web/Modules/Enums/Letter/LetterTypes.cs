@@ -7,4 +7,6 @@ public enum LetterTypes
     Outgoing = 0,
     [Description("وارده")]
     Incoming = 1,
+    [Description("صورت جلسه")]
+    Proceedings = 2
 }

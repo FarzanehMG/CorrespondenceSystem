@@ -45,6 +45,7 @@
   "Db.LetterDB.Letter.LetterIdentifierGen": "شناسه نامه",
   "Db.LetterDB.Letter.LetterNo": "شماره نامه",
   "Db.LetterDB.Letter.LetterType": "نوع نامه",
+  "Db.LetterDB.Letter.ListOfAttendees": "لیست حاضرین",
   "Db.LetterDB.Letter.NeedAnswer": "نیاز به پاسخ",
   "Db.LetterDB.Letter.PriorityState": "طبقه بندی نامه",
   "Db.LetterDB.Letter.ReceiverId": "گیرنده",
