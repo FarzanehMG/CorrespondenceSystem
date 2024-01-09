@@ -24,20 +24,20 @@
             var barChart = new Chart(barChartCanvas, {
                 type: "bar",
                 data: {
-                    labels: ["Jan", "Feb", "March", "April", "May", "June", "July", "August", "Oct", "Sep", "Nov", "Dec"],
+                    labels: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
                     datasets: [{
                         label: 'تعداد نامه های وارده',
                         data: [
-    @Model.CountIncomingLetterJan, @Model.CountIncomingLetterFeb, @Model.CountIncomingLetterMarch, @Model.CountIncomingLetterApril, @Model.CountIncomingLetterMay, @Model.CountIncomingLetterJune,
-    @Model.CountIncomingLetterJuly, @Model.CountIncomingLetterAugust, @Model.CountIncomingLetterJOct, @Model.CountIncomingLetterSep, @Model.CountIncomingLetterNov, @Model.CountIncomingLetterDec
+    @Model.CountIncomingLetterFarvardin, @Model.CountIncomingLetterOrdibehesh, @Model.CountIncomingLetterKhordad, @Model.CountIncomingLetterTir, @Model.CountIncomingLetterMordad, @Model.CountIncomingLetterShahrivar,
+    @Model.CountIncomingLetterMehr, @Model.CountIncomingLetterAban, @Model.CountIncomingLetterAzar, @Model.CountIncomingLetterDey, @Model.CountIncomingLetterBahman, @Model.CountIncomingLetterEsfand
                             ],
                         backgroundColor: ["#87ceeb", "#87ceeb"],
                     },
                     {
                         label: 'تعداد نامه های صادره',
                         data: [
-    @Model.CountOutgoingLetterJan, @Model.CountOutgoingLetterFeb, @Model.CountOutgoingLetterMarch, @Model.CountOutgoingLetterApril, @Model.CountOutgoingLetterMay, @Model.CountOutgoingLetterJune,
-    @Model.CountOutgoingLetterJuly, @Model.CountOutgoingLetterAugust, @Model.CountOutgoingLetterOct, @Model.CountOutgoingLetterSep, @Model.CountOutgoingLetterNov, @Model.CountOutgoingLetterDec
+    @Model.CountOutgoingLetterFarvardin, @Model.CountOutgoingLetterOrdibehesh, @Model.CountOutgoingLetterKhordad, @Model.CountOutgoingLetterTir, @Model.CountOutgoingLetterMordad, @Model.CountOutgoingLetterShahrivar,
+    @Model.CountOutgoingLetterMehr, @Model.CountOutgoingLetterAban, @Model.CountOutgoingLetterAzar, @Model.CountOutgoingLetterDey, @Model.CountOutgoingLetterBahman, @Model.CountOutgoingLetterEsfand
                                 ],
                         backgroundColor: ["#ffc0cb", "#ffc0cb"],
                     }]
