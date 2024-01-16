@@ -38,10 +38,10 @@
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\FileName\" />
   </ItemGroup>
-  <Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\@types\jquery\index.d.ts')">
+  <!--<Target Name="NpmInstall" BeforeTargets="BeforeBuild" Condition="!Exists('node_modules\@types\jquery\index.d.ts')">
     <Message Text="Installing NPM packages..." Importance="high" />
     <Exec Command="npm install" />
-  </Target>
+  </Target>-->
   <Target Name="TransformMvcClientTypes" BeforeTargets="BeforeBuild">
     <Exec Command="dotnet tool restore" ContinueOnError="true" />
     <Exec Command="$(DotNetSergen) mvct" ContinueOnError="true" />

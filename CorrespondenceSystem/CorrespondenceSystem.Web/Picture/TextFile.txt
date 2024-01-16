@@ -1,0 +1,28 @@
+USE [CorrespondenceSystem]
+GO
+/****** Object:  StoredProcedure [dbo].[AutoIncrement]    Script Date: 1/16/2024 10:12:35 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[AutoIncrement] 
+	
+AS
+BEGIN
+
+declare @CreatedDate DATE;
+DECLARE @currentDate DATE;
+declare @sequence int;
+SET @currentDate = CONVERT(DATE, GETDATE());
+--SET @currentDate='20240124';
+set @CreatedDate =(SELECT TOP 1 CreatedDate
+                                 FROM Letter
+                                 ORDER BY CreatedDate deSC);
+set  @sequence=(select count(Id) from Letter where @currentDate=FORMAT(@CreatedDate, 'yyyyMMdd'))+1;
+
+select concat(FORMAT(GETDATE(), 'yyyyMMdd'),'-', CAST(@sequence AS VARCHAR(10)));
+--select  count(Id)+1 from Letter where FORMAT(DateAdd(Day,1,GetDate()), 'yyyyMMdd')=FORMAT(CreatedDate, 'yyyyMMdd')
+    END;
+
+
